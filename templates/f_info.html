@@ -430,7 +430,7 @@ select:-moz-focusring {
 
 <h4>{{getString1(163)}}</h4>
 <ul style="list-style-type:none;">
-  <li><a href="/refresh"><i class="icon icon-arrows-cw"></i>{{getString1(164)}}</a></li>
+  <li><a onclick="get_refresh('/refresh', '/f_browse')"><i class="icon icon-arrows-cw"></i>{{getString1(164)}}</a></li>
 </ul>
 <p class="help-normal">{{getString1(165)}}</p>
 
@@ -459,10 +459,10 @@ select:-moz-focusring {
 
 <hr/>
 {% if admin_enabled %}
-<p>{{getString1(178)}}: <a href="{{ url_for('logout') }}"><i class="icon icon-logout"></i>{{getString1(180)}}</a></p>
+<p>{{getString1(178)}}: <a onclick="get_refresh('/logout', '/f_home')"><i class="icon icon-logout"></i>{{getString1(180)}}</a></p>
 {% endif %}
 {% else %}
-<p>{{getString1(179)}}: <a href="{{ url_for('login') }}"><i class="icon icon-login"></i>{{getString1(181)}}</a></p>
+<p>{{getString1(179)}}: <a onclick="get_refresh('/login', '/f_home')"><i class="icon icon-login"></i>{{getString1(181)}}</a></p>
 {% endif %}
 
 </div>
