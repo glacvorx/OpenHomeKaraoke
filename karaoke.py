@@ -59,6 +59,7 @@ class Karaoke:
 	has_video = True
 	has_subtitle = False
 	subtitle_delay = 0
+	default_subtitle_delay = -3/4
 	play_speed = 1.0
 	show_subtitle = True
 	last_vocal_info = 0
@@ -86,6 +87,7 @@ class Karaoke:
 		self.download_path = args.dl_path
 		self.volume_offset = self.volume = args.volume
 		self.logo_path = self.default_logo_path if args.logo_path == None else args.logo_path
+		self.subtitle_delay = self.default_subtitle_delay
 
 		# other initializations
 		self.platform = get_platform()
@@ -1063,7 +1065,7 @@ class Karaoke:
 		self.now_playing_transpose = 0
 		self.now_playing_slave = ''
 		self.audio_delay = 0
-		self.subtitle_delay = 0
+		self.subtitle_delay = self.default_subtitle_delay
 		self.show_subtitle = True
 		self.has_subtitle = False
 		self.has_video = True
