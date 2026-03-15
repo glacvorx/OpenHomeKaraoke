@@ -33,6 +33,12 @@ getString = lambda ii: os.texts[ii]
 getString1 = lambda lang, ii: os.langs[lang].get(ii, os.langs['en_US'][ii])
 getString2 = lambda ii: getString1(request.client_lang, ii)
 
+class _SuppressVocalPoll(logging.Filter):
+	def filter(self, record):
+		return 'get_vocal_todo_list' not in record.getMessage()
+
+logging.getLogger('werkzeug').addFilter(_SuppressVocalPoll())
+
 
 # Websocket handler
 @sock.route('/ws_init')
