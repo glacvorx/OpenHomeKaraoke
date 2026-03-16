@@ -16,7 +16,12 @@
   <p class="line">{{getString1(223)}}<span id="old_trim_begin">00:00:00</span><input autocomplete="off" id="new_trim_begin" class="input half" type="text" value="00:00:00"></input></p>
   <p class="line">{{getString1(224)}}<span id="old_trim_end">{{hhmmss}}</span><input autocomplete="off" id="new_trim_end" class="input half" type="text" value="{{hhmmss}}"></input></p>
   <hr>
-  <h4>{{getString1(222)}}</h4>
+  {% if save_delays_enabled %}
+  <h4>{{getString1(77)}} / {{getString1(78)}}</h4>
+  <p class="line">{{getString1(77)}}<span id="old_audio_delay">{{audio_delay}}</span><input autocomplete="off" id="new_audio_delay" class="input half" type="number" step="0.1" value="{{audio_delay}}"></input></p>
+  <p class="line">{{getString1(78)}}<span id="old_subtitle_delay">{{subtitle_delay}}</span><input autocomplete="off" id="new_subtitle_delay" class="input half" type="number" step="0.1" value="{{subtitle_delay}}"></input></p>
+  <hr>
+  {% endif %}
   <p class="line">{{getString1(225)}}<span id="old_volume">{{dBFS}}</span> ⇒ <input autocomplete="off" id="new_volume" class="input half" type="number" value="{{dBFS}}"></input></p>
   <hr>
   <button class="button is-primary" onclick="rename_song()" disabled>{{getString1(217)}}</button>
@@ -26,14 +31,19 @@
 
 <script>
 function check(){
-	var old_name = $('#old_file_name').val().split('/').slice(-1)[0].split('.').slice(0,-1).join('.');
-	var same = (old_name==$('#new_file_name').val() && $('#old_trim_begin').text()==$('#new_trim_begin').val()
-		&& $('#old_trim_end').text()==$('#new_trim_end').val() && $('#old_volume').text()==$('#new_volume').val());
+	var old_path = $('#old_file_name').val();
+	var old_stem = old_path.split('/').slice(-1)[0].split('.').slice(0,-1).join('.');
+	var old_display = old_stem.split('---')[0];
+	var same = (old_display==$('#new_file_name').val() && $('#old_trim_begin').text()==$('#new_trim_begin').val()
+		&& $('#old_trim_end').text()==$('#new_trim_end').val() && $('#old_volume').text()==$('#new_volume').val()
+		&& $('#old_audio_delay').text()==$('#new_audio_delay').val()
+		&& $('#old_subtitle_delay').text()==$('#new_subtitle_delay').val());
 	$('.is-primary').prop('disabled', same);
 }
 function rename_song(){
   post_switch('/edit_song', {old_file_name: $('#old_file_name').val(), new_file_name: $("#new_file_name").val(),
-    new_trim_begin: $('#new_trim_begin').val(), new_trim_end: $('#new_trim_end').val(), dBFS: $('#dBFS').val()})
+    new_trim_begin: $('#new_trim_begin').val(), new_trim_end: $('#new_trim_end').val(), dBFS: $('#dBFS').val(),
+    audio_delay: $('#new_audio_delay').val(), subtitle_delay: $('#new_subtitle_delay').val()})
 }
 function delete_song() {
   if (window.confirm("{{getString1(219)}}"))

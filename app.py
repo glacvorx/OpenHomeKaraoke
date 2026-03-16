@@ -720,26 +720,46 @@ def f_edit():
 		return '', 400
 	else:
 		song = AudSeg.from_file(song_path)
+		saved_delays = K.delays.get(os.path.basename(song_path), {}) if K.save_delays else {}
 		return render_template("f_edit.html", getString1 = lambda ii: getString1(request.client_lang, ii), dBFS = '%.2f'%song.dBFS,
-			hhmmss = sec2hhmmss(song.duration_seconds), title = getString(23), song = song_path.encode("utf-8"))
+			hhmmss = sec2hhmmss(song.duration_seconds), title = getString(23), song = song_path.encode("utf-8"),
+			audio_delay = saved_delays.get('audio_delay', 0),
+			subtitle_delay = saved_delays.get('subtitle_delay', K.default_subtitle_delay),
+			save_delays_enabled = bool(K.save_delays))
 
 @app.route("/edit_song", methods = ["POST"])
 def rename():
 	d = request.form
 	if "new_file_name" in d and "old_file_name" in d:
-		new_name = d["new_file_name"]
+		new_stem = d["new_file_name"]
 		old_name = d["old_file_name"]
+		old_basename = os.path.basename(old_name)
+		old_stem = os.path.splitext(old_basename)[0]
+		ext = os.path.splitext(old_basename)[1]
+		# Preserve the ---ID suffix if present
+		suffix = ('---' + old_stem.split('---', 1)[1]) if '---' in old_stem else ''
+		new_name = new_stem + suffix
 		if old_name == K.now_playing_filename:
 			flash(getString2(22) + old_name, "is-danger")
-		elif new_name != old_name:
-			# check if new_name already exist
-			file_extension = os.path.splitext(old_name)[1]
-			if os.path.isfile(os.path.join(K.download_path, new_name + file_extension)):
-				flash(getString2(24) % (old_name, new_name + file_extension), "is-danger")
-			else:
-				K.rename(old_name, new_name)
-				flash(getString2(25) % (old_name, new_name), "is-info")
-				return f_browse()
+		else:
+			# Save delays if enabled
+			if K.save_delays:
+				try:
+					K.set_delays_dict(old_name, 'audio_delay', float(d.get('audio_delay', 0)))
+					K.set_delays_dict(old_name, 'subtitle_delay', float(d.get('subtitle_delay', K.default_subtitle_delay)))
+					K.auto_save_delays()
+				except ValueError:
+					flash(getString2(220), "is-danger")
+					return '', 400
+			if new_name != old_stem:
+				# check if new_name already exists
+				if os.path.isfile(os.path.join(K.download_path, new_name + ext)):
+					flash(getString2(24) % (old_basename, new_name + ext), "is-danger")
+				else:
+					K.rename(old_name, new_name)
+					flash(getString2(25) % (old_basename, new_name), "is-info")
+					return f_browse()
+			return f_browse()
 	else:
 		flash(getString2(220), "is-danger")
 	return '', 400

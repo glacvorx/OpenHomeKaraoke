@@ -604,6 +604,12 @@ class Karaoke:
 				item['title'] = self.filename_from_path(item['file'])
 				break
 
+		# migrate saved delays to new filename
+		if self.save_delays and old_basename in self.delays:
+			self.delays[new_basename] = self.delays.pop(old_basename)
+			self.delays_dirty = True
+			self.auto_save_delays()
+
 		self.get_available_songs()
 
 	def filename_from_path(self, file_path):
@@ -1150,11 +1156,11 @@ class Karaoke:
 	def init_save_delays(self):
 		self.delays_dirty = False
 		try:
-			self.delays = eval(open(self.save_delays).read())
+			self.delays = json.load(open(self.save_delays))
 		except:
 			self.delays = {}
 			with open(self.save_delays, 'w') as fp:
-				fp.write(str(self.delays))
+				json.dump(self.delays, fp, indent=1)
 
 	def set_save_delays(self, state):
 		if state != bool(self.save_delays):
@@ -1169,7 +1175,7 @@ class Karaoke:
 		if self.save_delays and self.delays_dirty:
 			self.delays_dirty = False
 			with open(self.save_delays, 'w') as fp:
-				fp.write(str(self.delays))
+				json.dump(self.delays, fp, indent=1)
 
 	def run(self):
 		logging.info("Starting PiKaraoke!")
