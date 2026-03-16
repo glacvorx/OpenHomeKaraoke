@@ -1262,7 +1262,10 @@ if __name__ == "__main__":
 	# determine whether to save/load delays
 	args.dft_delays_file = args.dl_path+'.delays'
 	if args.save_delays == 'auto':
-		args.save_delays = args.dft_delays_file if os.path.exists(args.dft_delays_file) else None
+		if not os.path.exists(args.dft_delays_file):
+			with open(args.dft_delays_file, 'w') as fp:
+				fp.write('{}')
+		args.save_delays = args.dft_delays_file
 	elif args.save_delays == 'yes':
 		args.save_delays = args.dft_delays_file
 	elif args.save_delays == 'no':

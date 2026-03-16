@@ -625,8 +625,8 @@ class Karaoke:
 		if self.use_vlc:
 			if self.save_delays:
 				saved_delays = self.delays.get(os.path.basename(file_path), {})
-				self.audio_delay = self.audio_delay if self.audio_delay else saved_delays.get('audio_delay', 0)
-				self.subtitle_delay = self.subtitle_delay if self.subtitle_delay else saved_delays.get('subtitle_delay', 0)
+				self.audio_delay = self.audio_delay if self.audio_delay is not None else saved_delays.get('audio_delay', 0)
+				self.subtitle_delay = saved_delays.get('subtitle_delay', self.default_subtitle_delay)
 				self.show_subtitle = False if self.show_subtitle==False else saved_delays.get('show_subtitle', True)
 			extra_params1 = []
 			logging.info("Playing video in VLC: " + file_path)
