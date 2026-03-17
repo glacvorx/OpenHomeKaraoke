@@ -3,5 +3,7 @@
 .vscode/
 __pycache__/
 songs/
+models/
 qrcode.png
 .DS_Store
+.yt-dlp.last-update
