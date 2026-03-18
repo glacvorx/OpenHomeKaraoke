@@ -1,31 +1,45 @@
-# OpenHomeKaraoke 【开源之家卡啦OK】 (The World's best open-source Home Karaoke system)
+# OpenHomeKaraoke
 
-This is the world's best open-source YouTube-based Home Karaoke system up to today (2024.4), originally named as PiKaraoke, forked from @vicwomg's repo (thanks to https://github.com/vicwomg/pikaraoke/) and thoroughly revamped and incorporated @tsurumeso's DNN-based (deep neural network) vocal splitter (thanks to https://github.com/tsurumeso/vocal-remover). OpenHomeKaraoke is a "KTV"-style Karaoke song search, download, and queueing system. It runs on your PC or Raspberry Pi, with screen projected to your TV either via an HDMI cable, or screen sharing, or using TV's web-browser (backend KTV player is screen-captured and streamed to HTTP), and shows a QR code for computers and smartphones to connect to a web interface. From there, multiple users can seamlessly search your local track library, queue up songs, add an endless selection of new Karaoke tracks from YouTube, and more. Compared to its former (https://github.com/xuancong84/pikaraoke.git), OpenHomeKaraoke uses web-sockets to communicate so as to save network bandwidth and it supports speech recognition. OpenHomeKaraoke Works on Linux, Windows, Raspberry Pi, and Mac OS!
-See a demo on YouTube: [![Img alt text](https://img.youtube.com/vi/kmQax0EhAxE/0.jpg)](https://www.youtube.com/watch?v=kmQax0EhAxE)
+This is a fork of xuancong84's work, which was originally forked from PiKaraoke in 2022.
 
-## Key Features
-- DNN-based (Deep Neural Network) vocal splitter (need PyTorch, preferably with GPU support), you can choose to play instrumental, vocal or both
-- Add/queue songs and search for songs by voice recognition (it uses OpenAI's Whisper multi-lingual speech recognition model)
-- Search for songs on YouTube and download new songs from YouTube and many other video websites such as Youku, Bilibili, etc. (can use browser cookies to download as if logged in)- Playing instrumental sound by the traditional stereo track subtraction method (disable DNN in Advanced Control Options)
-- Web interface (can be opened on smartphone browser) for multiple users to queue tracks
-- Searching/browsing a local song library
+I mainly started with bug fixes and creature comforts but have since then expanded to more major changes.
+
+I am developing on Ubuntu 24.04 LTS. I am leaving the instructions for other OS' here but will not be testing on other platforms. Also be aware that I often use force push to consolidate my commits.
+
+## Key Features (new ones in bold)
+
+### Audio
+- **Vocal splitter has now been migrated to Demucs (CPU and GPU both supported), you can choose to play instrumental, vocal or both**
+- Volume normalization (all songs will sound equally loud)
+- Stream-to-HTTP allows any TV (or IT device) with a web browser to watch the KTV (on Windows and MacOS, you can use wireless-display/screen-projection and Airplay respectively)
+- **System options are now persistent via a config file in the main project folder**
+
+### Library Management
+- Support song titles in all languages (including Chinese/Japanese/Arabic/Greek/Korean/Vietnamese/Hindi/etc.), filenames containing non-English characters are sorted according to their Latin transliteration
+- Support renaming and deletion of downloaded files
+- **Edit saved audio/subtitle delays for each song**
 - mp3 + cdg support, including compressed .zip bundles
+
+### Web Interface
+- Search for songs on YouTube and download new songs from YouTube and many other video websites such as Youku, Bilibili, etc. (can use browser cookies to download as if logged in)
+- **Subtitles will be retrieved and different languages presented for choosing**
+- **Searching/browsing a local song library (now displays more consistently and prominently across browsers)**
+- Add/queue songs and search for songs by voice recognition (it uses OpenAI's Whisper multi-lingual speech recognition model)
+- Web interface (mobile or desktop) for multiple users to queue tracks
 - Pause/Skip/Restart and volume control
 - Queue management, support dragging of a song to any position in the queue
-- Key Change / Pitch shifting
-- Tempo Change / Playback speed adjustment
-- Volume normalization (all songs will sound equally loud)
 - Lock down features with admin mode
-- Seek to play position (you can practice singing a specific sentence over and over again)
-- Audio delay adjustment (YouTube MTVs often have synchronized lyrics, this makes singing difficult as there is not enough time to look at the lyrics)
-- Subtitle delay adjustment and show/hide control for easier singing (subtitle control will be displayed only if the currently-playing media file contains subtitle tracks)
-- Remember audio/subtitle delay for each song for easy singing
-- Stream-to-HTTP allows any TV (or IT device) with a web browser to watch the KTV (on Windows and MacOS, you can use wireless-display/screen-projection and Airplay respectively)
-- Support song titles in all languages (including Chinese/Japanese/Arabic/Greek/Korean/Vietnamese/Hindi/etc.), filenames containing non-English characters are sorted according to their Latin transliteration
 - Multi-lingual support in both Web UI and backend system UI
 - Splash screen with connection QR code and "Next up" display
-- Support renaming and deletion of downloaded files
-- The module that does DNN speech recognition and vocal split can be done over cloud, it requires GPU-CUDA acceleration.
+
+### Singing
+- Playing instrumental sound by the traditional stereo track subtraction method or using tracks generated by demucs
+- Key Change / Pitch shifting
+- Tempo Change / Playback speed adjustment
+- Seek to play position (you can practice singing a specific sentence over and over again)
+- Audio delay adjustment (YouTube MTVs often have synchronized lyrics, this makes singing difficult as there is not enough time to look at the lyrics)
+- **Subtitle delay adjustment and show/hide control for easier singing (with default delay so you don't have to set it for every new song)**
+- Remember audio/subtitle delay for each song
 
 ## Screenshots
 
@@ -60,22 +74,22 @@ This _should_ work on Windows, Linux machines and all Raspberry Pi devices (mult
 ### For all OS
 
 - Install git, if you haven't already. (on Raspberry Pi: `sudo apt-get update; sudo apt-get install git`)
-- Clone this repo, `git clone https://github.com/xuancong84/OpenHomeKaraoke.git`
-- Download and install Anaconda3 (https://www.anaconda.com/products/individual), it contains Python3, pip/pip3 and common Python libraries
-- Install pip dependencies, in the conda environment, cd into the project folder and run `pip install -r requirements.txt`
+- Clone this repo, `git clone https://github.com/kagebarton/OpenHomeKaraoke.git`
+- Download and install Anaconda3 (https://www.anaconda.com/products/individual, technically any python environment manager will work)
+- Install Pytorch (https://pytorch.org/get-started/locally/, use the correct parameters to install torch and torchaudio)
+- Install pip dependencies in the conda environment, cd into the project folder and run `pip install -r requirements.txt`
 - Create song download directory `$HOME/pikaraoke-songs` (by default) or specify it on the command line.
 - Create `nonvocal` and `vocal` sub-folders inside the song download directory to enable automatic extraction of instrumental and vocal tracks in the background, e.g.,`$HOME/pikaraoke-songs/nonvocal` and `$HOME/pikaraoke-songs/vocal` by default.
-- Make sure `VLC` (https://www.videolan.org/) and `ffmpeg` (https://ffmpeg.org/download.html) are installed, and their executables are in the execution PATH environment variable.
+- Make sure `VLC`, `ffmpeg`, and `deno` are installed
+
+### Cloud-based GPU acceleration
 - For GPU-accelerated speech recognition, you need to install the cloud-side server on any CUDA-enabled GPU machine. Copy over the entire `cloud` folder from https://github.com/xuancong84/OpenSmartLight/tree/main/tools/cloud, setup conda environment correctly and run the `cloud.py`, then pass the cloud server URL as argument to `app.py`.
 - GPU-accelerated vocal splitter can run either locally or via cloud (see previous point with option `-vs`). If your local machine is powerful enough, with a fast CPU and a decent NVidia GPU with >=8GB GPU memory, you can host the cloud on the same local machine.
 
 #### Linux / OSX / Raspberry Pi (>=4)
 
 - Install tmux, `sudo apt install tmux`
-- You can activate conda environment by `export PATH=$HOME/anaconda3/bin:$PATH`
-- yt-dlp should be automatically installed when you run `pip install -r requirements.txt`
-- Make sure you can run `yt-dlp`, `ffmpeg` and `vlc` (optionally `cvlc`) directly
-- For GPU-accelerated vocal splitter, install NVidia driver (Google on how to install); and use Anaconda3's pip to install PyTorch (see https://pytorch.org/)
+- Make sure the bin folder for conda is on your path `export PATH=_your_conda_path_/bin:$PATH`
 
 #### Windows
 
@@ -90,7 +104,7 @@ Note: if you have trouble installing pygame, there's apparently an incompatibili
 
 **On Linux/Mac-OS, run:**
 
-cd into the OpenHomeKaraoke directory and run: `PATH=~/anaconda3/bin:$PATH ./run.sh`
+cd into the OpenHomeKaraoke directory and run: `./run.sh`
 
 
 **On Raspberry Pi:**
@@ -133,7 +147,6 @@ optional arguments:
                         If using omxplayer, the initial player volume is specified in millibels. Negative values ok. (default: 0 , Note: 100 millibels = 1
                         decibel).
   -V, --run-vocal       Explicitly run vocal-splitter process from the main program (by default, it only run explicitly in Windows)
-  -nv, --normalize-vol  Enable volume normalization
   -s SPLASH_DELAY, --splash-delay SPLASH_DELAY
                         Delay during splash screen between songs (in secs). (default: 3 )
   -L LANG, --lang LANG  Set display language (default: None, set according to the current system locale en_US)
