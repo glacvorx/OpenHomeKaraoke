@@ -492,10 +492,10 @@ class Karaoke:
 		getString2 = lambda ii: os.langs.get(client_lang, os.langs['en_US'])[ii]
 		self.downloading_songs[song_url] = 1
 		dl_path = "%(title)s---%(id)s.%(ext)s"
-		fmt_hq  = 'bestvideo[height<=1080][vcodec^=vp9]+bestaudio[acodec=opus]/bestvideo[height<=1080]+bestaudio'
-		fmt_std = 'bestvideo[height<=720][vcodec^=vp9]+bestaudio[acodec=opus]/bestvideo[height<=720]+bestaudio'
-		opt_sub = ['--sub-langs', sub_langs, '--embed-subs', '--write-auto-subs', '--write-subs', '--convert-subs', 'vtt'] if sub_langs else []
-		base_opts = ['--fixup', 'force', '--socket-timeout', '3', '-R', 'infinite', '--remux-video', 'webm']
+		fmt_hq  = 'bestvideo[height<=1080][vcodec^=h264]+bestaudio[acodec=aac]/bestvideo[height<=1080]+bestaudio'
+		fmt_std = 'bestvideo[height<=720][vcodec^=h264]+bestaudio[acodec=aac]/bestvideo[height<=720]+bestaudio'
+		opt_sub = ['--sub-langs', sub_langs, '--embed-subs', '--write-auto-subs', '--write-subs', '--sub-format', 'srt/vtt/best', '--convert-subs', 'srt'] if sub_langs else []
+		base_opts = ['--fixup', 'force', '--socket-timeout', '3', '-R', 'infinite', '--remux-video', 'mp4']
 		out_opt = ["-o", self.tmp_dir+'/'+dl_path]
 
 		# Try requested quality first, fall back to standard, then no format constraint
