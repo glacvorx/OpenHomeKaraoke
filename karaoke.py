@@ -2,6 +2,7 @@ import os, sys, io, random, time, json, datetime
 import logging, socket, subprocess, threading
 import multiprocessing as mp
 import shutil, psutil, traceback, tarfile, requests
+import configparser
 from subprocess import check_output
 from collections import *
 
@@ -108,6 +109,8 @@ class Karaoke:
 
 		if self.save_delays:
 			self.init_save_delays()
+
+		self.load_config()
 
 		# Generate connection URL and QR code, retry in case pi is still starting up
 		# and doesn't have an IP yet (occurs when launched from /etc/rc.local)
@@ -1155,16 +1158,76 @@ class Karaoke:
 			self.volume = self.vlcclient.get_info_xml()['volume']
 			self.media_vol = self.get_mp3_volume(self.now_playing_filename)
 			self.update_logical_vol()
+		self.save_config()
 		return str(self.logical_volume)
+
+	def set_dnn_vocal(self, enabled):
+		self.use_DNN_vocal = enabled
+		self.save_config()
+		self.play_vocal()
+
+	# Config file — plain INI format, safe to hand-edit while the app is not running.
+	# Lives in the project folder (alongside app.py) rather than the song folder.
+	CONFIG_TEMPLATE = """\
+# pikaraoke settings
+# This file is written automatically by the web UI.
+# You can also edit it by hand while the app is not running.
+
+[pikaraoke]
+
+# Normalize volume levels across songs so loud and quiet songs play at similar levels.
+# Requires ffmpeg to be installed.
+normalize_vol = {normalize_vol}
+
+# Use the DNN (neural network) model for vocal separation.
+# Produces better quality results and uses the GPU if available.
+# Set to false to use the faster stereo subtraction method instead.
+use_dnn_vocal = {use_dnn_vocal}
+
+# Save per-song play settings (audio delay, subtitle delay, subtitle on/off).
+# Settings are stored alongside the song library.
+save_play_settings = {save_play_settings}
+"""
+
+	def load_config(self):
+		self.config_path = os.path.join(self.base_path, 'pikaraoke.cfg')
+		if not os.path.isfile(self.config_path):
+			logging.info(f"No config file found, creating defaults at {self.config_path}")
+			self.save_config()
+			return
+		config = configparser.ConfigParser()
+		config.read(self.config_path)
+		if 'pikaraoke' in config:
+			s = config['pikaraoke']
+			self.normalize_vol = s.getboolean('normalize_vol', fallback=self.normalize_vol)
+			self.use_DNN_vocal = s.getboolean('use_dnn_vocal', fallback=self.use_DNN_vocal)
+			save_play_settings = s.getboolean('save_play_settings', fallback=bool(self.save_delays))
+			self.set_save_delays(save_play_settings)
+		logging.info(f"Config loaded from {self.config_path}")
+
+	def save_config(self):
+		try:
+			with open(self.config_path, 'w') as f:
+				f.write(self.CONFIG_TEMPLATE.format(
+					normalize_vol=str(self.normalize_vol).lower(),
+					use_dnn_vocal=str(self.use_DNN_vocal).lower(),
+					save_play_settings=str(bool(self.save_delays)).lower(),
+				))
+			logging.info(f"Config saved to {self.config_path}")
+		except Exception as e:
+			logging.error(f"Failed to save config: {e}")
 
 	def init_save_delays(self):
 		self.delays_dirty = False
-		try:
-			self.delays = json.load(open(self.save_delays))
-		except:
-			self.delays = {}
-			with open(self.save_delays, 'w') as fp:
-				json.dump(self.delays, fp, indent=1)
+		if os.path.isfile(self.save_delays):
+			try:
+				self.delays = json.load(open(self.save_delays))
+				return
+			except:
+				logging.warning(f"Could not read delays file {self.save_delays}, starting with empty delays")
+		self.delays = {}
+		with open(self.save_delays, 'w') as fp:
+			json.dump(self.delays, fp, indent=1)
 
 	def set_save_delays(self, state):
 		if state != bool(self.save_delays):
@@ -1173,7 +1236,7 @@ class Karaoke:
 				self.init_save_delays()
 			else:
 				self.save_delays = None
-				self.delete_if_exist(self.dft_delays_file)
+		self.save_config()
 
 	def auto_save_delays(self):
 		if self.save_delays and self.delays_dirty:

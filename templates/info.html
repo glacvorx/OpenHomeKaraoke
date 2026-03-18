@@ -47,21 +47,15 @@
     });
 
     $("#use-DNN").change(function(){
-      $.get("/set_vocal_mode/" + this.checked, function( data ){
-        location.reload(true);
-      });
+      $.get("/set_vocal_mode/" + this.checked);
     });
 
     $("#norm-vol").change(function(){
-      $.get("/norm_vol/" + this.checked, function( data ){
-        location.reload(true);
-      });
+      $.get("/norm_vol/" + this.checked);
     });
 
     $("#save-delays").change(function(){
-      $.get("/save_delays/" + this.checked, function( data ){
-        location.reload(true);
-      });
+      $.get("/save_delays/" + this.checked);
     });
 
     $("#streamer-stop").click(function(){

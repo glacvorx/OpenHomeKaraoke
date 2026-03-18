@@ -313,8 +313,7 @@ def set_save_delays(state):
 
 @app.route("/set_vocal_mode/<mode>")
 def set_vocal_mode(mode):
-	K.use_DNN_vocal = (mode.lower() == 'true')
-	K.play_vocal()
+	K.set_dnn_vocal(mode.lower() == 'true')
 	return ''
 
 
