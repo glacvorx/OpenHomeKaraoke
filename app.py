@@ -1060,7 +1060,7 @@ def get_default_browser_cookie(platform):
 
 if __name__ == "__main__":
 	platform = get_platform()
-	default_port = 5000
+	default_port = 5001
 	default_volume = 0
 	default_splash_delay = 3
 	default_log_level = logging.INFO
@@ -1226,14 +1226,17 @@ if __name__ == "__main__":
 	args.tmp_dir = os.path.expanduser(args.temp or get_default_tmp_dir())
 	args.cloud = args.cloud.rstrip('/')
 
-	# Set browser cookies location for YouTube downloader
+	# Set browser cookies and http 403 preventive options for YouTube downloader
+	args.extractor_args = ['--extractor-args', 'youtube:player_client=web']
 	if args.browser_cookies.lower() == 'none':
-		args.cookies_opt = []
+		node_path = shutil.which('node')
+		cookie_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cookies.txt')
+		args.cookies_opt = list(args.extractor_args) + ['--cookies', cookie_file, '--js-runtimes', f'node:{node_path}']
 	elif args.browser_cookies.lower() == 'auto':
 		path = get_default_browser_cookie(platform)
-		args.cookies_opt = ['--cookies-from-browser', path] if path else []
+		args.cookies_opt = list(args.extractor_args) + ['--cookies-from-browser', path] if path else list(args.extractor_args)
 	else:
-		args.cookies_opt = ['--cookies-from-browser', args.browser_cookies]
+		args.cookies_opt = list(args.extractor_args) + ['--cookies-from-browser', args.browser_cookies]
 
 	# Handle OMX player if specified
 	if platform == "raspberry_pi" and args.use_omxplayer:
