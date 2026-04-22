@@ -77,7 +77,7 @@ class VLCClient:
 				"--no-macosx-show-playback-buttons",
 				"--no-macosx-show-playmode-buttons",
 				"--no-macosx-interfacestyle",
-				"--macosx-nativefullscreenmode",
+				"--no-macosx-nativefullscreenmode",
 				"--macosx-continue-playback=2",
 			]
 		else:
@@ -142,8 +142,9 @@ class VLCClient:
 					self.process.kill()
 			command = self.cmd_base + params + [file_path]
 			if self.platform == 'osx' and not os.K.full_screen:
-				command.remove('--fullscreen')
-				command.remove('--macosx-nativefullscreenmode')
+				# command.remove('--fullscreen')
+				# command.remove('--macosx-nativefullscreenmode')
+				pass
 			logging.info("VLC Command: %s" % command)
 
 			self.process = subprocess.Popen(command, stdin = subprocess.PIPE)
