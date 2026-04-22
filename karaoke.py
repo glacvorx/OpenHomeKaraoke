@@ -262,6 +262,7 @@ class Karaoke:
 	def initialize_screen(self, fullscreen=True):
 		if not self.hide_splash_screen:
 			logging.debug("Initializing pygame")
+			os.environ['SDL_VIDEO_MAC_FULLSCREEN_SPACES'] = '0'
 			pygame.init()
 			pygame.display.set_caption("pikaraoke")
 			pygame.mouse.set_visible(0)
