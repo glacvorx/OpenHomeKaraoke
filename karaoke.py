@@ -298,7 +298,7 @@ class Karaoke:
 			if self.full_screen:
 				self.screen = pygame.display.set_mode([self.WIDTH, self.HEIGHT], self.get_default_display_mode())
 			else:
-				self.screen = pygame.display.set_mode([self.WIDTH, self.HEIGHT], pygame.RESIZABLE, pygame.NOFRAME)
+				self.screen = pygame.display.set_mode([self.WIDTH*3//4, self.HEIGHT*3//4], pygame.RESIZABLE)
 			if self.is_file_playing():
 				self.play_transposed(self.now_playing_transpose)
 			else:
