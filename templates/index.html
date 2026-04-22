@@ -26,6 +26,7 @@
 	opacity:.8; display: none; filter: alpha(opacity=80);
 }
 .above_overlay{ position:fixed; width:80%; height:40%; left:50%; top: 50%; transform: translate(-50%, -50%); z-index: 200; display: none; }
+#rename-dialog input { width: 100%; padding: 6px; font-size: 16px; box-sizing: border-box; }
 .navbar-item > i { margin-right: 2px; font-size: 24px; }
 .notification { position: fixed; width: 500px; bottom: 5px; left: 50%; margin-left: -250px; z-index: 20; }
 .current-user { position: fixed; padding: 3px; bottom: 5px; right: 10px; }
@@ -325,12 +326,34 @@ function load_cur_user(){
 
 $('#current-user').click(function(e) {
 	e.preventDefault();
-	let name = window.prompt("{{getString1(133)}}" + currentUser, currentUser);
-	if (name) {
-		$.get(`/user_rename/${currentUser}/${name}`);
-		set_user(name);
-		closeNav();
-	}
+	var $dlg = $('<div id="rename-dialog" title="{{getString1(134)}}">' +
+		'<p style="margin-bottom:8px">{{getString1(133)}}' + currentUser + '</p>' +
+		'<input type="text" id="rename-input" value="' + currentUser + '">' +
+		'</div>');
+	$dlg.dialog({
+		modal: true,
+		width: Math.min(350, $(window).width() - 40),
+		open: function() {
+			var inp = $(this).find('#rename-input');
+			setTimeout(function(){ inp.focus().select(); }, 100);
+			inp.on('keypress', function(ev) {
+				if (ev.which === 13) { $(this).closest('.ui-dialog').find('.ui-dialog-buttonset button').first().click(); }
+			});
+		},
+		buttons: {
+			'OK': function() {
+				var name = $(this).find('#rename-input').val().trim();
+				if (name && name !== currentUser) {
+					$.get('/user_rename/' + currentUser + '/' + name);
+					set_user(name);
+				}
+				$(this).dialog('close');
+				closeNav();
+			},
+			'Cancel': function() { $(this).dialog('close'); }
+		},
+		close: function() { $(this).remove(); }
+	});
 });
 
 // handle browser language

@@ -47,6 +47,30 @@
     margin-top: 10px;
     font-size: 0.9rem;
   }
+  #search-box {
+    font-size: 16px;
+  }
+  .search-box-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  #search-clear {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 6px;
+    line-height: 1;
+    display: none;
+    touch-action: manipulation;
+    z-index: 10;
+  }
+  #search-clear:hover { color: #ccc; }
 </style>
 <script>
 var download_url = "";
@@ -64,7 +88,7 @@ function enqueueSong(path, name) {
       showNotification("{{getString1(115)}}" + obj.song, "is-success");
     else
       showNotification("{{getString1(116)}}" + obj.song, "is-danger");
-    $("#search-box").val("");
+    // $("#search-box").val("");
     $("#local-results").hide();
   });
 }
@@ -146,11 +170,24 @@ $(document).on('click touchend', function(e) {
     $("#local-results").hide();
 });
 
-$('#search-box').on('input', (ev) => {
+function updateClearBtn() {
+  var val = $('#search-box').val() || '';
+  if (val.length > 0) $('#search-clear').css('display', 'block');
+  else $('#search-clear').css('display', 'none');
+}
+$(document).off('input', '#search-box').on('input', '#search-box', function(ev) {
   clearTimeout(localSearchTimeout);
   var query = ev.target.value.trim();
   localSearchTimeout = setTimeout(function() { runLocalSearch(query); }, 200);
+  updateClearBtn();
 });
+$(document).off('click touchend', '#search-clear').on('click touchend', '#search-clear', function(e) {
+  e.preventDefault();
+  $('#search-box').val('').focus();
+  $('#local-results').hide();
+  $(this).hide();
+});
+setTimeout(updateClearBtn, 50);
 
 if($("#search-box").val())
   runLocalSearch($("#search-box").val());
@@ -239,8 +276,9 @@ function searchASR(){
   <div class="field" id="container_queue_form">
     <div id="search-field" style="margin-bottom: 5px">
       <div class="field has-addons">
-        <div class="control" style="width:100%">
+        <div class="control search-box-wrapper" style="width:100%">
           <input class="input" id="search-box" type="text" value="{{search_string}}" autocomplete="off">
+          <button type="button" id="search-clear" aria-label="Clear search">&times;</button>
         </div>
         <div class="control">
           <a class="button is-warning" id="search-link">{{getString1(118)}}</a>
