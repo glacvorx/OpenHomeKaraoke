@@ -670,13 +670,16 @@ class Karaoke:
 			else:
 				xml = self.vlcclient.play_file_transpose(file_path, self.now_playing_transpose, self.volume, extra_params + extra_params1)
 			self.has_subtitle = "<info name='Type'>Subtitle</info>" in xml
-			if self.has_subtitle and self.show_subtitle:
-				self.vlcclient.enable_subtitle_track(xml)
+			if self.has_subtitle:
+				if self.show_subtitle:
+					self.vlcclient.enable_subtitle_track(xml)
+				else:
+					self.vlcclient.disable_subtitle_track()
 			self.has_video = "<info name='Type'>Video</info>" in xml
 			self.volume = round(float(self.vlcclient.get_val_xml(xml, 'volume')))
 			if self.normalize_vol:
 				self.media_vol = self.get_mp3_volume(self.now_playing_filename)
-				self.logical_volume = self.volume * np.sqrt(self.media_vol)
+				self.logical_volume = self.volume * self.media_vol
 		else:
 			logging.info("Playing video in omxplayer: " + file_path)
 			self.omxclient.play_file(file_path)

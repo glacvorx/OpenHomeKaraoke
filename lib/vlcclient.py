@@ -292,6 +292,36 @@ class VLCClient:
 		except:
 			return {}
 
+	def enable_subtitle_track(self, xml=None):
+		"""Activate the first subtitle track via the HTTP API.
+		More reliable than --sub-track=0 CLI arg for embedded subtitles."""
+		try:
+			if xml is None:
+				xml = self.get_status()
+			stream_info = self.get_stream_info(xml)
+			# Find the subtitle stream and get its track ID
+			for name, info in stream_info.items():
+				if info.get('Type') == 'Subtitle':
+					# VLC subtitle_track command uses the stream number from the category name
+					# Category names look like "Stream 0", "Stream 1", etc.
+					try:
+						track_id = int(name.split()[-1])
+						self.command(f"subtitle_track&val={track_id}", False)
+						logging.debug(f"Enabled subtitle track {track_id}")
+						return
+					except (ValueError, IndexError):
+						pass
+			# Fallback: try track 0
+			self.command("subtitle_track&val=0", False)
+		except Exception as e:
+			logging.warning(f"Could not enable subtitle track: {e}")
+
+	def disable_subtitle_track(self):
+		"""Explicitly disable the subtitle track."""
+		# In VLC API, passing -1 disables the track
+		self.command("subtitle_track&val=-1", False)
+
+
 	def seek(self, seek_sec):
 		return self.command(f"seek&val={seek_sec}")
 
