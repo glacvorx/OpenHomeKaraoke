@@ -664,12 +664,14 @@ class Karaoke:
 			self.now_playing_filename = file_path
 			self.is_paused = ('--start-paused' in extra_params1)
 			if self.normalize_vol and self.logical_volume is not None:
-				self.volume = self.logical_volume / np.sqrt(self.get_mp3_volume(file_path))
+				self.volume = self.logical_volume / self.get_mp3_volume(file_path)
 			if self.now_playing_transpose == 0:
 				xml = self.vlcclient.play_file(file_path, self.volume, extra_params + extra_params1)
 			else:
 				xml = self.vlcclient.play_file_transpose(file_path, self.now_playing_transpose, self.volume, extra_params + extra_params1)
 			self.has_subtitle = "<info name='Type'>Subtitle</info>" in xml
+			if self.has_subtitle and self.show_subtitle:
+				self.vlcclient.enable_subtitle_track(xml)
 			self.has_video = "<info name='Type'>Video</info>" in xml
 			self.volume = round(float(self.vlcclient.get_val_xml(xml, 'volume')))
 			if self.normalize_vol:
@@ -1140,9 +1142,9 @@ class Karaoke:
 			if fsize == vol_fsize_md5[1] and md5 == vol_fsize_md5[2]:
 				return vol_fsize_md5[0]
 			pcm_data = subprocess.check_output(['ffmpeg', '-i', filename, '-vn', '-f', 's16le', '-acodec', 'pcm_s16le', '-'], stderr = subprocess.DEVNULL)
-			volume_val = np.clip(np.sqrt(np.std(np.frombuffer(pcm_data, dtype = np.int16))/STD_VOL), 1/16, 16)
+			volume_val = np.clip(np.std(np.frombuffer(pcm_data, dtype = np.int16))/STD_VOL, 1/16, 16)
 			self.song2vol[basename] = [volume_val, fsize, md5]
-			with Open(self.download_path+'/.mp3_volume.json.gz', 'wb') as fp:
+			with Open(self.download_path+'/.mp3_volume.json.gz', 'wt') as fp:
 				json.dump(self.song2vol, fp, indent=1)
 			return volume_val
 		except:
