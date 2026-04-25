@@ -137,8 +137,10 @@ tr:nth-child(even) { background-color: rgb(50, 55, 55); }
   <div id="ASRpanel" class="asr above_overlay">
     <h1 style="color: lime; font-size: x-large;">{{getString1(213)}}</h1>
     <canvas id="waveform" style="margin-top: 8px; margin-bottom: 8px;"></canvas>
-    <h1 style="font-size: 64pt;" onclick="recorder.stop();"><span>❌</span>&nbsp;
-      <span style="float: right;" onclick="use_recorded=true;recorder.stop();">✅︎</span></h1>
+    <h1 style="font-size: 64pt; justify-content: space-around; display: flex;">
+      <span class="hand" style="color:lime" onclick="use_recorded=true;recorder.stop();">✅︎</span>
+      <span class="hand" style="color:red" onclick="recorder.stop();">❌</span>
+    </h1>
   </div>
   {% if not blank_page %}
   <nav class="navbar" role="navigation" aria-label="main navigation" style="position:fixed; top:0; width: 100%; overflow: hidden;">
@@ -242,6 +244,7 @@ function add_spoken(){
   use_recorded = false;
 }
 function onRecStop(){
+  $('.asr').hide();
   if(!use_recorded) return;
   var blob = new Blob(audios, { type: "audio/webm" });
   const req = new XMLHttpRequest();

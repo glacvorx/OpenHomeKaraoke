@@ -889,18 +889,25 @@ def f_info():
 
 def run_asr():
 	global args
-	with open(f'{K.tmp_dir}/rec.webm', 'rb') as f:
-		r = requests.post(args.cloud+'/run_asr/base', files={'file': f}, timeout=8)
-	asr_output = json.loads(r.text) if r.status_code==200 else {}
-	return asr_output
+	if not args.cloud or not args.cloud.startswith('http'):
+		logging.error("Cloud ASR URL is not configured properly. Please start the app with --cloud http://YOUR_ASR_SERVER")
+		return None, 0
+	try:
+		with open(f'{K.tmp_dir}/rec.webm', 'rb') as f:
+			r = requests.post(args.cloud+'/run_asr/base', files={'file': f}, timeout=8)
+		asr_output = json.loads(r.text) if r.status_code==200 else {}
+		return asr_output, r.status_code
+	except Exception as e:
+		logging.error(f"Error connecting to Cloud ASR: {e}")
+		return {}, 0
 
 def _add_spoken(client_ip, user, getString):
-	asr_output = run_asr()
+	asr_output, status_code = run_asr()
 
 	print(f'ASR result: {asr_output}', file=sys.stderr)
-	if asr_output=={} or type(asr_output)==str:
-		return logging.error(f'Cloud ASR returns HTTP status code = {r.status_code} ()')
-	elif not asr_output['text']:
+	if not asr_output or type(asr_output)==str:
+		return logging.error(f'Cloud ASR returns HTTP status code = {status_code}')
+	elif not asr_output.get('text'):
 		return logging.error(f'ASR output is empty')
 
 	res = findMedia(K.download_path, asr_postprocess(asr_output['text']), lang=asr_output['language'])
@@ -926,8 +933,8 @@ def add_spoken(user):
 def get_ASR(cmd=''):
 	with open(f'{K.tmp_dir}/rec.webm', 'wb') as fp:
 		fp.write(request.data)
-	asr_output = run_asr()
-	return asr_output['text']
+	asr_output, _ = run_asr()
+	return asr_output.get('text', '') if asr_output else ''
 
 
 # Delay system commands to allow redirect to render first

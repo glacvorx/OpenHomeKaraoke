@@ -214,6 +214,9 @@ function ASR(task=""){
 	source.connect(analyser);
 	siriWave.start();
 
+	window.requestIdleCallback = window.requestIdleCallback || function(cb) { return setTimeout(cb, 1); };
+	window.cancelIdleCallback = window.cancelIdleCallback || function(id) { clearTimeout(id); };
+
 	const updateAnimation = function (idleDeadline) {
 		taskHandle = requestIdleCallback(updateAnimation, { timeout: 1000 / updateFreq });
 
