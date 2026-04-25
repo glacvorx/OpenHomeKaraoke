@@ -74,9 +74,23 @@
 </style>
 <script>
 var download_url = "";
+var download_timer;
 var localSearchTimeout;
+var searchInProgress = false;
+
+function check_download(){
+  $.post('/check_download', {"url": download_url}, function(val){
+    switch(val){
+      case '1': return;
+    }
+    clearInterval(download_timer);
+    $("#download-button").removeClass("is-loading");
+    $("#direct-download-button").removeClass("is-loading");
+  });
+}
 
 function download_ended(){
+  clearInterval(download_timer);
   $("#direct-download-button").removeClass("is-loading");
   $("#download-button").removeClass("is-loading");
 }
@@ -123,8 +137,6 @@ function runLocalSearch(query) {
   });
 }
 
-$("#search_result_selector").focus();
-
 $("#download-button").click(function () {
   if (!$("#download-button").is('[disabled=disabled]'))
     $("#download-button").addClass("is-loading");
@@ -143,23 +155,34 @@ $('.download-direct').submit(function(){
     formData += '&sub_langs=' + encodeURIComponent(sub_langs);
   $.post($(this).attr('action'), formData, function(msg) {
     showNotification(msg);
+    download_timer = setInterval(check_download, 2000);
   }, 'text');
   return false;
 });
 
 $('#search-link').click((e) => {
+  if (searchInProgress) return;
   var search_term = $("#search-box").val().trim();
   var include_non_karaoke = $("#search-karaoke").is(":checked");
   if (search_term) {
+    searchInProgress = true;
     $("#local-results").hide();
     $("#search-link").addClass("is-loading");
-    post_switch("/f_search", {search_string: search_term, non_karaoke: include_non_karaoke});
+    $("#searching_loader").removeClass("is-hidden");
+    $("#searching_loader #search_term").text(search_term);
+    $.post("/f_search", {search_string: search_term, non_karaoke: include_non_karaoke}, function(html) {
+      clearInterval(timer);
+      $('#container').html(html);
+      closeNav();
+      searchInProgress = false;
+    });
   }
 });
 
-$(document).keypress(function(event) {
+$(document).off('keypress.fsearch').on('keypress.fsearch', function(event) {
   if (event.which == 13) {
     event.preventDefault();
+    if (searchInProgress) return;
     var val = $("#search-box").val().trim();
     if (val) $('#search-link').trigger("click");
   }

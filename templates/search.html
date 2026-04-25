@@ -94,6 +94,7 @@
   var localSearchTimeout;
   var selectedSongPath = "";
   var selectedSongName = "";
+  var searchInProgress = false;
 
   function check_download(){
     $.post('/check_download', {"url": download_url}, function(val){
@@ -180,7 +181,6 @@
   }
 
   $(function () {
-    $("#search_result_selector").focus();
 
     $("#download-button").click(function () {
       if (!$("#download-button").is('[disabled=disabled]')) {
@@ -226,9 +226,11 @@
     // YouTube search
     $("#search-link").click(function(e) {
       e.preventDefault();
+      if (searchInProgress) return;
       var search_term = $("#local-search-input").val().trim();
       var include_non_karaoke = $("#search-karaoke").is(":checked");
       if (search_term) {
+        searchInProgress = true;
         $("#local-results").hide();
         $('#searching_loader').removeClass("is-hidden");
         $('#searching_loader #search_term').text(search_term);
@@ -243,6 +245,7 @@
     $(document).keypress(function(event) {
       if (event.which == 13) {
         event.preventDefault();
+        if (searchInProgress) return;
         var val = $("#local-search-input").val().trim();
         if (val) $('#search-link').trigger("click");
       }
