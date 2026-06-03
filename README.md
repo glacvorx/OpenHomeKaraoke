@@ -24,7 +24,7 @@ I am developing on Ubuntu 24.04 LTS. I am leaving the instructions for other OS'
 - Search for songs on YouTube and download new songs from YouTube and many other video websites such as Youku, Bilibili, etc. (can use browser cookies to download as if logged in)
 - **Subtitles will be retrieved and different languages presented for choosing**
 - **Searching/browsing a local song library (now displays more consistently and prominently across browsers)**
-- Add/queue songs and search for songs by voice recognition (it uses OpenAI's Whisper multi-lingual speech recognition model)
+- Add/queue songs and search for songs by voice recognition with built-in local ASR (enabled with `--cloud`, defaults to OpenAI Whisper `base`)
 - Web interface (mobile or desktop) for multiple users to queue tracks
 - Pause/Skip/Restart and volume control
 - Queue management, support dragging of a song to any position in the queue
@@ -82,9 +82,9 @@ This _should_ work on Windows, Linux machines and all Raspberry Pi devices (mult
 - Create `nonvocal` and `vocal` sub-folders inside the song download directory to enable automatic extraction of instrumental and vocal tracks in the background, e.g.,`$HOME/pikaraoke-songs/nonvocal` and `$HOME/pikaraoke-songs/vocal` by default.
 - Make sure `VLC`, `ffmpeg`, and `deno` are installed
 
-### Cloud-based GPU acceleration
-- For GPU-accelerated speech recognition, you need to install the cloud-side server on any CUDA-enabled GPU machine. Copy over the entire `cloud` folder from https://github.com/xuancong84/OpenSmartLight/tree/main/tools/cloud, setup conda environment correctly and run the `cloud.py`, then pass the cloud server URL as argument to `app.py`.
-- GPU-accelerated vocal splitter can run either locally or via cloud (see previous point with option `-vs`). If your local machine is powerful enough, with a fast CPU and a decent NVidia GPU with >=8GB GPU memory, you can host the cloud on the same local machine.
+### Speech Recognition
+- Speech recognition is disabled by default. Start with `--cloud` to enable the built-in local Whisper `base` model, or pass a model name such as `--cloud whisper:small` or `--cloud faster_whisper:large-v3:int8`.
+- GPU-accelerated vocal splitting is handled by the karaoke app's local vocal splitter; the old external cloud vocal-splitter server is no longer required for speech recognition.
 
 #### Linux / OSX / Raspberry Pi (>=4)
 
@@ -130,7 +130,7 @@ Here is the full list of command line arguments on OSX as an example (may not be
 usage: app.py [-h] [-u NONROOT_USER] [-p PORT] [-d DOWNLOAD_PATH] [-o OMXPLAYER_PATH] [-y YOUTUBEDL_PATH] [-v VOLUME] [-V] [-nv] [-s SPLASH_DELAY] [-L LANG]
               [-l LOG_LEVEL] [--hide-ip] [--hide-raspiwifi-instructions] [--hide-splash-screen] [--adev ADEV] [--dual-screen] [--high-quality]
               [--use-omxplayer] [--use-vlc] [--vlc-path VLC_PATH] [--vlc-port VLC_PORT] [--logo-path LOGO_PATH] [--show-overlay] [-w] [-c BROWSER_COOKIES]
-              [--cloud CLOUD_URL] [--admin-password ADMIN_PASSWORD] [--developer-mode]
+              [--cloud [ASR_MODEL]] [--admin-password ADMIN_PASSWORD] [--developer-mode]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -174,7 +174,8 @@ optional arguments:
   -c BROWSER_COOKIES, --browser-cookies BROWSER_COOKIES
                         YouTube downloader can use browser cookies from the specified path (see the --cookies-from-browser option of yt-dlp), it can also be
                         auto (default): automatically determine based on OS; none: do not use any browser cookies
-  --cloud, -c CLOUD_URL cloud URL for DNN-based vocal splitter and speech recognition
+  --cloud, -C [ASR_MODEL]
+                        Enable built-in local speech recognition. Defaults to whisper:base when no model is supplied.
   --admin-password ADMIN_PASSWORD
                         Administrator password, for locking down certain features of the web UI such as queue editing, player controls, song editing, and
                         system shutdown. If unspecified, everyone is an admin.

@@ -277,21 +277,33 @@ function fetchSubtitleLangs() {
 }
 
 function searchASR(){
+  showASRProcessing();
   var blob = new Blob(audios, { type: "audio/webm" });
   const req = new XMLHttpRequest();
   req.open("POST", '/get_ASR', true);
   req.onload = (e) => {
-    $('#search-box').val(e.target.responseText);
-    runLocalSearch(e.target.responseText.trim());
+    hideASRProcessing();
+    if (e.target.status >= 400)
+      return showNotification("Speech recognition failed", "is-danger");
+    var text = e.target.responseText.trim();
+    $('#search-box').val(text);
+    updateClearBtn();
+    runLocalSearch(text);
     $('#search-box').focus();
+    if (text)
+      $('#search-link').trigger("click");
+  };
+  req.onerror = () => {
+    hideASRProcessing();
+    showNotification("Speech recognition failed", "is-danger");
   };
   req.send(blob);
 }
 </script>
 
 <header class="title">
-<h1>{{getString1(117)}}<i class="icon icon-mic-1 hand" style="float: right; display: inline; transform:translateX(-50%)" 
-  title="{{getString1(233)}}" onclick="ASR('searchASR()')"></i></h1>
+<h1>{{getString1(117)}}{% if speech_recognition_enabled %}<i class="icon icon-mic-1 hand" style="float: right; display: inline; transform:translateX(-50%)" 
+  title="{{getString1(233)}}" onclick="ASR('searchASR()')"></i>{% endif %}</h1>
 </header>
 
 <div class="content">

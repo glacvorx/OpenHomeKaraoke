@@ -26,6 +26,17 @@
 	opacity:.8; display: none; filter: alpha(opacity=80);
 }
 .above_overlay{ position:fixed; width:80%; height:40%; left:50%; top: 50%; transform: translate(-50%, -50%); z-index: 200; display: none; }
+.asr-spinner {
+	width: 64px;
+	height: 64px;
+	margin: 28px auto;
+	border: 6px solid #ffffff40;
+	border-top-color: lime;
+	border-radius: 50%;
+	animation: asr-spin 0.8s linear infinite;
+	display: none;
+}
+@keyframes asr-spin { to { transform: rotate(360deg); } }
 #rename-dialog input { width: 100%; padding: 6px; font-size: 16px; box-sizing: border-box; }
 .navbar-item > i { margin-right: 2px; font-size: 24px; }
 .notification { position: fixed; width: 500px; bottom: 5px; left: 50%; margin-left: -250px; z-index: 20; }
@@ -78,9 +89,10 @@ rbutton:focus:not(:active) {box-shadow: #28aaff40 0 0 0 .125em;}
 <body>
 	<div id="ASR" class="asr dark_overlay"></div>
 	<div id="ASRpanel" class="asr above_overlay">
-		<h1 style="color: white; font-size: x-large; margin: 0.5em; line-height: 1.5; font-weight: bold;">{{getString1(213)}}</h1>
+		<h1 id="ASRprompt" style="color: white; font-size: x-large; margin: 0.5em; line-height: 1.5; font-weight: bold;">{{getString1(213)}}</h1>
 		<div id="waveform" style="width:100%; height: 50%; border-radius: 2em; border: solid 4px blue; background-color: #00000080;"></div>
-		<h1 style="font-size: 64pt; justify-content: space-around; display: flex;" >
+		<div id="ASRloading" class="asr-spinner"></div>
+		<h1 id="ASRcontrols" style="font-size: 64pt; justify-content: space-around; display: flex;" >
 			<span class="hand" style="color:lime" onclick="use_recorded=true;recorder.stop();">☑</span>
 			<span class="hand" style="color:red" onclick="recorder.stop();">☒</span>
 		</h1>
@@ -111,10 +123,12 @@ rbutton:focus:not(:active) {box-shadow: #28aaff40 0 0 0 .125em;}
 				<i class="icon icon-folder-open-empty" title="{{getString1(98)}}"></i>
 				<span>{{getString1(98)}}</span>
 			</a>
-			<a id="speak" class="navbar-item" style="margin-left: auto;" onclick="ASR()">
-				<i class="icon" title="{{getString1(212)}}">🗣</i>
-				<span>{{getString1(212)}}</span>
-			</a>
+			{% if speech_recognition_enabled %}
+				<a id="speak" class="navbar-item" style="margin-left: auto;" onclick="ASR()">
+					<i class="icon" title="{{getString1(212)}}">🗣</i>
+					<span>{{getString1(212)}}</span>
+				</a>
+			{% endif %}
 			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
@@ -148,6 +162,7 @@ rbutton:focus:not(:active) {box-shadow: #28aaff40 0 0 0 .125em;}
 	</div>
 <script>
 const updateFreq = 5;
+const speechRecognitionEnabled = {{ 'true' if speech_recognition_enabled else 'false' }};
 var spectrum, dBASpectrum, recorder, audios, recorder_timeout, use_recorded;
 var timer, currentUser, ws, siriWave, g_stream, g_devices, taskHandle, source;
 var wav_win = $('#waveform')[0], last_pane=Cookies.get('last_pane') || '/f_home', ASRlist=$("#ASRlist")[0];
@@ -166,6 +181,22 @@ function switch_pane(name){
 		else $("#"+pn).removeClass("is-active")
 	closeNav();
 }
+function switchToSearchAndSearch(query){
+	clearInterval(timer);
+	$.get('/f_search', (data)=>{
+		$('#container').html(data);
+		for(var pn of ['home', 'queue', 'browse', 'info'])
+			$("#"+pn).removeClass("is-active");
+		$("#search").addClass("is-active");
+		last_pane = '/f_search';
+		closeNav();
+		hideASRProcessing();
+		$('#search-box').val(query);
+		if(typeof updateClearBtn === 'function')
+			updateClearBtn();
+		setTimeout(()=>{$('#search-link').trigger("click");}, 1);
+	});
+}
 get_refresh = (url, pane=last_pane)=>{$.get(url, (_)=>{switch_pane(pane)});}
 post_switch = (url, data)=>{$.post(url, data, (_)=>{
 	clearInterval(timer);
@@ -173,7 +204,27 @@ post_switch = (url, data)=>{$.post(url, data, (_)=>{
 	closeNav();
 })}
 var ASR_hook = '';
+var asrProcessing = false;
+function showASRProcessing(){
+	asrProcessing = true;
+	$('.asr').show();
+	$('#ASRprompt').text("Processing speech...");
+	$('#waveform').hide();
+	$('#ASRcontrols').hide();
+	$('#ASRloading').show();
+}
+function hideASRProcessing(){
+	if(!asrProcessing) return;
+	asrProcessing = false;
+	$('.asr').hide();
+	$('#waveform').show();
+	$('#ASRcontrols').css('display', 'flex');
+	$('#ASRloading').hide();
+	$('#ASRprompt').text("{{getString1(213)}}");
+}
 function ASR(task=""){
+	if(!speechRecognitionEnabled)
+		return showNotification("Speech recognition is disabled", "is-info");
 	if(g_stream==null && window.location.href.startsWith('http://')){
 		if(confirm("{{getString1(214)}}")){
 			var port = parseInt(window.location.href.split(':')[2]);
@@ -192,6 +243,10 @@ function ASR(task=""){
 	open_wsock_if_nec();
 
 	$('.asr').show();
+	$('#ASRprompt').text("{{getString1(213)}}");
+	$('#waveform').show();
+	$('#ASRcontrols').css('display', 'flex');
+	$('#ASRloading').hide();
 
 	if(siriWave==null)
 		siriWave = new SiriWave({container: wav_win, cover: true, height: wav_win.offsetHeight, style: "ios9"});
@@ -271,14 +326,26 @@ function onRecStop(){
 	clearTimeout(recorder_timeout);
 	recorder = null;
 	if(!use_recorded) return;
+	showASRProcessing();
 	if(ASR_hook) return setTimeout(ASR_hook, 1);
 	var blob = new Blob(audios, { type: "audio/webm" });
 	const req = new XMLHttpRequest();
 	req.open("POST", `/add_spoken/${currentUser}`, true);
+	req.onload = () => {
+		if(req.status >= 400){
+			hideASRProcessing();
+			showNotification("Speech recognition failed", "is-danger");
+		}
+	};
+	req.onerror = () => {
+		hideASRProcessing();
+		showNotification("Speech recognition failed", "is-danger");
+	};
 	req.send(blob);
 }
 
 function showNotification(message, categoryClass, timeout=3000) {
+	hideASRProcessing();
 	$("#notification").addClass(categoryClass)
 	$("#notification div").text(message)
 	$("#notificationControls").hide()
@@ -397,6 +464,7 @@ function open_wsock_if_nec(){
 }
 var titles, files;
 function add1song(title, filename){
+	hideASRProcessing();
 	ws.send(`addsongs ${currentUser}\t${filename}`);
 	notifyWithControl('{{getString1(227)|safe}}'.replace("%s", title), ()=>{
 		ws.send('pop_from_queue '+filename);
@@ -409,6 +477,7 @@ function add1songById(ii){
 	$("#ASR").hide();
 }
 function addSongs(json){
+	hideASRProcessing();
 	$(".asr").hide();
 	try{[titles, files] = JSON.parse(json)}
 	catch(err){ console.log(err) }

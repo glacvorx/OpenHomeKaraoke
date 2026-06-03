@@ -161,10 +161,12 @@ tr:nth-child(even) { background-color: rgb(50, 55, 55); }
         <i class="icon icon-folder-open-empty" title="{{getString1(98)}}"></i>
         <span>{{getString1(98)}}</span>
       </a>
-      <a id="speak" class="navbar-item" style="margin-left: auto;" onclick="add_spoken()">
-        <i class="icon" title="{{getString1(212)}}">🗣</i>
-        <span>{{getString1(212)}}</span>
-      </a>
+      {% if speech_recognition_enabled %}
+        <a id="speak" class="navbar-item" style="margin-left: auto;" onclick="add_spoken()">
+          <i class="icon" title="{{getString1(212)}}">🗣</i>
+          <span>{{getString1(212)}}</span>
+        </a>
+      {% endif %}
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -219,8 +221,11 @@ tr:nth-child(even) { background-color: rgb(50, 55, 55); }
   {% endblock %}
 <script>
 var recorder, audios, start_time, recorder_timeout, use_recorded;
+const speechRecognitionEnabled = {{ 'true' if speech_recognition_enabled else 'false' }};
 var wav_win = $('#waveform')[0];
 function add_spoken(){
+  if(!speechRecognitionEnabled)
+    return showNotification("Speech recognition is disabled", "is-info");
   if(window.location.href.startsWith('http://')){
     if(confirm("{{getString1(214)}}")){
       var port = parseInt(window.location.href.split(':')[2]);

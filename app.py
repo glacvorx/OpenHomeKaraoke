@@ -16,6 +16,7 @@ from karaoke import *
 from constants import VERSION
 from collections import defaultdict
 from lib.get_platform import *
+from lib.asr import ASR
 from lib.vlcclient import get_default_vlc_path
 
 try:
@@ -26,7 +27,7 @@ except ImportError:
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True	##DEBUG
 app.secret_key = os.urandom(24)
-admin_password = K = args = None
+admin_password = K = args = asr = None
 sock = Sock(app)
 os.texts = defaultdict(lambda: "")
 getString = lambda ii: os.texts[ii]
@@ -98,7 +99,11 @@ def status_thread():
 # Define global symbols for Jinja templates 
 @app.context_processor
 def inject_stage_and_region():
-	return {'getString': getString, 'getString1': getString}
+	return {
+		'getString': getString,
+		'getString1': getString,
+		'speech_recognition_enabled': bool(asr),
+	}
 
 
 @app.before_request
@@ -888,41 +893,53 @@ def f_info():
 	)
 
 def run_asr():
-	global args
-	if not args.cloud or not args.cloud.startswith('http'):
-		logging.error("Cloud ASR URL is not configured properly. Please start the app with --cloud http://YOUR_ASR_SERVER")
+	global asr
+	if not asr:
+		logging.warning("Speech recognition is disabled.")
 		return None, 0
 	try:
-		with open(f'{K.tmp_dir}/rec.webm', 'rb') as f:
-			r = requests.post(args.cloud+'/run_asr/base', files={'file': f}, timeout=8)
-		asr_output = json.loads(r.text) if r.status_code==200 else {}
-		return asr_output, r.status_code
+		asr_output = asr.transcribe(f'{K.tmp_dir}/rec.webm')
+		return asr_output, 200
 	except Exception as e:
-		logging.error(f"Error connecting to Cloud ASR: {e}")
-		return {}, 0
+		logging.error(f"Error running speech recognition: {e}")
+		traceback.print_exc()
+		return {}, 500
 
 def _add_spoken(client_ip, user, getString):
 	asr_output, status_code = run_asr()
+	ws = ip2websock.get(client_ip, '')
 
 	print(f'ASR result: {asr_output}', file=sys.stderr)
 	if not asr_output or type(asr_output)==str:
-		return logging.error(f'Cloud ASR returns HTTP status code = {status_code}')
+		if ws:
+			ws.send("showNotification('Speech recognition failed', 'is-danger')")
+		return logging.error(f'Speech recognition returns status code = {status_code}')
 	elif not asr_output.get('text'):
+		if ws:
+			ws.send("showNotification('Speech recognition output is empty', 'is-info')")
 		return logging.error(f'ASR output is empty')
 
-	res = findMedia(K.download_path, asr_postprocess(asr_output['text']), lang=asr_output['language'])
-	ws = ip2websock.get(client_ip, '')
+	spoken_text = asr_output['text']
+	res = findMedia(K.download_path, asr_postprocess(spoken_text), lang=asr_output.get('language'))
 	if not res:
-		return ws.send(f"showNotification('{getString(226)%asr_output['text']}', 'is-info')")
+		if ws:
+			return ws.send(f"switchToSearchAndSearch({json.dumps(spoken_text)})")
+		return logging.info(f"No local song match for spoken search: {spoken_text}")
 	res_titles = [filename_from_path(s) for s in res]
 	if len(res)==1:
 		add_res = K.enqueue(res[0], user)
-		return ws.send(f'add1song("{res_titles[0]}","{res[0]}")' if add_res else f"showNotification('{getString(116)+res_titles[0]}', 'is-info')")
-	return ws.send(f"addSongs('{json.dumps([res_titles, res])}')")
+		if ws:
+			return ws.send(f'add1song({json.dumps(res_titles[0])},{json.dumps(res[0])})' if add_res else f"showNotification({json.dumps(getString(116)+res_titles[0])}, 'is-info')")
+		return
+	if ws:
+		return ws.send(f"addSongs({json.dumps(json.dumps([res_titles, res]))})")
 
 
 @app.route('/add_spoken/<user>', methods=['POST'])
+@app.route('/add_spoken', defaults={'user': ''}, methods=['POST'])
 def add_spoken(user):
+	if not asr:
+		return 'Speech recognition is disabled', 404
 	with open(f'{K.tmp_dir}/rec.webm', 'wb') as fp:
 		fp.write(request.data)
 	threading.Thread(target=_add_spoken, args=(request.remote_addr, user, getString)).start()
@@ -931,6 +948,8 @@ def add_spoken(user):
 @app.route('/get_ASR', methods=['POST'])
 @app.route('/get_ASR/<path:cmd>', methods=['POST'])
 def get_ASR(cmd=''):
+	if not asr:
+		return '', 404
 	with open(f'{K.tmp_dir}/rec.webm', 'wb') as fp:
 		fp.write(request.data)
 	asr_output, _ = run_asr()
@@ -1218,8 +1237,11 @@ if __name__ == "__main__":
 	)
 	parser.add_argument(
 		'--cloud', '-C',
+		nargs='?',
+		const='whisper:base',
 		default='',
-		help='cloud URL for DNN-based vocal split and speech recognition',
+		metavar='ASR_MODEL',
+		help='enable local speech recognition, optionally selecting a model such as whisper:small, faster_whisper:large-v3:int8, or qwen:Qwen/Qwen3-ASR-1.7B',
 	)
 	args = parser.parse_args()
 
@@ -1232,7 +1254,15 @@ if __name__ == "__main__":
 	app.jinja_env.globals.update(url_escape = quote)
 
 	args.tmp_dir = os.path.expanduser(args.temp or get_default_tmp_dir())
-	args.cloud = args.cloud.rstrip('/')
+	if args.cloud:
+		try:
+			asr = ASR(args.cloud)
+			if not asr:
+				logging.warning(f"Speech recognition disabled: ASR model `{args.cloud}` could not be loaded.")
+		except Exception as e:
+			logging.warning(f"Speech recognition disabled: failed to load ASR model `{args.cloud}`: {e}")
+			traceback.print_exc()
+			asr = None
 
 	# Set browser cookies and http 403 preventive options for YouTube downloader
 	args.extractor_args = ['--extractor-args', 'youtube:player_client=web']

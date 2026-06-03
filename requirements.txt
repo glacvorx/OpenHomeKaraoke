@@ -22,6 +22,9 @@ lingua-language-detector
 pykakasi
 pinyin
 
+# --- Speech recognition (--cloud) ---
+openai-whisper
+
 # --- Media / display ---
 # pygame-ce: drop-in replacement for pygame (same `import pygame`, no code changes).
 # Led by pygame's former core developers; actively maintained with Python 3.12/3.13 support.
