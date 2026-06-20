@@ -1176,6 +1176,7 @@ if __name__ == "__main__":
 	parser.add_argument(
 		"--high-quality", "-hq",
 		action = "store_true",
+		default = True,
 		help = "Download higher quality video. Note: requires ffmpeg and may cause CPU, download speed, and other performance issues",
 	)
 	parser.add_argument(
