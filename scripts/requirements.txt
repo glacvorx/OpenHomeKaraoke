@@ -1,0 +1,58 @@
+# --- Web framework ---
+# Pinned: Flask 3.x broke flask-sock and flask-paginate compatibility
+Flask==2.3.1
+flask-sock
+# Pinned + transitive deps pinned: newer jaraco.functools changed API
+flask-paginate==2021.10.29
+tempora==1.14.0
+jaraco.functools==2.0
+curl_cffi
+
+# --- Flask runtime ---
+psutil
+requests
+pydub
+
+# --- Text / language ---
+Unidecode
+arabic-reshaper
+python-bidi
+# Required by lib/NLP.py for language detection and CJK transliteration
+lingua-language-detector
+pykakasi
+pinyin
+
+# --- Speech recognition (--cloud) ---
+openai-whisper
+
+# --- Media / display ---
+# pygame-ce: drop-in replacement for pygame (same `import pygame`, no code changes).
+# Led by pygame's former core developers; actively maintained with Python 3.12/3.13 support.
+# Original pygame is largely inactive. Cannot install both simultaneously.
+pygame-ce
+qrcode
+Pillow
+
+# --- Numerics ---
+# Pinned: librosa 0.10.0's C extensions (numba, soundfile) are compiled against numpy 1.x
+# and crash at runtime with numpy 2.x. 1.26.4 is the last stable 1.x release.
+numpy==1.26.4
+
+# --- Vocal splitter (vocal_splitter.py) ---
+# torch: do NOT rely on this line for GPU installs. Use the selector at
+# https://pytorch.org/get-started/locally/ to get the correct CUDA build.
+# The >=1.5.1 floor matches the original; in practice any recent version works.
+#torch>=1.5.1
+tqdm>=4.30
+# Pinned: 0.11.x dropped APIs used in vocal_splitter.py; also requires numpy<2
+librosa==0.10.0
+soundfile
+demucs
+
+# --- YouTube downloader (dynamically imported in karaoke.py) ---
+yt-dlp[default]
+
+# --- Developer only ---
+# translate.py regenerates language files and is not part of the runtime.
+# Uncomment only when working on translations.
+# googletrans==3.1.0a0
