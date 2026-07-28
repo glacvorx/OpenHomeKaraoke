@@ -99,6 +99,18 @@ class Karaoke:
 		self.screen = None
 		self.player_state = {}
 		self.downloading_songs = {}
+		self.download_jobs = {}
+		self.pending_enqueued_downloads = 0
+		self.download_lock = threading.RLock()
+		self.best_quality_active = set()
+		self.accept_best_quality_work = True
+		self.best_quality_work_lock = threading.Lock()
+		self.best_quality_deferred_vocal_restart = False
+		self.active_best_quality_jobs = 0
+		self.quality_lock = threading.RLock()
+		self.quality_metadata = {}
+		self.quality_metadata_dirty = False
+		self.best_quality_scan_interval = 30
 		self.log_level = int(args.log_level)
 
 		logging.basicConfig(
@@ -108,6 +120,9 @@ class Karaoke:
 		)
 
 		logging.debug(vars(args))
+
+		self.quality_metadata_path = self.download_path + '.quality.json'
+		self.load_quality_metadata()
 
 		if self.save_delays:
 			self.init_save_delays()
@@ -434,9 +449,490 @@ class Karaoke:
 			logging.debug("Error while executing search: " + str(e))
 			raise e
 
-	def get_yt_dlp_json(self, url):
-		out_json = self.call_yt_dlp(['-j', '--remote-components', 'ejs:github', url], True)
-		return json.loads(out_json)
+	def get_yt_dlp_json(self, url, extra_opts=None):
+		out_json = self.call_yt_dlp(['-j', '--remote-components', 'ejs:github'] + (extra_opts or []) + [url], True)
+		try:
+			return json.loads(out_json)
+		except json.JSONDecodeError as e:
+			raise RuntimeError(f'yt-dlp did not return video metadata for {url}') from e
+
+	def get_youtube_id_from_path(self, song_path):
+		stem = os.path.splitext(os.path.basename(song_path))[0]
+		return stem.rsplit('---', 1)[1] if '---' in stem else None
+
+	def youtube_url_from_id(self, youtube_id):
+		return f'https://www.youtube.com/watch?v={youtube_id}'
+
+	def load_quality_metadata(self):
+		try:
+			if os.path.isfile(self.quality_metadata_path):
+				with open(self.quality_metadata_path) as fp:
+					self.quality_metadata = json.load(fp)
+			else:
+				self.quality_metadata = {}
+		except Exception as e:
+			logging.warning(f"Could not load quality metadata: {e}")
+			self.quality_metadata = {}
+
+	def save_quality_metadata(self):
+		with self.quality_lock:
+			if not self.quality_metadata_dirty:
+				return
+			tmp = self.quality_metadata_path + '.tmp'
+			try:
+				with open(tmp, 'w') as fp:
+					json.dump(self.quality_metadata, fp, indent=1, sort_keys=True)
+				shutil.move(tmp, self.quality_metadata_path)
+				self.quality_metadata_dirty = False
+			except Exception as e:
+				logging.warning(f"Could not save quality metadata: {e}")
+
+	def ffprobe_json(self, filename):
+		out = subprocess.check_output([
+			'ffprobe', '-v', 'error',
+			'-show_entries', 'format=duration,size,format_name:stream=index,codec_type,codec_name,width,height,pix_fmt,color_range,color_space,color_transfer,color_primaries',
+			'-of', 'json', filename
+		], stderr=subprocess.STDOUT).decode('utf-8')
+		return json.loads(out)
+
+	def probe_media(self, filename):
+		try:
+			info = self.ffprobe_json(filename)
+			video = next((s for s in info.get('streams', []) if s.get('codec_type') == 'video'), {})
+			audio = next((s for s in info.get('streams', []) if s.get('codec_type') == 'audio'), {})
+			duration = float(info.get('format', {}).get('duration') or 0)
+			filesize = int(info.get('format', {}).get('size') or os.path.getsize(filename))
+			return {
+				'path': os.path.basename(filename),
+				'height': video.get('height'),
+				'width': video.get('width'),
+				'duration': duration,
+				'filesize': filesize,
+				'container': os.path.splitext(filename)[1].lstrip('.').lower(),
+				'video_codec': video.get('codec_name'),
+				'audio_codec': audio.get('codec_name'),
+				'pix_fmt': video.get('pix_fmt'),
+				'color_range': video.get('color_range'),
+				'color_space': video.get('color_space'),
+				'color_transfer': video.get('color_transfer'),
+				'color_primaries': video.get('color_primaries'),
+			}
+		except Exception as e:
+			logging.debug(f"Could not probe media {filename}: {e}")
+			return {}
+
+	def update_quality_metadata_for_file(self, filename, quality_profile=None, best_available=None, extra=None):
+		youtube_id = self.get_youtube_id_from_path(filename)
+		if not youtube_id or not os.path.isfile(filename):
+			return
+		probe = self.probe_media(filename)
+		with self.quality_lock:
+			meta = self.quality_metadata.get(youtube_id, {})
+			meta.update(probe)
+			meta.update({
+				'youtube_id': youtube_id,
+				'title': self.filename_from_path(filename),
+				'checked_at': datetime.datetime.now().astimezone().isoformat(),
+			})
+			if quality_profile:
+				meta['quality_profile'] = quality_profile
+			if best_available is not None:
+				meta['best_available'] = best_available
+			if extra:
+				meta.update(extra)
+			self.quality_metadata[youtube_id] = meta
+			self.quality_metadata_dirty = True
+			self.status_dirty = True
+		self.save_quality_metadata()
+
+	def get_quality_label(self, song_path):
+		youtube_id = self.get_youtube_id_from_path(song_path)
+		meta = self.quality_metadata.get(youtube_id, {}) if youtube_id else {}
+		height = meta.get('height')
+		if height:
+			label = f"{height}p"
+		elif meta.get('video_codec'):
+			label = 'video'
+		else:
+			label = 'unknown'
+		if meta.get('upgrade_state') == 'upgrading':
+			return 'Upgrading'
+		if meta.get('upgrade_state') == 'failed':
+			return f"{label} retry later"
+		if meta.get('best_available'):
+			return f"{label} best"
+		if meta.get('quality_profile') == 'default':
+			return f"{label} default"
+		return label
+
+	def get_quality_tag_class(self, song_path):
+		youtube_id = self.get_youtube_id_from_path(song_path)
+		meta = self.quality_metadata.get(youtube_id, {}) if youtube_id else {}
+		if meta.get('upgrade_state') == 'upgrading':
+			return 'is-warning'
+		if meta.get('upgrade_state') == 'failed':
+			return 'is-danger is-light'
+		if meta.get('best_available'):
+			return 'is-success is-light'
+		if meta.get('quality_profile') == 'default':
+			return 'is-info is-light'
+		return 'is-dark is-light'
+
+	def get_quality_status_payload(self, song_path):
+		return {
+			'label': self.get_quality_label(song_path),
+			'className': self.get_quality_tag_class(song_path),
+		}
+
+	def set_quality_failure(self, youtube_id, reason):
+		with self.quality_lock:
+			meta = self.quality_metadata.get(youtube_id, {'youtube_id': youtube_id})
+			failures = int(meta.get('failure_count', 0)) + 1
+			delay = min(24 * 3600, 300 * (2 ** min(failures - 1, 6)))
+			meta.update({
+				'failure_count': failures,
+				'last_failure': str(reason),
+				'next_retry_at': (datetime.datetime.now().astimezone() + datetime.timedelta(seconds=delay)).isoformat(),
+				'upgrade_state': 'failed',
+			})
+			self.quality_metadata[youtube_id] = meta
+			self.quality_metadata_dirty = True
+			self.status_dirty = True
+		print(f"Best-quality upgrade failed for {youtube_id}: {reason}", flush=True)
+		self.save_quality_metadata()
+
+	def clear_quality_failure(self, youtube_id):
+		with self.quality_lock:
+			meta = self.quality_metadata.get(youtube_id, {'youtube_id': youtube_id})
+			meta['failure_count'] = 0
+			meta['next_retry_at'] = None
+			meta.pop('last_failure', None)
+			meta.pop('upgrade_state', None)
+			self.quality_metadata[youtube_id] = meta
+			self.quality_metadata_dirty = True
+			self.status_dirty = True
+		self.save_quality_metadata()
+
+	def is_retry_ready(self, youtube_id):
+		meta = self.quality_metadata.get(youtube_id, {})
+		next_retry = meta.get('next_retry_at')
+		if not next_retry:
+			return True
+		try:
+			return datetime.datetime.fromisoformat(next_retry) <= datetime.datetime.now().astimezone()
+		except:
+			return True
+
+	def ffmpeg_null_scan(self, filename):
+		return subprocess.call(['ffmpeg', '-v', 'error', '-t', '10', '-i', filename, '-f', 'null', '-']) == 0
+
+	def best_quality_cookie_opts(self):
+		opts = []
+		skip_next = False
+		for idx, opt in enumerate(self.cookies_opt):
+			if skip_next:
+				skip_next = False
+				continue
+			if opt == '--extractor-args' and idx + 1 < len(self.cookies_opt) and 'player_client=web' in self.cookies_opt[idx + 1]:
+				skip_next = True
+				continue
+			opts.append(opt)
+		return opts
+
+	def get_best_expected_height(self, info):
+		heights = []
+		for fmt in info.get('formats') or []:
+			if fmt.get('vcodec') in [None, 'none']:
+				continue
+			height = fmt.get('height')
+			if isinstance(height, int):
+				heights.append(height)
+		return min(max(heights or [0]), 2160)
+
+	def ytdlp_subprocess_cmd(self, argv):
+		if self.youtubedl_path:
+			return [self.youtubedl_path] + argv
+		return [sys.executable, '-m', 'yt_dlp'] + argv
+
+	def call_yt_dlp_subprocess(self, argv, job=None):
+		cmd = self.ytdlp_subprocess_cmd(argv)
+		logging.info("Youtube-dl command: " + " ".join(cmd))
+		p = subprocess.Popen(cmd)
+		if job is not None:
+			job['process'] = p
+		while True:
+			rc = p.poll()
+			if rc is not None:
+				return rc
+			if job is not None and (job.get('cancel') or self.should_cancel_best_job(job)):
+				logging.info(f"Canceling best-quality job for {job.get('old_path') or job.get('url')}")
+				p.terminate()
+				try:
+					return p.wait(timeout=10)
+				except subprocess.TimeoutExpired:
+					p.kill()
+					return p.wait()
+			time.sleep(1)
+
+	def should_cancel_best_job(self, job):
+		if job.get('quality') != 'best':
+			return False
+		old_path = job.get('old_path')
+		if not old_path:
+			return False
+		if old_path == self.now_playing_filename:
+			return True
+		if old_path not in self.queued_protected_paths():
+			return False
+		return time.time() - job.get('started_at', time.time()) < self.best_quality_cancel_threshold
+
+	def cancel_protected_best_jobs(self):
+		with self.download_lock:
+			jobs = list(self.download_jobs.values())
+		for job in jobs:
+			if self.should_cancel_best_job(job):
+				job['cancel'] = True
+				proc = job.get('process')
+				if proc and proc.poll() is None:
+					proc.terminate()
+
+	def estimated_converted_size(self, duration):
+		return int(max(duration or 0, 1) * (20_000_000 + 192_000) / 8)
+
+	def has_best_quality_space(self, old_path=None, duration=0, source_size=0):
+		usage = shutil.disk_usage(self.download_path)
+		old_size = os.path.getsize(old_path) if old_path and os.path.isfile(old_path) else 0
+		required = source_size + self.estimated_converted_size(duration) + old_size + 2 * 1024**3
+		if source_size == 0 and duration == 0:
+			required = max(10 * 1024**3, int(3.5 * old_size))
+		return usage.free >= required
+
+	def find_downloaded_media_file(self, directory):
+		files = []
+		for bn in os.listdir(directory):
+			fn = os.path.join(directory, bn)
+			if os.path.isfile(fn) and os.path.splitext(fn)[1].lower() in media_types:
+				files.append(fn)
+		return max(files, key=os.path.getsize) if files else None
+
+	def find_srt_sidecar(self, directory):
+		for bn in os.listdir(directory):
+			fn = os.path.join(directory, bn)
+			if os.path.isfile(fn) and os.path.splitext(fn)[1].lower() == '.srt':
+				return fn
+		return None
+
+	def normalize_subtitle_lang(self, lang):
+		if not lang:
+			return None
+		lang = str(lang).strip().replace('_', '-')
+		if not lang:
+			return None
+		return lang
+
+	def subtitle_language_candidates(self, lang):
+		lang = self.normalize_subtitle_lang(lang)
+		if not lang:
+			return []
+		parts = [part for part in lang.split(',') if part.strip()]
+		lang = self.normalize_subtitle_lang(parts[0] if parts else lang)
+		base = lang.split('-', 1)[0].lower()
+		candidates = [lang]
+		if base and base != lang.lower():
+			candidates.append(base)
+		return list(dict.fromkeys([i for i in candidates if i]))
+
+	def subtitle_lang_rank(self, lang, targets, auto=False):
+		lang_lower = (lang or '').lower()
+		for target_index, target in enumerate(targets or []):
+			target = self.normalize_subtitle_lang(target)
+			if not target:
+				continue
+			target_lower = target.lower()
+			target_base = target_lower.split('-', 1)[0]
+			offset = target_index * 10
+			if lang_lower == target_lower:
+				return offset
+			if auto and lang_lower == target_base + '-orig':
+				return offset + 1
+			if lang_lower == target_base:
+				return offset + 2
+			if lang_lower.startswith(target_base + '-') or lang_lower.startswith(target_base + '_'):
+				return offset + 3
+		return None
+
+	def choose_matching_subtitle_lang(self, subtitles, targets, auto=False):
+		candidates = []
+		for lang in (subtitles or {}).keys():
+			rank = self.subtitle_lang_rank(lang, targets, auto)
+			if rank is not None:
+				candidates.append((rank, lang))
+		return sorted(candidates)[0][1] if candidates else None
+
+	def best_quality_subtitle_targets(self, info):
+		targets = []
+		for key in ['language', 'original_language']:
+			for lang in self.subtitle_language_candidates(info.get(key)):
+				targets.append(lang)
+		return list(dict.fromkeys(targets))
+
+	def best_quality_subtitle_options(self, info):
+		targets = self.best_quality_subtitle_targets(info)
+		manual_lang = self.choose_matching_subtitle_lang(info.get('subtitles'), targets, auto=False)
+		if not manual_lang and not targets and len(info.get('subtitles') or {}) == 1:
+			manual_lang = next(iter(info.get('subtitles') or {}))
+		if manual_lang:
+			return [
+				'--sub-langs', manual_lang,
+				'--write-subs',
+				'--sub-format', 'srt/vtt/best',
+				'--convert-subs', 'srt',
+			], {'subtitle_language': manual_lang, 'subtitle_source': 'manual'}
+		auto_lang = self.choose_matching_subtitle_lang(info.get('automatic_captions'), targets, auto=True)
+		if auto_lang:
+			return [
+				'--sub-langs', auto_lang,
+				'--write-auto-subs',
+				'--sub-format', 'srt/vtt/best',
+				'--convert-subs', 'srt',
+			], {'subtitle_language': auto_lang, 'subtitle_source': 'auto'}
+		return [], {'subtitle_language': None, 'subtitle_source': None}
+
+	def ffmpeg_color_args(self, probe):
+		args = []
+		for flag, key in [
+			('-color_range', 'color_range'),
+			('-colorspace', 'color_space'),
+			('-color_trc', 'color_transfer'),
+			('-color_primaries', 'color_primaries'),
+		]:
+			val = probe.get(key)
+			if val and val != 'unknown':
+				args += [flag, val]
+		return args
+
+	def ffmpeg_pixel_args(self, probe):
+		pix_fmt = probe.get('pix_fmt') or ''
+		color_transfer = probe.get('color_transfer') or ''
+		if '10' in pix_fmt or color_transfer in ['smpte2084', 'arib-std-b67']:
+			return ['-pix_fmt', 'p010le', '-profile:v', 'main10']
+		return ['-pix_fmt', 'yuv420p']
+
+	def convert_best_source_to_mp4(self, source_path, final_path):
+		probe = self.probe_media(source_path)
+		base = [
+			'ffmpeg', '-y',
+			'-i', source_path,
+			'-map', '0:v:0', '-map', '0:a:0?', '-map', '0:s?',
+			'-c:v', 'hevc_videotoolbox',
+			'-b:v', '20M',
+			'-maxrate', '28M',
+			'-bufsize', '56M',
+			'-tag:v', 'hvc1',
+		] + self.ffmpeg_pixel_args(probe) + self.ffmpeg_color_args(probe) + [
+			'-c:a', 'aac',
+			'-b:a', '192k',
+			'-c:s', 'mov_text',
+			final_path
+		]
+		logging.info("FFmpeg conversion command: " + " ".join(base))
+		rc = subprocess.call(base)
+		if rc == 0:
+			return True
+
+		logging.warning("FFmpeg conversion with embedded subtitles failed; retrying without embedded subtitles")
+		cmd = [
+			'ffmpeg', '-y',
+			'-i', source_path,
+			'-map', '0:v:0', '-map', '0:a:0?',
+			'-c:v', 'hevc_videotoolbox',
+			'-b:v', '20M',
+			'-maxrate', '28M',
+			'-bufsize', '56M',
+			'-tag:v', 'hvc1',
+		] + self.ffmpeg_pixel_args(probe) + self.ffmpeg_color_args(probe) + [
+			'-c:a', 'aac',
+			'-b:a', '192k',
+			final_path
+		]
+		logging.info("FFmpeg conversion command: " + " ".join(cmd))
+		return subprocess.call(cmd) == 0
+
+	def verify_best_output(self, filename, expected_height=None):
+		probe = self.probe_media(filename)
+		if not probe or not probe.get('height') or probe.get('video_codec') not in ['hevc', 'h265']:
+			return False
+		if expected_height and int(probe.get('height') or 0) < expected_height:
+			logging.warning(f"Converted best output height {probe.get('height')} is below expected height {expected_height}")
+			return False
+		return self.ffmpeg_null_scan(filename)
+
+	def best_quality_source_dir(self, youtube_id):
+		path = os.path.join(self.tmp_dir, f'best-{youtube_id}-{int(time.time())}')
+		os.makedirs(path, exist_ok=True)
+		return path
+
+	def download_best_quality_file(self, song_url, old_path=None, job=None):
+		best_opts = self.best_quality_cookie_opts()
+		info = self.get_yt_dlp_json(song_url, best_opts)
+		youtube_id = info['id']
+		duration = float(info.get('duration') or 0)
+		expected_height = self.get_best_expected_height(info)
+		subtitle_opts, subtitle_extra = self.best_quality_subtitle_options(info)
+		if not self.has_best_quality_space(old_path, duration):
+			raise RuntimeError('not enough free disk space for best-quality download')
+
+		work_dir = self.best_quality_source_dir(youtube_id)
+		with self.quality_lock:
+			self.active_best_quality_jobs += 1
+		try:
+			source_tpl = os.path.join(work_dir, '%(title)s---%(id)s.%(ext)s')
+			fmt_best = 'bv*[height<=2160]+ba/b[height<=2160]/bv*+ba/b'
+			cmd = [
+				'--fixup', 'force', '--socket-timeout', '3', '-R', 'infinite',
+				'--merge-output-format', 'mkv',
+				'-f', fmt_best,
+				'-S', 'res:2160,fps,hdr,vcodec,acodec,size',
+				'-o', source_tpl,
+			] + subtitle_opts + best_opts + [song_url]
+			rc = self.call_yt_dlp_subprocess(cmd, job)
+			if rc != 0:
+				raise RuntimeError(f'yt-dlp best source download failed with code {rc}')
+
+			source_path = self.find_downloaded_media_file(work_dir)
+			if not source_path:
+				raise RuntimeError('yt-dlp did not produce a best source media file')
+			source_probe = self.probe_media(source_path)
+			source_height = int(source_probe.get('height') or 0)
+			if expected_height and source_height < expected_height:
+				raise RuntimeError(f'yt-dlp selected {source_height}p, expected {expected_height}p best available')
+			if not self.ffmpeg_null_scan(source_path):
+				raise RuntimeError('best source failed 10-second decode scan')
+
+			stem = os.path.splitext(os.path.basename(old_path or source_path))[0]
+			final_path = os.path.join(work_dir, stem + '.converted.mp4')
+			if not self.convert_best_source_to_mp4(source_path, final_path):
+				raise RuntimeError('best source conversion failed')
+			if not self.verify_best_output(final_path, expected_height):
+				raise RuntimeError('converted best output failed verification')
+
+			sidecar = self.find_srt_sidecar(work_dir)
+			quality_extra = {
+				'youtube_id': youtube_id,
+				'best_expected_height': expected_height,
+				'source_height': source_height,
+				'source_video_codec': source_probe.get('video_codec'),
+				'conversion_encoder': 'hevc_videotoolbox',
+				'format_id': '+'.join([f.get('format_id', '') for f in info.get('requested_formats', [])]) if info.get('requested_formats') else info.get('format_id'),
+			}
+			quality_extra.update(subtitle_extra)
+			return final_path, sidecar, work_dir, youtube_id, quality_extra
+		except:
+			shutil.rmtree(work_dir, ignore_errors=True)
+			raise
+		finally:
+			with self.quality_lock:
+				self.active_best_quality_jobs = max(0, self.active_best_quality_jobs - 1)
 
 	def get_downloaded_file_basename(self, url):
 		try:
@@ -461,10 +957,147 @@ class Karaoke:
 		except:
 			return None
 
+	def queue_position_for_new_download(self, enqueue):
+		return len(self.queue) + self.pending_enqueued_downloads + 1 if enqueue else 0
+
+	def should_download_best_for_request(self, enqueue):
+		pos = self.queue_position_for_new_download(enqueue)
+		return bool(self.accept_best_quality_work and enqueue and pos >= 6)
+
+	def move_sidecar_if_needed(self, sidecar, final_path):
+		if not sidecar or not os.path.isfile(sidecar):
+			return
+		target = os.path.splitext(final_path)[0] + '.srt'
+		try:
+			shutil.move(sidecar, target)
+		except Exception as e:
+			logging.warning(f"Could not move subtitle sidecar {sidecar} to {target}: {e}")
+
+	def delete_assoc_for_basename(self, basename):
+		for fn in [
+			self.download_path + 'nonvocal/' + basename + '.m4a',
+			self.download_path + 'nonvocal/.' + basename + '.m4a',
+			self.download_path + 'vocal/' + basename + '.m4a',
+			self.download_path + 'vocal/.' + basename + '.m4a',
+		]:
+			self.delete_if_exist(fn)
+
+	def stop_vocal_splitter_for_replacement(self, timeout=60):
+		was_alive = bool(self.vocal_alive())
+		if not was_alive:
+			return False
+		logging.info("Stopping vocal splitter before best-quality replacement")
+		self.vocal_stop()
+		deadline = time.time() + timeout
+		while time.time() < deadline:
+			if not self.vocal_alive():
+				return True
+			time.sleep(1)
+		raise RuntimeError('vocal splitter did not stop before best-quality replacement')
+
+	def replace_library_file_with_best(self, old_path, best_temp_path, sidecar=None, quality_extra=None, restart_vocal_after=True):
+		old_basename = os.path.basename(old_path) if old_path else os.path.basename(best_temp_path)
+		final_stem = os.path.splitext(old_basename)[0]
+		if final_stem.endswith('.converted'):
+			final_stem = final_stem[:-len('.converted')]
+		final_basename = final_stem + '.mp4'
+		final_path = self.download_path + final_basename
+		backup_path = None
+		restart_vocal = self.stop_vocal_splitter_for_replacement()
+		replacement_complete = False
+
+		try:
+			if os.path.isfile(final_path):
+				backup_path = final_path + '.old'
+				self.delete_if_exist(backup_path)
+				shutil.move(final_path, backup_path)
+			elif old_path and os.path.isfile(old_path):
+				backup_path = old_path + '.old'
+				self.delete_if_exist(backup_path)
+				shutil.move(old_path, backup_path)
+
+			try:
+				shutil.move(best_temp_path, final_path)
+				self.move_sidecar_if_needed(sidecar, final_path)
+			except:
+				if backup_path and os.path.isfile(backup_path):
+					shutil.move(backup_path, old_path or final_path)
+				raise
+
+			for item in self.queue:
+				if item['file'] == old_path or item['file'] == backup_path:
+					item['file'] = final_path
+					item['title'] = self.filename_from_path(final_path)
+			if self.now_playing_filename == old_path:
+				self.now_playing_filename = final_path
+
+			if backup_path:
+				self.delete_if_exist(backup_path)
+			if old_path and old_path != final_path:
+				self.delete_if_exist(old_path)
+			self.delete_assoc_for_basename(old_basename)
+			self.get_available_songs()
+			self.update_queue()
+			self.update_quality_metadata_for_file(final_path, 'best', True, quality_extra)
+			replacement_complete = True
+			return final_path
+		finally:
+			if not restart_vocal_after and (replacement_complete or restart_vocal):
+				self.best_quality_deferred_vocal_restart = True
+			elif replacement_complete or restart_vocal:
+				self.trigger_vocal_regeneration()
+
+	def trigger_vocal_regeneration(self):
+		Try(lambda: self.vocal_restart())
+
+	def flush_deferred_vocal_regeneration(self):
+		if self.best_quality_deferred_vocal_restart:
+			self.best_quality_deferred_vocal_restart = False
+			self.trigger_vocal_regeneration()
+
 	def download_video(self, client_lang='', client_ip='', song_url = '', enqueue = False, song_added_by = "Pikaraoke", sub_langs = '', high_quality = False):
 		logging.info("Downloading video: " + song_url)
 		getString2 = lambda ii: os.langs.get(client_lang, os.langs['en_US'])[ii]
 		self.downloading_songs[song_url] = 1
+		with self.download_lock:
+			job = {'url': song_url, 'started_at': time.time(), 'quality': 'best' if self.should_download_best_for_request(enqueue) else 'default'}
+			if enqueue:
+				self.pending_enqueued_downloads += 1
+			self.download_jobs[song_url] = job
+		if job['quality'] == 'best':
+			work_dir = None
+			try:
+				with self.best_quality_work_lock:
+					best_tmp, sidecar, work_dir, youtube_id, quality_extra = self.download_best_quality_file(song_url, job=job)
+					final_path = self.replace_library_file_with_best(None, best_tmp, sidecar, quality_extra, restart_vocal_after=True)
+				self.clear_quality_failure(youtube_id)
+				if enqueue:
+					self.enqueue(final_path, song_added_by)
+					self.downloading_songs[song_url] = '00'
+					flash(getString2(189)+' '+getString2(191), client_ip = client_ip)
+				else:
+					self.downloading_songs[song_url] = 0
+					flash(getString2(189), client_ip = client_ip)
+			except Exception as e:
+				logging.error(f"Error downloading best-quality song {song_url}: {e}")
+				try:
+					info = self.get_yt_dlp_json(song_url)
+					self.set_quality_failure(info.get('id', song_url), e)
+				except:
+					pass
+				self.downloading_songs[song_url] = -1
+				flash(getString2(190), client_ip = client_ip)
+			finally:
+				if work_dir:
+					shutil.rmtree(work_dir, ignore_errors=True)
+				with self.download_lock:
+					if enqueue:
+						self.pending_enqueued_downloads = max(0, self.pending_enqueued_downloads - 1)
+					self.download_jobs.pop(song_url, None)
+				ws_send(client_ip, 'download_ended()')
+			return
+
+		high_quality = False
 		dl_path = "%(title)s---%(id)s.%(ext)s"
 		fmt_hq  = 'bestvideo[height<=1080][vcodec^=h264]+bestaudio[acodec=aac]/bestvideo[height<=1080]+bestaudio'
 		fmt_std = 'bestvideo[height<=720][vcodec^=h264]+bestaudio[acodec=aac]/bestvideo[height<=720]+bestaudio'
@@ -489,6 +1122,7 @@ class Karaoke:
 			bn = self.get_downloaded_file_basename(song_url)
 			if bn:
 				shutil.move(self.tmp_dir+'/'+bn, self.download_path+bn)
+				self.update_quality_metadata_for_file(self.download_path+bn, 'default', False)
 				self.get_available_songs()
 				if enqueue:
 					self.enqueue(self.download_path+bn, song_added_by)
@@ -504,6 +1138,10 @@ class Karaoke:
 			logging.error("Error downloading song: " + song_url)
 			self.downloading_songs[song_url] = -1
 			flash(getString2(190), client_ip = client_ip)
+		with self.download_lock:
+			if enqueue:
+				self.pending_enqueued_downloads = max(0, self.pending_enqueued_downloads - 1)
+			self.download_jobs.pop(song_url, None)
 		return ws_send(client_ip, 'download_ended()')
 
 	def get_available_songs(self):
@@ -523,11 +1161,16 @@ class Karaoke:
 
 		# self.available_songs = sorted(files_grabbed, key = lambda f: str.lower(os.path.basename(f)))
 		self.available_songs = sorted(self.songname_trans, key = self.songname_trans.get)
+		for fn in self.available_songs:
+			youtube_id = self.get_youtube_id_from_path(fn)
+			if youtube_id and youtube_id not in self.quality_metadata:
+				self.update_quality_metadata_for_file(fn)
 
 	def get_all_assoc_files(self, song_path):
 		basename = os.path.basename(song_path)
 		basestem = os.path.splitext(basename)
 		return [self.download_path + basename,
+				self.download_path + basestem[0] + '.srt',
 				self.download_path + basestem[0] + '.cdg',
 				self.download_path + 'nonvocal/' + basename + '.m4a',
 				self.download_path + 'nonvocal/.' + basename + '.m4a',
@@ -547,6 +1190,13 @@ class Karaoke:
 		# delete all associated cdg/vocal/nonvocal files if exist
 		for fn in self.get_all_assoc_files(song_path):
 			self.delete_if_exist(fn)
+		youtube_id = self.get_youtube_id_from_path(song_path)
+		if youtube_id:
+			with self.quality_lock:
+				if youtube_id in self.quality_metadata:
+					self.quality_metadata.pop(youtube_id)
+					self.quality_metadata_dirty = True
+			self.save_quality_metadata()
 
 		self.get_available_songs()
 
@@ -587,6 +1237,13 @@ class Karaoke:
 			self.delays[new_basename] = self.delays.pop(old_basename)
 			self.delays_dirty = True
 			self.auto_save_delays()
+		youtube_id = self.get_youtube_id_from_path(self.download_path + new_basename)
+		if youtube_id and youtube_id in self.quality_metadata:
+			with self.quality_lock:
+				self.quality_metadata[youtube_id]['path'] = new_basename
+				self.quality_metadata[youtube_id]['title'] = self.filename_from_path(new_basename)
+				self.quality_metadata_dirty = True
+			self.save_quality_metadata()
 
 		self.get_available_songs()
 
@@ -712,6 +1369,127 @@ class Karaoke:
 	def update_queue(self):
 		self.queue_json = json.dumps(self.queue)
 		self.status_dirty = True
+		self.cancel_protected_best_jobs()
+
+	def queued_protected_paths(self):
+		return set([i['file'] for i in self.queue[:5]] + ([self.now_playing_filename] if self.now_playing_filename else []))
+
+	def is_best_upgrade_candidate(self, song_path):
+		if not self.accept_best_quality_work:
+			return False
+		if not self.best_quality_upgrader:
+			return False
+		if not os.path.isfile(song_path):
+			return False
+		if song_path in self.queued_protected_paths():
+			return False
+		youtube_id = self.get_youtube_id_from_path(song_path)
+		if not youtube_id:
+			return False
+		if youtube_id in self.best_quality_active:
+			return False
+		meta = self.quality_metadata.get(youtube_id, {})
+		if meta.get('best_available') and meta.get('quality_profile') == 'best':
+			return False
+		if not self.is_retry_ready(youtube_id):
+			return False
+		return True
+
+	def classify_best_upgrade_candidate(self, song_path, protected_paths=None):
+		if not self.accept_best_quality_work:
+			return 'stopping'
+		if not self.best_quality_upgrader:
+			return 'disabled'
+		if not os.path.isfile(song_path):
+			return 'missing'
+		protected_paths = protected_paths or self.queued_protected_paths()
+		if song_path in protected_paths:
+			return 'queue-protected'
+		youtube_id = self.get_youtube_id_from_path(song_path)
+		if not youtube_id:
+			return 'no-youtube-id'
+		if youtube_id in self.best_quality_active:
+			return 'upgrading'
+		meta = self.quality_metadata.get(youtube_id, {})
+		if meta.get('best_available') and meta.get('quality_profile') == 'best':
+			return 'already-best'
+		if not self.is_retry_ready(youtube_id):
+			return 'retry-backoff'
+		return 'candidate'
+
+	def get_best_upgrade_candidates(self):
+		self.get_available_songs()
+		protected_paths = self.queued_protected_paths()
+		stats = Counter()
+		candidates = []
+		for song in list(self.available_songs):
+			reason = self.classify_best_upgrade_candidate(song, protected_paths)
+			stats[reason] += 1
+			if reason == 'candidate':
+				candidates.append(song)
+		return candidates, stats
+
+	def best_quality_worker(self):
+		print("Best-quality background upgrader enabled", flush=True)
+		while True:
+			try:
+				if not self.accept_best_quality_work:
+					break
+				candidates, stats = self.get_best_upgrade_candidates()
+				if not candidates:
+					self.flush_deferred_vocal_regeneration()
+					print("Best-quality scan: no eligible songs (" + ", ".join([f"{k}={v}" for k, v in sorted(stats.items())]) + ")", flush=True)
+					time.sleep(self.best_quality_scan_interval)
+					continue
+				print(f"Best-quality scan: upgrading 1 of {len(candidates)} eligible song(s): {os.path.basename(candidates[0])}", flush=True)
+				self.upgrade_song_to_best(candidates[0])
+			except Exception as e:
+				logging.warning(f"Best-quality worker error: {e}")
+				time.sleep(self.best_quality_scan_interval)
+
+	def upgrade_song_to_best(self, song_path):
+		youtube_id = self.get_youtube_id_from_path(song_path)
+		if not youtube_id:
+			return False
+		if song_path in self.queued_protected_paths():
+			return False
+		self.best_quality_active.add(youtube_id)
+		with self.quality_lock:
+			meta = self.quality_metadata.get(youtube_id, {'youtube_id': youtube_id})
+			meta['upgrade_state'] = 'upgrading'
+			self.quality_metadata[youtube_id] = meta
+			self.quality_metadata_dirty = True
+			self.status_dirty = True
+		self.save_quality_metadata()
+		work_dir = None
+		job = {
+			'url': self.youtube_url_from_id(youtube_id),
+			'old_path': song_path,
+			'started_at': time.time(),
+			'quality': 'best',
+		}
+		with self.download_lock:
+			self.download_jobs[youtube_id] = job
+		try:
+			with self.best_quality_work_lock:
+				best_tmp, sidecar, work_dir, _, quality_extra = self.download_best_quality_file(self.youtube_url_from_id(youtube_id), old_path=song_path, job=job)
+				if song_path == self.now_playing_filename:
+					raise RuntimeError('song became now playing before swap')
+				if song_path in self.queued_protected_paths() and self.should_cancel_best_job(job):
+					raise RuntimeError('song became protected by queue before swap')
+				final_path = self.replace_library_file_with_best(song_path, best_tmp, sidecar, quality_extra, restart_vocal_after=False)
+			logging.info(f"Best-quality upgrade complete: {final_path}")
+			self.clear_quality_failure(youtube_id)
+			return True
+		except Exception as e:
+			self.set_quality_failure(youtube_id, e)
+			return False
+		finally:
+			self.best_quality_active.discard(youtube_id)
+			with self.download_lock:
+				self.download_jobs.pop(youtube_id, None)
+			if work_dir:
+				shutil.rmtree(work_dir, ignore_errors=True)
 
 	def queue_clear(self):
 		logging.info("Clearing queue!")
@@ -1106,6 +1884,22 @@ class Karaoke:
 		elif self.platform != 'windows':
 			os.system(f"tmux send-keys -t PiKaraoke:0.4 C-c")
 
+	def drain_download_jobs_before_shutdown(self):
+		self.accept_best_quality_work = False
+		while True:
+			with self.download_lock:
+				active_jobs = list(self.download_jobs.values())
+			active_processes = [
+				job for job in active_jobs
+				if job.get('process') is not None and job['process'].poll() is None
+			]
+			with self.quality_lock:
+				active_best = self.active_best_quality_jobs
+			if not active_jobs and active_best == 0:
+				break
+			logging.info(f"Waiting for {max(len(active_jobs), len(active_processes), active_best)} active download/conversion/verification job(s) before shutdown")
+			time.sleep(5)
+
 	def get_mp3_volume(self, filename):
 		try:
 			basename, md5, fsize = os.path.basename(filename), md5sum(filename), os.stat(filename).st_size
@@ -1223,6 +2017,8 @@ save_play_settings = {save_play_settings}
 	def run(self):
 		logging.info("Starting PiKaraoke!")
 		self.running = True
+		if self.best_quality_upgrader:
+			threading.Thread(target=self.best_quality_worker, daemon=True).start()
 
 		# Windows does not have tmux, vocal splitter can only be invoked from the main program
 		if self.platform == 'windows' or self.run_vocal:
@@ -1253,6 +2049,7 @@ save_play_settings = {save_play_settings}
 				self.running = False
 
 		# Clean up before quit
+		self.drain_download_jobs_before_shutdown()
 		self.streamer_stop()
 		self.vocal_stop()
 		vplayer = self.vlcclient if self.use_vlc else self.omxclient

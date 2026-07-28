@@ -14,16 +14,22 @@ from demucs.pretrained import get_model
 from demucs.apply import apply_model
 import librosa
 
+from constants import media_types
+
 
 def ffm_wav2m4a(input_fn, output_fn, br='128k'):
 	input_fn, output_fn = [fn.replace('"', '\\"') for fn in [input_fn, output_fn]]
-	subprocess.run(['ffmpeg', '-y', '-i', input_fn, '-c:a', 'aac', '-b:a', br, output_fn])
+	return subprocess.run(['ffmpeg', '-y', '-i', input_fn, '-c:a', 'aac', '-b:a', br, output_fn]).returncode == 0
 
 
 def ffm_video2wav(input_fn, output_fn):
 	# Resample to the model's native rate (44100) at extraction time
 	input_fn, output_fn = [fn.replace('"', '\\"') for fn in [input_fn, output_fn]]
-	subprocess.run(['ffmpeg', '-y', '-i', input_fn, '-f', 'wav', '-ar', '44100', output_fn])
+	return subprocess.run(['ffmpeg', '-y', '-i', input_fn, '-f', 'wav', '-ar', '44100', output_fn]).returncode == 0
+
+
+def is_supported_media_file(filename):
+	return os.path.splitext(filename)[1].lower() in media_types
 
 
 def split_vocal_by_stereo(in_wav, out_wav_nonvocal, out_wav_vocal):
@@ -107,6 +113,8 @@ def get_next_file(cuda_device):
 	if not os.path.isdir(song_path+'/nonvocal') and not os.path.isdir(song_path+'/vocal'):
 		return None
 	for fn in obj['queue']:
+		if not is_supported_media_file(fn):
+			continue
 		bn = ('' if use_DNN else '.')+os.path.basename(fn)
 		if os.path.isdir(song_path+'/nonvocal') and not os.path.isfile(f'{song_path}/nonvocal/{bn}.m4a'):
 			return os.path.basename(fn)
@@ -115,6 +123,8 @@ def get_next_file(cuda_device):
 
 	# get from listing directory
 	for bn in [i for i in os.listdir(song_path) if not i.startswith('.') and os.path.isfile(song_path+'/'+i)]:
+		if not is_supported_media_file(bn):
+			continue
 		bn1 = ('' if use_DNN else '.')+bn
 		if os.path.isdir(song_path+'/nonvocal') and not os.path.isfile(f'{song_path}/nonvocal/{bn1}.m4a'):
 			return bn
@@ -184,7 +194,10 @@ def main(argv):
 			continue
 
 		print(f'Start processing {next_file} :')
-		ffm_video2wav(song_path+'/'+next_file, in_wav)
+		if not ffm_video2wav(song_path+'/'+next_file, in_wav):
+			print(f'Skipping {next_file}: could not extract an audio stream', flush=True)
+			last_completed = next_file
+			continue
 
 		if use_DNN:
 			split_vocal_by_dnn(in_wav, out_wav_nonvocal, out_wav_vocal, args)

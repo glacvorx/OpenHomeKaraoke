@@ -10,7 +10,7 @@ The feature should be safe for live karaoke use:
 - Songs added at queue position 6 or later should use best quality.
 - Existing local library songs should be upgraded in the background when the feature is enabled.
 - Upgrades should never interrupt the current song or the first 5 queued songs.
-- The best-quality upgrader should be off by default and enabled by a startup flag.
+- The best-quality upgrader should be on by default and can be disabled with a startup flag.
 
 ## Current Application Behavior
 
@@ -75,6 +75,7 @@ Only `K.queue` waiting songs count for queue position. The currently playing son
 - Queue empty: download default quality.
 - Resulting queue position 1 through 5: download default quality.
 - Resulting queue position 6 or later: download best quality.
+- For concurrent download requests that are marked "add to queue after download", pending enqueued downloads should count toward the resulting queue position even before their files have finished downloading.
 - If a pending download has not started, recompute its quality from the current queue position.
 - If a best download has started and the song moves into positions 1 through 5:
   - If elapsed time is under 7 minutes, cancel and restart as default.
@@ -86,10 +87,11 @@ Only `K.queue` waiting songs count for queue position. The currently playing son
 
 ### Background Upgrader
 
-- Off by default.
-- Enable with a startup argument, proposed name: `--best-quality-upgrader`.
+- On by default.
+- Disable with a startup argument: `--disable-quality-upgrader`.
 - Runs continuously while the app is running.
 - One background upgrade at a time.
+- Foreground best-quality downloads and background upgrades should share the same best-quality work gate, so only one best download/conversion/verification/replacement pipeline runs at a time.
 - Does not pause foreground/default downloads.
 - Scans all local library songs, not only queued songs.
 - Skips:
@@ -107,7 +109,14 @@ Only `K.queue` waiting songs count for queue position. The currently playing son
   - delete the old primary media file
   - delete old generated vocal/nonvocal files
   - let the existing vocal splitter regenerate new vocal/nonvocal files
-  - redownload subtitles as part of the best download
+  - redownload only one subtitle track as part of the best download
+  - choose the best subtitle matching the song language: manual subtitles first, then auto-generated captions
+  - use YouTube language metadata, or a single manual subtitle track if that is the only available manual option
+  - if no reliable matching language can be determined, skip subtitle download instead of downloading multiple subtitle tracks
+  - stop the vocal splitter before the media swap and stale split-file cleanup
+  - wait for the vocal splitter to exit; if it does not stop, abort the replacement and retry later
+  - restart the vocal splitter after foreground best-quality replacements
+  - for continuous background upgrades, defer the vocal splitter restart until the upgrader reaches a pause/no-candidate scan, so the splitter is not repeatedly started and stopped between back-to-back media swaps
 
 ### Disk Space
 
@@ -127,6 +136,13 @@ Recommended rule:
 - Backoff should survive app restarts.
 - Default-quality user downloads should keep the current behavior and should not be blocked by best-quality retry state.
 
+### Shutdown Behavior
+
+- When the user exits the pygame app, the application should stop accepting new best-quality background work.
+- If a download, conversion, or verification is already in progress, the terminal-launched application should wait for that active job to finish before terminating.
+- Shutdown should not interrupt an in-progress file replacement. This prevents broken, partial, or missing library files.
+- After active download/conversion/verification jobs are drained, normal player, streamer, and vocal-splitter cleanup can proceed.
+
 ### Library UI
 
 The local library page should show actual detected resolution, such as:
@@ -143,7 +159,11 @@ It can also distinguish whether the file is considered best available, for examp
 - `2160p best`
 - `1080p best`
 - `720p default`
+- `Upgrading`
+- `720p retry later`
 - `unknown`
+
+The browse/library pages should show an explicit visual tag while a song is being upgraded to best quality. The tag should update while the page is open by polling local metadata only; it must not trigger network calls or block page rendering.
 
 ## Format and Container Research
 
@@ -181,7 +201,7 @@ The current recommendation is:
 
 - Temporary source file: let yt-dlp/FFmpeg use whatever container is natural for the selected VP9/AV1 source, usually WebM or MKV.
 - Final library file: prefer MP4 with HEVC video and AAC audio if subtitles can be handled cleanly.
-- Subtitle fallback: keep final MP4 and write an external `.srt` sidecar if MP4 subtitle conversion fails.
+- Subtitle fallback: keep final MP4 and write one external matching-language `.srt` sidecar if MP4 subtitle conversion fails.
 - Optional container fallback: MKV with HEVC video can preserve more subtitle formats, but it should only be used if consistent MP4 output is less important than preserving embedded subtitles.
 
 MP4 is attractive because the existing default workflow already stores MP4 files and macOS players generally handle HEVC-in-MP4 well. MKV remains acceptable because the existing app indexes `.mkv`, and VLC can play MKV, but MP4 should be the default final converted asset.
@@ -233,6 +253,7 @@ HDR handling:
 - 4K SDR HEVC is acceptable if HDR metadata cannot be preserved reliably.
 - Before conversion, inspect source pixel format and color metadata with `ffprobe`.
 - Pass appropriate pixel-format/color parameters to FFmpeg when needed, especially for HDR sources where pixel format mismatch is likely.
+- For 10-bit/HDR sources, request `p010le` and HEVC Main10 during VideoToolbox conversion.
 
 Candidate conversion command shape:
 
@@ -276,11 +297,13 @@ Best-quality profile should:
 - avoid Dolby Vision unless explicitly requested later
 - allow VP9/AV1 for the temporary YouTube source download
 - select best available audio
-- download subtitles
+- request only one subtitle track matching the song language; if unavailable or ambiguous, skip subtitles
 - convert the final stored/playable file to HEVC with `hevc_videotoolbox`
 - prefer final MP4 output
 - handle subtitle conversion failures by using external `.srt` sidecars
 - verify final media with `ffprobe` and a 10-second FFmpeg null-decode scan
+- avoid forcing YouTube `player_client=web` for best-quality discovery/downloads, because that client can expose only legacy combined format `18` at 360p while the default/tv client set exposes higher adaptive video formats
+- compare the downloaded source height and converted output height against yt-dlp's discovered best available height for that video, so true 360p-only videos can still be marked best while accidental 360p fallbacks are rejected
 
 Candidate yt-dlp options:
 
@@ -417,7 +440,7 @@ If the final extension changes, queue path updates are required. The final best-
 
 ## Vocal Splitter Interaction
 
-Best-quality replacement should delete stale generated vocal files because they are tied to the old basename and media content. It should then trigger vocal/nonvocal regeneration immediately for the upgraded song.
+Best-quality replacement should delete stale generated vocal files because they are tied to the old basename and media content. Before swapping the primary media, stop the vocal splitter and wait for it to exit so it cannot read a media file while it is being replaced or write old split output during replacement. If the splitter does not stop within the timeout, abort the replacement and let retry/backoff handle the next attempt. After foreground best-quality replacements, restart the vocal splitter immediately. During continuous background upgrade batches, defer restart until the worker reaches a no-candidate pause so it does not repeatedly restart on one song and get stopped by the next immediate upgrade.
 
 The existing vocal splitter discovers work from:
 
@@ -453,13 +476,13 @@ Default-quality downloads can continue using the current call path unless cancel
 Add startup arguments:
 
 ```bash
---best-quality-upgrader
+--disable-quality-upgrader
 --best-quality-cancel-threshold 420
 ```
 
 Defaults:
 
-- `--best-quality-upgrader`: false
+- `--disable-quality-upgrader`: upgrader is **on** by default; pass this flag to disable it
 - `--best-quality-cancel-threshold`: `420` seconds, or 7 minutes
 
 Potential later options:
@@ -492,7 +515,7 @@ Possible labels:
 - `1080p`
 - `1440p best`
 - `2160p best`
-- `upgrading`
+- `Upgrading`
 - `unknown`
 
 Keep the UI lightweight and avoid blocking page render on yt-dlp network calls. Use stored metadata and local ffprobe data only during page render. Retry failures should be logged to stdout only and should not be surfaced in the web UI.
@@ -522,13 +545,14 @@ Keep the UI lightweight and avoid blocking page render on yt-dlp network calls. 
 
 ### Phase 3: Background Upgrader
 
-- Add startup flag.
+- Add `--disable-quality-upgrader` startup flag (upgrader is on by default).
 - Add continuous worker thread.
-- Scan eligible local library files.
+- Refresh and scan eligible local library files on every worker pass, rather than relying only on the startup cache.
 - Skip now-playing and queue positions 1 through 5.
 - Respect free-space rules.
 - Retry with backoff.
 - Swap verified replacements.
+- Print stdout scan diagnostics when no song is eligible, including counts for common skip reasons such as no YouTube ID, already best, queue protected, currently upgrading, and retry backoff.
 
 ### Phase 4: Cancellation and Dynamic Queue Priority
 
@@ -536,6 +560,7 @@ Keep the UI lightweight and avoid blocking page render on yt-dlp network calls. 
 - Recompute pending job quality when queue changes.
 - Cancel active best jobs under 7 minutes if they become urgent.
 - Let active best jobs continue after 7 minutes.
+- Drain active download/conversion/verification jobs during application shutdown before process cleanup.
 
 ### Phase 5: Hardening
 

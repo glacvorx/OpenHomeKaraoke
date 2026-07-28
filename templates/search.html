@@ -83,10 +83,6 @@
     padding: 4px 12px;
     border-bottom: 1px solid #333;
   }
-  #subtitle-langs-box {
-    margin-top: 10px;
-    font-size: 0.9rem;
-  }
 </style>
 <script>
   var download_url = "";
@@ -197,9 +193,6 @@
     $('.download-direct').submit(function(){
       download_url = $(this).find('[name=song_url]').val()
       var formData = $(this).serialize();
-      var sub_langs = $(this).find('#sub-langs-select').val();
-      if (sub_langs)
-        formData += '&sub_langs=' + encodeURIComponent(sub_langs);
       $.post($(this).attr('action'), formData, function(msg) {
         showNotification(msg);
         timer = setInterval(check_download, 2000);
@@ -263,14 +256,12 @@
 
     i = -1;
     changeImage();
-    fetchSubtitleLangs();
 
     $(document).on('change', '#search_result_selector', function () {
       var url = $('#search_result_selector').val();
       $('#youtube-link').attr('href', url);
       $('#youtube-link').text(url);
       changeImage();
-      fetchSubtitleLangs();
     });
 
     $('#youtube-thumb').click(function(e) { changeImage(); });
@@ -306,30 +297,6 @@
     $('#youtube-thumb').attr("src", img_src);
   }
 
-  function fetchSubtitleLangs() {
-    var youtube_id = $('#search_result_selector').find(':selected').data('ytid');
-    if (!youtube_id) return;
-    var $box = $('#subtitle-langs-box');
-    var $btn = $('#download-button');
-    $box.html('<span style="color:#888; font-size:0.85rem;">Loading subtitles...</span>');
-    $btn.attr('disabled', true);
-    $.get('/get_subtitle_langs/' + youtube_id, function(data) {
-      var langs = JSON.parse(data);
-      var keys = Object.keys(langs);
-      if (!keys.length) {
-        $box.html('<span style="color:#888; font-size:0.85rem;">No subtitles available for this video.</span>');
-      } else {
-        var html = '<label style="font-size:0.9rem;">{{getString1(126)}}: <select id="sub-langs-select" style="margin-left:6px;">'
-                 + '<option value="">None</option>';
-        keys.forEach(function(code) {
-          html += '<option value="' + code + '">' + langs[code] + '</option>';
-        });
-        html += '</select></label>';
-        $box.html(html);
-      }
-      $btn.removeAttr('disabled');
-    });
-  }
 </script>
 {% endblock %}
 
@@ -418,7 +385,6 @@
 
       <p> {{getString1(131)}}<a target="_blank" id='youtube-link' href=''></a> </p>
       <p class="has-text-centered-mobile"> <img id='youtube-thumb'> </p>
-      <div id="subtitle-langs-box"></div>
       <div class="field" style="margin-top: 8px">
         <label class="checkbox"><input type="checkbox" checked name="enqueue">{{getString1(125)}}</label>&nbsp;
         <label class="checkbox" title="{{getString1(209)}}"><input type="checkbox" name="high_quality" {{'checked' if high_quality else ''}}>{{getString1(206)}}</label>

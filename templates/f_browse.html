@@ -64,7 +64,10 @@
       <a class='add-song-link has-text-weight-bold has-text-success' title="{{getString1(97)%filename_from_path(song)}}"
         href="{{url_for('enqueue')}}?song={{url_escape(song.encode('utf-8'))}}&user="><i class="icon icon-list-add"></i> </a>
     </td>
-    <td>{{filename_from_path(song)}}</td>
+    <td>
+      {{filename_from_path(song)}}
+      <span class="tag quality-tag {{quality_tag_class(song)}}" data-song="{{song}}" style="margin-left: 0.4rem;">{{quality_label(song)}}</span>
+    </td>
     {% if admin %}
       <td width="20px">
         <a class='edit-button' onclick="onEdit('/f_edit?song={{url_escape(song.encode())}}')"
@@ -111,5 +114,31 @@ $('a.add-song-link').click(function(e) {
 function onEdit(url){
   $.get(url).done((data)=>{$('#container').html(data)});
 }
+
+function refreshQualityTags() {
+  var songs = $('.quality-tag').map(function () { return $(this).data('song'); }).get();
+  if (!songs.length) return;
+  $.ajax({
+    url: "{{ url_for('quality_status') }}",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({ songs: songs }),
+    success: function (data) {
+      $('.quality-tag').each(function () {
+        var tag = $(this);
+        var status = data[tag.data('song')];
+        if (!status) return;
+        tag.removeClass('is-dark is-light is-info is-warning is-success is-danger')
+          .addClass(status.className)
+          .text(status.label);
+      });
+    }
+  });
+}
+refreshQualityTags();
+if (window.qualityTagInterval) {
+  clearInterval(window.qualityTagInterval);
+}
+window.qualityTagInterval = setInterval(refreshQualityTags, 10000);
 
 </script>

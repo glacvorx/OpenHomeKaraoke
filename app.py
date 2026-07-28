@@ -582,6 +582,8 @@ def browse():
 		letter = letter,
 		title = getString2(98),
 		songs = songs[start_index:start_index + results_per_page],
+		quality_label = K.get_quality_label,
+		quality_tag_class = K.get_quality_tag_class,
 		admin = is_admin()
 	)
 @app.route("/f_browse", methods = ["GET"])
@@ -622,33 +624,22 @@ def f_browse():
 		letter = letter,
 		title = getString2(98),
 		songs = songs[start_index:start_index + results_per_page],
+		quality_label = K.get_quality_label,
+		quality_tag_class = K.get_quality_tag_class,
 		admin = is_admin()
 	)
 
+@app.route("/quality_status", methods = ["POST"])
+def quality_status():
+	songs = (request.get_json(silent = True) or {}).get('songs', [])
+	return jsonify({
+		song: K.get_quality_status_payload(song)
+		for song in songs
+		if isinstance(song, str)
+	})
+
 def transform_boolean(dct, S):
 	return {k: ((v=='on') if k in S else v) for k, v in dct.items()}
-
-@app.route("/get_subtitle_langs/<video_id>")
-def get_subtitle_langs(video_id):
-	try:
-		url = f"https://www.youtube.com/watch?v={video_id}"
-		info = K.get_yt_dlp_json(url)
-		langs = {}
-		for lang, tracks in (info.get('subtitles') or {}).items():
-			if not lang.startswith('en'):
-				continue
-			name = tracks[0].get('name', lang) if tracks else lang
-			langs[lang] = f"{name} (manual)"
-		for lang, tracks in (info.get('automatic_captions') or {}).items():
-			if not lang.startswith('en'):
-				continue
-			if lang not in langs:
-				name = tracks[0].get('name', lang) if tracks else lang
-				langs[lang] = f"{name} (auto)"
-		return json.dumps(langs)
-	except Exception as e:
-		logging.error(f"Error fetching subtitle langs for {video_id}: {e}")
-		return json.dumps({})
 
 @app.route("/download", methods = ["POST"])
 def download():
@@ -1178,6 +1169,19 @@ if __name__ == "__main__":
 		action = "store_true",
 		default = True,
 		help = "Download higher quality video. Note: requires ffmpeg and may cause CPU, download speed, and other performance issues",
+	)
+	parser.add_argument(
+		"--disable-quality-upgrader",
+		dest = "best_quality_upgrader",
+		action = "store_false",
+		default = True,
+		help = "Disable the background upgrader that continuously upgrades eligible local YouTube songs to 4K HEVC.",
+	)
+	parser.add_argument(
+		"--best-quality-cancel-threshold",
+		type = int,
+		default = 420,
+		help = "Seconds after which an active best-quality download should continue even if it becomes urgent. (default: 420)",
 	)
 	parser.add_argument(
 		"--use-omxplayer",
