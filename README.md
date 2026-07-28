@@ -47,9 +47,20 @@ I am developing on MacOS only.
 - Automatically converts songs in library to a higher quality video + audio (up to 4K).
 - Songs that are queued would be automatically converted if they are above position 5 in the song queue, or not in the song queue at all.
 
+
 ## Launch
 
+### Dependencies
+
+1. Python (3.12 of course)
+2. VLC
+3. deno (for yt-dlp)
+4. cookies.txt (for yt-dlp, should be placed in project root)
+
+### How to Run
+
 cd into the Karaoke directory and run: `python3 app.py -V -d ./songs`
+
 
 ## Usage
 
