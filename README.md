@@ -8,7 +8,7 @@ I am developing on MacOS only.
 
 ### Audio
 - **Vocal splitter has now been migrated to Demucs (CPU and GPU both supported), you can choose to play instrumental, vocal or both**
-- Volume normalization (all songs will sound equally loud)
+- Volume normalization (all songs will sound equally loud as much as possible)
 - Stream-to-HTTP allows any TV (or IT device) with a web browser to watch the KTV (on Windows and MacOS, you can use wireless-display/screen-projection and Airplay respectively)
 - **System options are now persistent via a config file in the main project folder**
 
@@ -20,7 +20,7 @@ I am developing on MacOS only.
 
 ### Web Interface
 - Search for songs on YouTube and download new songs from YouTube and many other video websites such as Youku, Bilibili, etc. (can use browser cookies to download as if logged in)
-- **Subtitles will be retrieved and different languages presented for choosing**
+- **Subtitles will be retrieved**
 - **Searching/browsing a local song library (now displays more consistently and prominently across browsers)**
 - Add/queue songs and search for songs by voice recognition with built-in local ASR (enabled with `--cloud`, defaults to OpenAI Whisper `base`)
 - Web interface (mobile or desktop) for multiple users to queue tracks

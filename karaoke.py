@@ -1,12 +1,10 @@
-import os, sys, io, random, time, json, datetime
+import os, sys, io, random, time, json, datetime, math, re
 import logging, socket, subprocess, threading
 import multiprocessing as mp
 import shutil, psutil, traceback
 import configparser
 from subprocess import check_output
 from collections import *
-
-import numpy as np
 
 from constants import media_types
 
@@ -25,7 +23,12 @@ if get_platform() != "windows":
 	from signal import SIGALRM, alarm, signal, SIGTERM
 	signal(SIGTERM, lambda signum, stack_frame: os.K.stop())
 
-STD_VOL = 65536/8/np.sqrt(2)
+VOL_NORM_CACHE_VERSION = 2
+VOL_NORM_TARGET_LUFS = -18.0
+VOL_NORM_TARGET_TRUE_PEAK = -2.0
+VOL_NORM_TARGET_LRA = 11.0
+VOL_NORM_MAX_BOOST_DB = 6.0
+VOL_NORM_MAX_CUT_DB = 24.0
 ip2websock, ip2pane = {}, {}
 
 ws_send = lambda ip, msg: ip2websock[ip].send(msg) if ip in ip2websock else None
@@ -79,6 +82,7 @@ class Karaoke:
 	volume_offset = 0
 	default_logo_path = os.path.join(base_path, "logo.jpg")
 	logical_volume = None   # for normalized volume
+	volume_cache_path = None
 	status_dirty = True
 	event_dirty = threading.Event()
 
@@ -152,7 +156,7 @@ class Karaoke:
 		# get songs from download_path
 		self.get_available_songs()
 		self.get_youtubedl_version()
-		self.song2vol = Try(lambda: json.load(Open(self.download_path+'/.mp3_volume.json.gz')), {})
+		self.load_volume_cache()
 		
 		# Automatically upgrade yt-dlp if using pip
 		if not args.youtubedl_path:
@@ -1289,7 +1293,11 @@ class Karaoke:
 			self.now_playing = self.filename_from_path(file_path)
 			self.now_playing_filename = file_path
 			self.is_paused = ('--start-paused' in extra_params1)
-			if self.normalize_vol and self.logical_volume is not None:
+			manual_volume = self.get_remembered_song_volume(file_path)
+			using_manual_volume = manual_volume is not None
+			if using_manual_volume:
+				self.volume = manual_volume
+			elif self.normalize_vol and self.logical_volume is not None:
 				self.volume = self.logical_volume / self.get_mp3_volume(file_path)
 			if self.now_playing_transpose == 0:
 				xml = self.vlcclient.play_file(file_path, self.volume, extra_params + extra_params1)
@@ -1305,7 +1313,8 @@ class Karaoke:
 			self.volume = round(float(self.vlcclient.get_val_xml(xml, 'volume')))
 			if self.normalize_vol:
 				self.media_vol = self.get_mp3_volume(self.now_playing_filename)
-				self.logical_volume = self.volume * self.media_vol
+				if self.logical_volume is None or not using_manual_volume:
+					self.logical_volume = self.volume * self.media_vol
 		else:
 			logging.info("Playing video in omxplayer: " + file_path)
 			self.omxclient.play_file(file_path)
@@ -1669,7 +1678,7 @@ class Karaoke:
 				self.volume = int(self.vlcclient.get_val_xml(xml, 'volume'))
 			else:
 				self.volume = self.omxclient.vol_up()
-			self.update_logical_vol()
+			self.update_logical_vol(remember_current_song=True)
 			return self.volume
 		else:
 			logging.warning("Tried to volume up, but no file is playing!")
@@ -1683,7 +1692,7 @@ class Karaoke:
 				self.volume = int(self.vlcclient.get_val_xml(xml, 'volume'))
 			else:
 				self.volume = self.omxclient.vol_down()
-			self.update_logical_vol()
+			self.update_logical_vol(remember_current_song=True)
 			return self.volume
 		else:
 			logging.warning("Tried to volume down, but no file is playing!")
@@ -1698,7 +1707,7 @@ class Karaoke:
 			else:
 				logging.warning("Only VLC player can set volume, ignored!")
 				self.volume = self.omxclient.volume_offset
-			self.update_logical_vol()
+			self.update_logical_vol(remember_current_song=True)
 			return self.volume
 		else:
 			logging.warning("Tried to set volume, but no file is playing!")
@@ -1901,23 +1910,111 @@ class Karaoke:
 			logging.info(f"Waiting for {max(len(active_jobs), len(active_processes), active_best)} active download/conversion/verification job(s) before shutdown")
 			time.sleep(5)
 
+	def load_volume_cache(self):
+		self.volume_cache_path = self.download_path+'/.mp3_volume.json.gz'
+		cache = Try(lambda: json.load(Open(self.volume_cache_path)), {})
+		self.song2vol = cache if isinstance(cache, dict) else {}
+		cache_changed = False
+		for basename, entry in list(self.song2vol.items()):
+			if not isinstance(entry, dict):
+				del self.song2vol[basename]
+				cache_changed = True
+				continue
+			if entry.get('version') != VOL_NORM_CACHE_VERSION:
+				manual_volume = entry.get('manual_volume')
+				if manual_volume is None:
+					del self.song2vol[basename]
+				else:
+					self.song2vol[basename] = {
+						'version': VOL_NORM_CACHE_VERSION,
+						'manual_volume': manual_volume,
+					}
+				cache_changed = True
+		if cache_changed:
+			self.save_volume_cache()
+
+	def save_volume_cache(self):
+		with Open(self.volume_cache_path, 'wt') as fp:
+			json.dump(self.song2vol, fp, indent=1)
+
+	def get_song_volume_cache(self, filename):
+		basename = os.path.basename(filename)
+		entry = self.song2vol.get(basename)
+		if not isinstance(entry, dict) or entry.get('version') != VOL_NORM_CACHE_VERSION:
+			entry = {'version': VOL_NORM_CACHE_VERSION}
+			self.song2vol[basename] = entry
+		return basename, entry
+
+	def get_remembered_song_volume(self, filename):
+		_, entry = self.get_song_volume_cache(filename)
+		manual_volume = entry.get('manual_volume')
+		if manual_volume is None:
+			return None
+		manual_fsize = entry.get('manual_fsize')
+		manual_md5 = entry.get('manual_md5')
+		if manual_fsize is None or manual_md5 is None:
+			return manual_volume
+		if manual_fsize == os.stat(filename).st_size and manual_md5 == md5sum(filename):
+			return manual_volume
+		return None
+
+	def remember_song_volume(self, filename):
+		_, entry = self.get_song_volume_cache(filename)
+		entry['manual_volume'] = self.volume
+		entry['manual_fsize'] = os.stat(filename).st_size
+		entry['manual_md5'] = md5sum(filename)
+		self.save_volume_cache()
+
 	def get_mp3_volume(self, filename):
 		try:
-			basename, md5, fsize = os.path.basename(filename), md5sum(filename), os.stat(filename).st_size
-			vol_fsize_md5 = self.song2vol.get(basename, [0]*3)
-			if fsize == vol_fsize_md5[1] and md5 == vol_fsize_md5[2]:
-				return vol_fsize_md5[0]
-			pcm_data = subprocess.check_output(['ffmpeg', '-i', filename, '-vn', '-f', 's16le', '-acodec', 'pcm_s16le', '-'], stderr = subprocess.DEVNULL)
-			volume_val = np.clip(np.std(np.frombuffer(pcm_data, dtype = np.int16))/STD_VOL, 1/16, 16)
-			self.song2vol[basename] = [volume_val, fsize, md5]
-			with Open(self.download_path+'/.mp3_volume.json.gz', 'wt') as fp:
-				json.dump(self.song2vol, fp, indent=1)
+			_, entry = self.get_song_volume_cache(filename)
+			md5, fsize = md5sum(filename), os.stat(filename).st_size
+			if fsize == entry.get('fsize') and md5 == entry.get('md5') and 'volume_val' in entry:
+				return entry.get('volume_val', 1)
+
+			command = [
+				'ffmpeg', '-hide_banner', '-nostats',
+				'-i', filename,
+				'-vn',
+				'-af', f'loudnorm=I={VOL_NORM_TARGET_LUFS}:TP={VOL_NORM_TARGET_TRUE_PEAK}:LRA={VOL_NORM_TARGET_LRA}:print_format=json',
+				'-f', 'null',
+				'-',
+			]
+			result = subprocess.run(command, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+			if result.returncode != 0:
+				raise Exception(result.stderr.strip().splitlines()[-1] if result.stderr else 'ffmpeg loudness analysis failed')
+
+			json_match = re.search(r'\{\s*"input_i".*?\}', result.stderr, re.S)
+			if not json_match:
+				raise Exception('ffmpeg did not return loudness metadata')
+			stats = json.loads(json_match.group(0))
+			measured_lufs = float(stats['input_i'])
+			measured_true_peak = float(stats['input_tp'])
+			if not math.isfinite(measured_lufs) or not math.isfinite(measured_true_peak):
+				raise Exception('ffmpeg returned non-finite loudness metadata')
+
+			requested_gain_db = VOL_NORM_TARGET_LUFS - measured_lufs
+			peak_safe_gain_db = VOL_NORM_TARGET_TRUE_PEAK - measured_true_peak
+			gain_db = max(-VOL_NORM_MAX_CUT_DB, min(requested_gain_db, peak_safe_gain_db, VOL_NORM_MAX_BOOST_DB))
+			volume_val = 10 ** (-gain_db / 20)
+			entry.update({
+				'volume_val': volume_val,
+				'fsize': fsize,
+				'md5': md5,
+				'input_i': measured_lufs,
+				'input_tp': measured_true_peak,
+				'input_lra': float(stats.get('input_lra', 0)),
+				'gain_db': gain_db,
+			})
+			self.save_volume_cache()
 			return volume_val
-		except:
-			logging.warning(f"Could not analyse volume for {filename}, skipping normalisation for this song")
+		except Exception as e:
+			logging.warning(f"Could not analyse volume for {filename}, skipping normalisation for this song: {e}")
 			return 1
 
-	def update_logical_vol(self):
+	def update_logical_vol(self, remember_current_song=False):
+		if remember_current_song and self.now_playing_filename and self.use_vlc:
+			self.remember_song_volume(self.now_playing_filename)
 		if hasattr(self, 'media_vol'):
 			self.logical_volume = self.volume * self.media_vol
 
@@ -1946,7 +2043,8 @@ class Karaoke:
 
 [pikaraoke]
 
-# Normalize volume levels across songs so loud and quiet songs play at similar levels.
+# Normalize volume levels across songs using FFmpeg LUFS loudness analysis.
+# Gain is capped and true-peak limited to avoid clipping/distortion.
 # Requires ffmpeg to be installed.
 normalize_vol = {normalize_vol}
 
