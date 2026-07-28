@@ -32,7 +32,7 @@ Waqqaf
 Naġġorna youtube-dl! Għandu jieħu minuta jew tnejn...
 M'għandekx permess biex taġġorna youtube-dl
 M'għandekx permess biex tagħlaq
-Tieqaf OpenHomeKaraoke issa!
+Tieqaf HomeBodyKaraoke issa!
 M'għandekx permess biex tieqaf
 Jingħalqu sistema issa!
 M'għandekx permess biex tagħlaq
@@ -49,7 +49,7 @@ Wifi/Netwerk mhux konness. Jingħalqu f'10s...
 Għall-għażla tal-kanzunetti, skennja QR jew qabbad ma '
 Għall-wiri tat-TV, qabbad ma '
 Agħfas F biex taqleb l-iskrin sħiħ
-Agħfas ESC biex tieqaf OpenHomeKaraoke
+Agħfas ESC biex tieqaf HomeBodyKaraoke
 RaspiWifiConfig setup mode misjuba!
 Qabbad apparat/smartphone ieħor mal-Wifi AP: '%s'
 Imbagħad ippunta l-browser tiegħu lejn: '%s://%s%s' u segwi l-istruzzjonijiet.
@@ -60,7 +60,7 @@ Mod ta' amministrazzjoni mogħtija!
 Iż-żieda tad-dewmien tal-awdjo tagħtik aktar ħin biex taqra l-lirika qabel tkanta s-sentenza li jmiss.
 It-tnaqqis tad-dewmien tas-sottotitoli jagħtik aktar ħin biex taqra l-lirika qabel tkanta s-sentenza li jmiss.
 Semitone huwa magħruf ukoll bħala nofs pass. Huwa l-iżgħar intervall użat fil-mużika klassika tal-Punent, ugwali għal tnax ta' ottava jew nofs ton.
-Splitter vokali bbażat fuq DNN huwa attivat. OpenHomeKaraoke juża PyTorch (minn Facebook) biex imexxi netwerk newrali profond biex jaqsam il-ħoss strumentali u vokali f'kull track li jagħti lok għal ħoss stereo.
+Splitter vokali bbażat fuq DNN huwa attivat. HomeBodyKaraoke juża PyTorch (minn Facebook) biex imexxi netwerk newrali profond biex jaqsam il-ħoss strumentali u vokali f'kull track li jagħti lok għal ħoss stereo.
 Kontroll tal-Plejer
 Mużika
 Imħallat
@@ -133,7 +133,7 @@ Kanzunetti Disponibbli
 Trid tibdel l-isem tal-wiri tal-persuna li tuża dan l-apparat? Dan se jidher ħdejn il-kanzunetti fil-kju. Kurrenti:
 Utent kurrenti
 Settings
-OpenHomeKaraoke
+HomeBodyKaraoke
 Int żgur li trid tieqaf?
 Int żgur li trid tagħlaq?
 Int żgur li trid terġa' tibda?
@@ -147,12 +147,12 @@ Memorja
 Qbid tal-Iskrin
 Splitter Vokali
 Verżjoni Youtube-dl (yt-dlp).
-Verżjoni OpenHomeKaraoke
+Verżjoni HomeBodyKaraoke
 Għażliet ta 'Kontroll Avvanzati
 Modalità splitter vokali:
 Uża L-R/L+R
 Uża DNN
-L-awdjo MTV standard għandu ż-żewġ kanali stereo (L u R) kodifikati b'tali mod li: L-R hija l-korsa tal-istrument, L + R hija l-korsa vokali. Għalhekk, billi sempliċement innaqqsu jew inżidu ż-żewġ kanali stereo, nistgħu niksbu t-track strumentali u vokali f'ħoss mono. Is-splitter vokali mibni fuq id-DNN (netwerk newrali profond) ta' OpenHomeKaraoke juża algoritmu AI biex jaqsam il-ħoss strumentali u vokali f'kull track stereo b'mod indipendenti li jirriżulta f'binarji stereo strumentali u vokali.
+L-awdjo MTV standard għandu ż-żewġ kanali stereo (L u R) kodifikati b'tali mod li: L-R hija l-korsa tal-istrument, L + R hija l-korsa vokali. Għalhekk, billi sempliċement innaqqsu jew inżidu ż-żewġ kanali stereo, nistgħu niksbu t-track strumentali u vokali f'ħoss mono. Is-splitter vokali mibni fuq id-DNN (netwerk newrali profond) ta' HomeBodyKaraoke juża algoritmu AI biex jaqsam il-ħoss strumentali u vokali f'kull track stereo b'mod indipendenti li jirriżulta f'binarji stereo strumentali u vokali.
 Stop Splitter
 Ibda mill-ġdid Splitter
 Is-splitter vokali (li jappoġġja t-tnaqqis kemm ibbażat fuq DNN kif ukoll stereo) jimxi bħala proċess separat fl-isfond, li jiġġenera fajl awdjo strumentali/vokali għal kull kanzunetta.
@@ -162,19 +162,19 @@ Ibda mill-ġdid Streamer
 Dan jaffettwa biss id-daqq tal-KTV permezz tal-web browser. Il-bidu mill-ġdid tal-screen-capture-and-streaming itejjeb is-sinkronizzazzjoni tal-awdjo/vidjow, inaqqas ukoll il-latency bejn is-server u l-browser.
 Aġġorna l-lista tal-kanzunetti:
 Iscan mill-ġdid direttorju tal-kanzunetti
-Għandek bżonn tagħmel dan biss jekk ikkupjajt manwalment fajls fid-direttorju tat-tniżżil waqt li kien qed jaħdem OpenHomeKaraoke.
+Għandek bżonn tagħmel dan biss jekk ikkupjajt manwalment fajls fid-direttorju tat-tniżżil waqt li kien qed jaħdem HomeBodyKaraoke.
 Aġġornamenti
 Jekk it-tniżżil jew it-tfittxijiet ma baqgħux jaħdmu, l-aġġornament ta' youtube-dl probabbilment se jirranġaha. Il-verżjoni installata attwali hija:
 Aġġorna youtube-dl
-Din il-link għall-aġġornament ta' hawn fuq tista' tfalli jekk ma jkollokx permessi xierqa għall-fajls. Iċċekkja l-log OpenHomeKaraoke għal żbalji.
+Din il-link għall-aġġornament ta' hawn fuq tista' tfalli jekk ma jkollokx permessi xierqa għall-fajls. Iċċekkja l-log HomeBodyKaraoke għal żbalji.
 Għalaq
 Tiġbedx il-plagg biss! Dejjem agħlaq is-server tiegħek sew biex tevita l-korruzzjoni tad-dejta.
-Nieqaf OpenHomeKaraoke
+Nieqaf HomeBodyKaraoke
 Reboot Sistema
 Sistema ta' Tfigħ
 Oħrajn
 Jespandu s-sistema tal-fajls Raspberry Pi
-Jekk għadek kif installajt l-immaġni OpenHomeKaraoke pi mibnija minn qabel u l-karta SD tiegħek hija akbar minn 4GB, tista 'tixtieq tespandi s-sistema tal-fajls biex tutilizza l-ispazju li jifdal. Għandek bżonn tagħmel dan darba biss. Dan jerġa 'jibda s-sistema.
+Jekk għadek kif installajt l-immaġni HomeBodyKaraoke pi mibnija minn qabel u l-karta SD tiegħek hija akbar minn 4GB, tista 'tixtieq tespandi s-sistema tal-fajls biex tutilizza l-ispazju li jifdal. Għandek bżonn tagħmel dan darba biss. Dan jerġa 'jibda s-sistema.
 Iddiżattiva l-mod ta' amministrazzjoni
 Ippermetti l-mod ta' amministrazzjoni
 Oħroġ
@@ -185,7 +185,7 @@ Bidla Lingwa
 Jekk jogħġbok agħżel il-lingwa
 Lingwa tas-Sistema
 Lingwa tas-sistema kurrenti:
-Dan jibdel il-lingwa tas-sistema backend OpenHomeKaraoke li tintwera fuq l-iskrin tat-TV; barra minn hekk, kull utent li jgħaqqad jista 'wkoll ibiddel il-lingwa rispettiva tagħhom tal-Web UI fil-buttuna globu fil-menu ta' fuq tal-lemin.
+Dan jibdel il-lingwa tas-sistema backend HomeBodyKaraoke li tintwera fuq l-iskrin tat-TV; barra minn hekk, kull utent li jgħaqqad jista 'wkoll ibiddel il-lingwa rispettiva tagħhom tal-Web UI fil-buttuna globu fil-menu ta' fuq tal-lemin.
 It-tniżżil tlesta b'suċċess!
 It-tniżżil falla!
 Kanzunetta miżjuda mal-kju!

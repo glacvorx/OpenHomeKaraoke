@@ -32,7 +32,7 @@ Detido
 Actualizando youtube-dl! Debería levar un ou dous minutos...
 Non tes permiso para actualizar youtube-dl
 Non tes permiso para apagar
-Saindo de OpenHomeKaraoke agora!
+Saindo de HomeBodyKaraoke agora!
 Non tes permiso para saír
 Apagando o sistema agora!
 Non tes permiso para apagar
@@ -49,7 +49,7 @@ Wifi/rede non conectada. Pechando en 10 segundos...
 Para seleccionar cancións, escanea QR ou conéctate a
 Para a pantalla de TV, conéctese a
 Preme F para cambiar a pantalla completa
-Preme ESC para saír de OpenHomeKaraoke
+Preme ESC para saír de HomeBodyKaraoke
 Modo de configuración RaspiWifiConfig detectado!
 Conecta outro dispositivo/teléfono intelixente ao AP Wifi: '%s'
 A continuación, apunte o seu navegador a: '%s://%s%s' e siga as instrucións.
@@ -60,7 +60,7 @@ Modo administrador concedido!
 Aumentar o atraso do audio darache máis tempo para ler as letras antes de cantar a seguinte frase.
 Ao diminuír o atraso dos subtítulos, darache máis tempo para ler as letras antes de cantar a seguinte frase.
 Un semitono tamén se coñece como medio paso. É o intervalo máis pequeno empregado na música clásica occidental, igual a un duodécimo de oitava ou medio ton.
-O divisor de voz baseado en DNN está activado. OpenHomeKaraoke usa PyTorch (de Facebook) para executar unha rede neuronal profunda para dividir o son instrumental e vocal en cada pista dando lugar a un son estéreo.
+O divisor de voz baseado en DNN está activado. HomeBodyKaraoke usa PyTorch (de Facebook) para executar unha rede neuronal profunda para dividir o son instrumental e vocal en cada pista dando lugar a un son estéreo.
 Control do xogador
 Música
 Mixto
@@ -133,7 +133,7 @@ Cancións dispoñibles
 Queres cambiar o nome para mostrar da persoa que usa este dispositivo? Isto aparecerá xunto ás cancións da cola. Actual:
 Usuario actual
 Configuración
-OpenHomeKaraoke
+HomeBodyKaraoke
 Estás seguro de que queres saír?
 Estás seguro de que queres pechar?
 Estás seguro de que queres reiniciar?
@@ -147,12 +147,12 @@ Memoria
 Captura de pantalla
 Divisor vocal
 Versión Youtube-dl (yt-dlp).
-Versión OpenHomeKaraoke
+Versión HomeBodyKaraoke
 Opcións de control avanzadas
 Modo divisor vocal:
 Use L-R/L+R
 Use DNN
-O audio estándar de MTV ten as dúas canles estéreo (L e R) codificadas de tal xeito que: L-R é a pista do instrumento, L+R é a pista vocal. Así, simplemente restando ou sumando as dúas canles estéreo, podemos obter a pista instrumental e vocal en son mono. O divisor vocal integrado de OpenHomeKaraoke baseado en DNN (rede neuronal profunda) usa o algoritmo de intelixencia artificial para dividir o son instrumental e vocal en cada pista estéreo de forma independente, o que resulta en pistas instrumentais e vocais estéreo.
+O audio estándar de MTV ten as dúas canles estéreo (L e R) codificadas de tal xeito que: L-R é a pista do instrumento, L+R é a pista vocal. Así, simplemente restando ou sumando as dúas canles estéreo, podemos obter a pista instrumental e vocal en son mono. O divisor vocal integrado de HomeBodyKaraoke baseado en DNN (rede neuronal profunda) usa o algoritmo de intelixencia artificial para dividir o son instrumental e vocal en cada pista estéreo de forma independente, o que resulta en pistas instrumentais e vocais estéreo.
 Detén Splitter
 Reinicie Splitter
 O divisor vocal (que admite a subtracción baseada en DNN e estéreo) execútase como un proceso separado en segundo plano, xerando ficheiros de audio instrumental/vocal para cada canción.
@@ -162,19 +162,19 @@ Reinicie Streamer
 Isto só afecta a reprodución de KTV a través do navegador web. Reiniciar a captura de pantalla e a transmisión mellora a sincronización de audio/vídeo e tamén diminúe a latencia entre o servidor e o navegador.
 Actualiza a lista de cancións:
 Volver a buscar o directorio de cancións
-Só deberías facelo se copiaches manualmente ficheiros no directorio de descargas mentres estaba en execución OpenHomeKaraoke.
+Só deberías facelo se copiaches manualmente ficheiros no directorio de descargas mentres estaba en execución HomeBodyKaraoke.
 Actualizacións
 Se as descargas ou as buscas deixaron de funcionar, a actualización de youtube-dl probablemente o solucione. A versión instalada actual é:
 Actualizar youtube-dl
-Esta ligazón de actualización anterior pode fallar se non tes os permisos de ficheiro adecuados. Comprobe o rexistro de OpenHomeKaraoke para detectar erros.
+Esta ligazón de actualización anterior pode fallar se non tes os permisos de ficheiro adecuados. Comprobe o rexistro de HomeBodyKaraoke para detectar erros.
 Apagado
 Non só tire do enchufe! Apague sempre o servidor correctamente para evitar a corrupción dos datos.
-Saír de OpenHomeKaraoke
+Saír de HomeBodyKaraoke
 Reinicie o sistema
 Sistema de apagado
 Outra
 Expanda o sistema de ficheiros Raspberry Pi
-Se acabas de instalar a imaxe OpenHomeKaraoke pi preconstruída e a túa tarxeta SD ten máis de 4 GB, quizais queiras expandir o sistema de ficheiros para utilizar o espazo restante. Só tes que facelo unha vez. Isto reiniciará o sistema.
+Se acabas de instalar a imaxe HomeBodyKaraoke pi preconstruída e a túa tarxeta SD ten máis de 4 GB, quizais queiras expandir o sistema de ficheiros para utilizar o espazo restante. Só tes que facelo unha vez. Isto reiniciará o sistema.
 Desactiva o modo administrador
 Activa o modo administrador
 pechar sesión
@@ -185,7 +185,7 @@ Cambiar Idioma
 Escolla o idioma
 Linguaxe do sistema
 Idioma do sistema actual:
-Isto cambia o idioma do sistema de backend OpenHomeKaraoke que se mostra na pantalla do televisor; ademais, cada usuario que se conecta tamén pode cambiar o seu idioma da IU web no botón globo terráqueo do menú superior dereito.
+Isto cambia o idioma do sistema de backend HomeBodyKaraoke que se mostra na pantalla do televisor; ademais, cada usuario que se conecta tamén pode cambiar o seu idioma da IU web no botón globo terráqueo do menú superior dereito.
 Descarga completada con éxito!
 Fallou a descarga!
 Canción engadida á cola!

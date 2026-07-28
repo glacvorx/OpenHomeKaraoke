@@ -32,7 +32,7 @@ Berhenti
 Memperbarui youtube-dl! Perlu waktu satu atau dua menit...
 Anda tidak memiliki izin untuk memperbarui youtube-dl
 Anda tidak memiliki izin untuk mematikan
-Keluar dari OpenHomeKaraoke sekarang!
+Keluar dari HomeBodyKaraoke sekarang!
 Anda tidak memiliki izin untuk berhenti
 Matikan sistem sekarang!
 Anda tidak memiliki izin untuk mematikan
@@ -49,7 +49,7 @@ Wifi/Jaringan tidak terhubung. Mematikan dalam 10 detik...
 Untuk memilih lagu, pindai QR atau sambungkan
 Untuk tampilan TV, sambungkan ke
 Tekan F untuk beralih ke layar penuh
-Tekan ESC untuk keluar dari OpenHomeKaraoke
+Tekan ESC untuk keluar dari HomeBodyKaraoke
 Mode pengaturan RaspiWifiConfig terdeteksi!
 Hubungkan perangkat/smartphone lain ke Wifi AP: '%s'
 Lalu arahkan browsernya ke: '%s://%s%s' dan ikuti petunjuknya.
@@ -60,7 +60,7 @@ Mode admin diberikan!
 Meningkatkan penundaan audio akan memberi Anda lebih banyak waktu untuk membaca lirik sebelum menyanyikan kalimat berikutnya.
 Mengurangi penundaan subtitle akan memberi Anda lebih banyak waktu untuk membaca lirik sebelum menyanyikan kalimat berikutnya.
 Seminada juga dikenal sebagai setengah langkah. Ini adalah interval terkecil yang digunakan dalam musik klasik Barat, sama dengan seperdua belas oktaf atau setengah nada.
-Pemisah vokal berbasis DNN diaktifkan. OpenHomeKaraoke menggunakan PyTorch (oleh Facebook) untuk menjalankan jaringan saraf dalam untuk membagi suara instrumental dan vokal di setiap trek sehingga menghasilkan suara stereo.
+Pemisah vokal berbasis DNN diaktifkan. HomeBodyKaraoke menggunakan PyTorch (oleh Facebook) untuk menjalankan jaringan saraf dalam untuk membagi suara instrumental dan vokal di setiap trek sehingga menghasilkan suara stereo.
 Kontrol Pemain
 Musik
 Campuran
@@ -147,12 +147,12 @@ Penyimpanan
 Cuplikan Layar
 Pemisah Vokal
 Versi Youtube-dl (yt-dlp).
-Versi OpenHomeKaraoke
+Versi HomeBodyKaraoke
 Opsi Kontrol Tingkat Lanjut
 Mode pemisah vokal:
 Gunakan Kiri-R/L+R
 Gunakan DNN
-Audio MTV standar memiliki dua saluran stereo (Kiri dan Kanan) yang dikodekan sedemikian rupa sehingga: Kiri-R adalah trek instrumen, L+R adalah trek vokal. Jadi, hanya dengan mengurangi atau menambahkan dua saluran stereo, kita bisa mendapatkan trek instrumental dan vokal dalam suara mono. Pemisah vokal (jaringan saraf dalam) berbasis DNN bawaan OpenHomeKaraoke menggunakan algoritma AI untuk membagi suara instrumental dan vokal di setiap trek stereo secara independen sehingga menghasilkan trek instrumental dan vokal stereo.
+Audio MTV standar memiliki dua saluran stereo (Kiri dan Kanan) yang dikodekan sedemikian rupa sehingga: Kiri-R adalah trek instrumen, L+R adalah trek vokal. Jadi, hanya dengan mengurangi atau menambahkan dua saluran stereo, kita bisa mendapatkan trek instrumental dan vokal dalam suara mono. Pemisah vokal (jaringan saraf dalam) berbasis DNN bawaan HomeBodyKaraoke menggunakan algoritma AI untuk membagi suara instrumental dan vokal di setiap trek stereo secara independen sehingga menghasilkan trek instrumental dan vokal stereo.
 Hentikan Pemisah
 Mulai ulang Pemisah
 Pemisah vokal (yang mendukung pengurangan berbasis DNN dan stereo) berjalan sebagai proses terpisah di latar belakang, menghasilkan file audio instrumental/vokal untuk setiap lagu.
@@ -162,19 +162,19 @@ Mulai ulang Streamer
 Ini hanya mempengaruhi bermain KTV melalui browser web. Memulai ulang tangkapan layar dan streaming akan meningkatkan sinkronisasi audio/video, juga mengurangi latensi antara server dan browser.
 Segarkan daftar lagu:
 Pindai ulang direktori lagu
-Anda hanya perlu melakukan ini jika Anda menyalin file secara manual ke direktori unduhan saat OpenHomeKaraoke sedang berjalan.
+Anda hanya perlu melakukan ini jika Anda menyalin file secara manual ke direktori unduhan saat HomeBodyKaraoke sedang berjalan.
 Pembaruan
 Jika unduhan atau pencarian berhenti berfungsi, memperbarui youtube-dl mungkin akan memperbaikinya. Versi terinstal saat ini adalah:
 Perbarui youtube-dl
-Tautan pembaruan di atas mungkin gagal jika Anda tidak memiliki izin file yang tepat. Periksa log OpenHomeKaraoke untuk mengetahui adanya kesalahan.
+Tautan pembaruan di atas mungkin gagal jika Anda tidak memiliki izin file yang tepat. Periksa log HomeBodyKaraoke untuk mengetahui adanya kesalahan.
 Matikan
 Jangan hanya mencabut stekernya! Selalu matikan server Anda dengan benar untuk menghindari kerusakan data.
-Keluar dari OpenHomeKaraoke
+Keluar dari HomeBodyKaraoke
 Mulai Ulang Sistem
 Sistem Pematian
 Lainnya
 Perluas sistem file Raspberry Pi
-Jika Anda baru saja menginstal image OpenHomeKaraoke pi bawaan dan kartu SD Anda lebih besar dari 4GB, Anda mungkin ingin memperluas sistem file untuk memanfaatkan ruang yang tersisa. Anda hanya perlu melakukan ini sekali saja. Ini akan me-reboot sistem.
+Jika Anda baru saja menginstal image HomeBodyKaraoke pi bawaan dan kartu SD Anda lebih besar dari 4GB, Anda mungkin ingin memperluas sistem file untuk memanfaatkan ruang yang tersisa. Anda hanya perlu melakukan ini sekali saja. Ini akan me-reboot sistem.
 Nonaktifkan mode admin
 Aktifkan mode admin
 keluar
@@ -185,7 +185,7 @@ Ganti BAHASA
 Silakan pilih bahasa
 Bahasa Sistem
 Bahasa sistem saat ini:
-Ini mengubah bahasa sistem backend OpenHomeKaraoke yang ditampilkan di layar TV; selain itu, setiap pengguna yang terhubung juga dapat mengubah bahasa UI Web masing-masing di tombol globe di menu kanan atas.
+Ini mengubah bahasa sistem backend HomeBodyKaraoke yang ditampilkan di layar TV; selain itu, setiap pengguna yang terhubung juga dapat mengubah bahasa UI Web masing-masing di tombol globe di menu kanan atas.
 Pengunduhan berhasil diselesaikan!
 Pengunduhan gagal!
 Lagu ditambahkan ke antrian!

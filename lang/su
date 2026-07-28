@@ -32,7 +32,7 @@ Dieureunkeun
 Ngamutahirkeun youtube-dl! Kudu nyandak hiji atawa dua menit ...
 Anjeun teu gaduh idin pikeun ngapdet youtube-dl
 Anjeun teu gaduh idin pikeun mareuman
-Ngaleungitkeun OpenHomeKaraoke ayeuna!
+Ngaleungitkeun HomeBodyKaraoke ayeuna!
 Anjeun teu gaduh idin pikeun kaluar
 Pareuman sistem ayeuna!
 Anjeun teu gaduh idin pikeun mareuman
@@ -49,7 +49,7 @@ Wifi/Jaringan teu nyambung. Pareum dina 10s ...
 Pikeun milih lagu, scan QR atanapi sambungkeun ka
 Pikeun tampilan TV, sambungkeun ka
 Pencét F pikeun togél layar pinuh
-Pencét ESC pikeun kaluar OpenHomeKaraoke
+Pencét ESC pikeun kaluar HomeBodyKaraoke
 Modeu setelan RaspiWifiConfig dideteksi!
 Sambungkeun alat/smartphone sejen ka Wifi AP: '%s'
 Teras arahkeun browserna ka: '%s://%s%s' teras turutan parentah.
@@ -60,7 +60,7 @@ Modeu admin dipasihkeun!
 Ngaronjatkeun reureuh audio bakal masihan anjeun langkung waktos maca lirik sateuacan nyanyian kalimat salajengna.
 Ngurangan reureuh subjudul bakal masihan anjeun langkung waktos maca lirik sateuacan nyanyian kalimat salajengna.
 Semitone ogé katelah satengah léngkah. Interval pangleutikna dipaké dina musik Barat klasik, sarua jeung dua belas tina hiji oktaf atawa satengah nada.
-Splitter vokal basis DNN diaktipkeun. OpenHomeKaraoke nganggo PyTorch (ku Facebook) pikeun ngajalankeun jaringan saraf jero pikeun ngabagi sora instrumental sareng vokal dina unggal lagu anu nyababkeun sora stereo.
+Splitter vokal basis DNN diaktipkeun. HomeBodyKaraoke nganggo PyTorch (ku Facebook) pikeun ngajalankeun jaringan saraf jero pikeun ngabagi sora instrumental sareng vokal dina unggal lagu anu nyababkeun sora stereo.
 Kontrol pamuter
 Musik
 Kacaturkeun
@@ -133,7 +133,7 @@ Lagu sadia
 Naha anjeun badé ngarobih nami tampilan jalma anu nganggo alat ieu? Ieu bakal muncul gigireun lagu antrian. Ayeuna:
 pamaké ayeuna
 Setélan
-OpenHomeKaraoke
+HomeBodyKaraoke
 Anjeun yakin rék kaluar?
 Anjeun yakin rék mareuman?
 Anjeun yakin rék reboot?
@@ -147,12 +147,12 @@ Mémori
 Potret layar
 Pamisah Vokal
 Vérsi Youtube-dl (yt-dlp).
-Vérsi OpenHomeKaraoke
+Vérsi HomeBodyKaraoke
 Pilihan Control Advanced
 Mode pamisah vokal:
 Paké L-R/L+R
 Paké DNS
-Audio MTV standar gaduh dua saluran stereo (L sareng R) disandikeun ku cara sapertos: L-R nyaéta lagu instrumen, L+R nyaéta lagu vokal. Ku kituna, ku saukur ngurangan atawa nambahkeun dua saluran stereo, urang bisa meunangkeun lagu instrumental jeung vokal dina sora mono. Pamisah vokal basis DNN (jaringan saraf jero) OpenHomeKaraoke nganggo algoritma AI pikeun ngabagi sora instrumental sareng vokal dina unggal lagu stereo sacara mandiri ngahasilkeun lagu instrumental sareng vokal stereo.
+Audio MTV standar gaduh dua saluran stereo (L sareng R) disandikeun ku cara sapertos: L-R nyaéta lagu instrumen, L+R nyaéta lagu vokal. Ku kituna, ku saukur ngurangan atawa nambahkeun dua saluran stereo, urang bisa meunangkeun lagu instrumental jeung vokal dina sora mono. Pamisah vokal basis DNN (jaringan saraf jero) HomeBodyKaraoke nganggo algoritma AI pikeun ngabagi sora instrumental sareng vokal dina unggal lagu stereo sacara mandiri ngahasilkeun lagu instrumental sareng vokal stereo.
 Eureun Splitter
 Balikan deui Splitter
 Splitter vokal (anu ngarojong duanana basis DNN jeung pangurangan stereo) ngajalankeun salaku prosés misah di latar tukang, generating instrumental / file audio vokal pikeun unggal lagu.
@@ -162,19 +162,19 @@ Balikan deui Streamer
 Ieu ngan mangaruhan maén KTV via web browser. Balikan deui layar-capture-and-streaming ningkatkeun sinkronisasi audio/video, éta ogé ngirangan latency antara server sareng browser.
 Refresh daptar lagu:
 Rescan diréktori lagu
-Anjeun ngan kedah ngalakukeun ieu upami anjeun nyalin file sacara manual kana diréktori undeuran nalika OpenHomeKaraoke dijalankeun.
+Anjeun ngan kedah ngalakukeun ieu upami anjeun nyalin file sacara manual kana diréktori undeuran nalika HomeBodyKaraoke dijalankeun.
 Pembaruan
 Upami undeuran atanapi pamilarian lirén damel, ngapdet youtube-dl sigana bakal ngalereskeunana. Versi anu dipasang ayeuna nyaéta:
 Ngamutahirkeun youtube-dl
-Tautan apdet ieu di luhur tiasa gagal upami anjeun henteu ngagaduhan idin file anu leres. Pariksa log OpenHomeKaraoke pikeun kasalahan.
+Tautan apdet ieu di luhur tiasa gagal upami anjeun henteu ngagaduhan idin file anu leres. Pariksa log HomeBodyKaraoke pikeun kasalahan.
 Pareuman
 Ulah ngan narik colokan! Salawasna mareuman server anjeun leres pikeun nyegah korupsi data.
-Kaluar OpenHomeKaraoke
+Kaluar HomeBodyKaraoke
 Reboot System
 Sistem Pareum
 Lain
 Kembangkeun sistem file Raspberry Pi
-Upami anjeun nembé dipasang gambar OpenHomeKaraoke pi anu tos diwangun sareng kartu SD anjeun langkung ageung tibatan 4GB, anjeun panginten hoyong ngalegaan sistem file pikeun ngamangpaatkeun rohangan sésana. Anjeun ngan ukur kedah ngalakukeun ieu sakali. Ieu bakal reboot sistem.
+Upami anjeun nembé dipasang gambar HomeBodyKaraoke pi anu tos diwangun sareng kartu SD anjeun langkung ageung tibatan 4GB, anjeun panginten hoyong ngalegaan sistem file pikeun ngamangpaatkeun rohangan sésana. Anjeun ngan ukur kedah ngalakukeun ieu sakali. Ieu bakal reboot sistem.
 Pareuman mode admin
 Aktipkeun mode admin
 kaluar
@@ -185,7 +185,7 @@ Robah Basa
 Mangga pilih basa
 Basa Sistim
 Basa sistem ayeuna:
-Ieu ngarobah basa sistem backend OpenHomeKaraoke nu bakal dipintonkeun dina layar TV; Leuwih ti éta, unggal pamaké nyambungkeun ogé bisa ngarobah basa UI Wéb masing-masing dina tombol globe dina menu katuhu-luhureun.
+Ieu ngarobah basa sistem backend HomeBodyKaraoke nu bakal dipintonkeun dina layar TV; Leuwih ti éta, unggal pamaké nyambungkeun ogé bisa ngarobah basa UI Wéb masing-masing dina tombol globe dina menu katuhu-luhureun.
 Unduh parantos réngsé!
 Unduh gagal!
 Lagu ditambahkeun kana antrian!

@@ -32,7 +32,7 @@ Tu'u
 Fa'afouina youtube-dl! E tatau ona ave se minute pe lua ...
 E leai sau fa'atagaga e fa'afou ai le youtube-dl
 E leai sau fa'atagaga e tapuni ai
-Tu'u nei OpenHomeKaraoke!
+Tu'u nei HomeBodyKaraoke!
 E leai sau fa'atagaga e tu'u ai
 Tapuni le faiga i le taimi nei!
 E leai sau fa'atagaga e tapuni ai
@@ -49,7 +49,7 @@ Wifi/Network le feso'ota'i. Tapuni i le 10s...
 Mo le filifilia o pese, siaki QR pe ​​fa'afeso'ota'i i
 Mo fa'aaliga TV, fa'afeso'ota'i i
 Oomi le F e sui ai le mata atoa
-Oomi le ESC e tuu ai OpenHomeKaraoke
+Oomi le ESC e tuu ai HomeBodyKaraoke
 RaspiWifiConfig setup mode ua iloa!
 Fa'afeso'ota'i se isi masini/telefoni i le Wifi AP: '%s'
 Ona faasino lea i lana su'esu'ega i: '%s://%s%s' ma mulimuli i faatonuga.
@@ -60,7 +60,7 @@ Fa'atagaina le fa'atonuga!
 O le fa'atuputeleina o le tuai o leo e maua ai le tele o le taimi e te faitau ai upu a'o le'i usuina le isi fuaiupu.
 O le fa'aitiitia ole fa'atuai ole ulutala ole a tele ai lou taimi e faitau ai upu a'o le'i usuina le isi fuaiupu.
 O le semitone e lauiloa foi o se afa-laasaga. O le va'aiga la'ititi lea e fa'aaogaina i musika fa'apapalagi masani, e tutusa ma le sefululua o le octave po'o le afa leo.
-DNN-fa'avae leo vaeluaga ua mafai. O le OpenHomeKaraoke e fa'aaoga le PyTorch (e le Facebook) e fa'atautaia ai se feso'ota'iga neural loloto e vaelua ai meafaifa'aili ma leo leo i ala ta'itasi ma fa'atupuina ai le leo fa'aleo.
+DNN-fa'avae leo vaeluaga ua mafai. O le HomeBodyKaraoke e fa'aaoga le PyTorch (e le Facebook) e fa'atautaia ai se feso'ota'iga neural loloto e vaelua ai meafaifa'aili ma leo leo i ala ta'itasi ma fa'atupuina ai le leo fa'aleo.
 Pulea ta'aalo
 Musika
 Fefiloi
@@ -133,7 +133,7 @@ Pese Avanoa
 E te mana'o e sui le igoa fa'aali o le tagata o lo'o fa'aogaina lenei masini? O le a fa'aalia lea i talaane o pese tu'u. O lo'o iai nei:
 Tagata fa'aoga nei
 Fa'atonu
-OpenHomeKaraoke
+HomeBodyKaraoke
 E te mautinoa e te mana'o e tu'u?
 E te mautinoa e te mana'o e tapuni?
 E te mautinoa e te mana'o e toe fa'aola?
@@ -147,12 +147,12 @@ Manatu
 Pu'e Ata
 Vocal Splitter
 Youtube-dl (yt-dlp) version
-OpenHomeKaraoke version
+HomeBodyKaraoke version
 Filifiliga Pulea Maualuga
 Faiga vaelua leo:
 Fa'aaoga L-R/L+R
 Fa'aaoga le DNN
-O leo MTV masani e lua alaleo leo (L ma le R) ua fa'ailogaina i se auala e faapea: L-R o le mea fai pese, L+R o le ala leo. O lea la, i le na'o le to'ese pe fa'aopoopoina o ala leo e lua, e mafai ai ona tatou maua le meafaifaaili ma le leo i le leo e tasi. OpenHomeKaraoke's built-in DNN-based (deep neural network) vocal splitter e fa'aogaina ai le AI algorithm e vaelua ai meafaifa'aili ma leo leo i ala fa'aleo ta'itasi ta'ito'atasi e maua ai mea fa'aili ma ala leo.
+O leo MTV masani e lua alaleo leo (L ma le R) ua fa'ailogaina i se auala e faapea: L-R o le mea fai pese, L+R o le ala leo. O lea la, i le na'o le to'ese pe fa'aopoopoina o ala leo e lua, e mafai ai ona tatou maua le meafaifaaili ma le leo i le leo e tasi. HomeBodyKaraoke's built-in DNN-based (deep neural network) vocal splitter e fa'aogaina ai le AI algorithm e vaelua ai meafaifa'aili ma leo leo i ala fa'aleo ta'itasi ta'ito'atasi e maua ai mea fa'aili ma ala leo.
 Taofi Splitter
 Toe amata le Splitter
 O le vaelua leo (e lagolagoina uma le DNN-faʻavae ma le faʻaogaina o le leo) o loʻo tamoʻe o se faʻagasologa ese i tua, faʻatupuina faila meafaifaaili / leo leo mo pese uma.
@@ -162,19 +162,19 @@ Toe amata le Streamer
 E na'o le a'afia ai o le ta'alo KTV e ala ile 'upega tafa'ilagi. O le toe amataina o le screen-capture-and-streaming e faʻaleleia atili ai le faʻaogaina o leo/vitio, e faʻaitiitia ai foi le taofiofia i le va o le server ma le browser.
 Toe faafou le lisi o pese:
 Toe su'esu'e le lisi o pese
-E na'o le mana'omia ona e faia lea mea pe afai e te kopiina ma le lima faila i le fa'atonuga o le download a'o fa'agasolo OpenHomeKaraoke.
+E na'o le mana'omia ona e faia lea mea pe afai e te kopiina ma le lima faila i le fa'atonuga o le download a'o fa'agasolo HomeBodyKaraoke.
 Fa'afouga
 Afai e le toe galue le download poʻo suʻesuʻega, o le faʻafouina o le youtube-dl atonu o le a toe faaleleia. O le lomiga fa'apipi'i nei o le:
 Fa'afou youtube-dl
-O lenei feso'ota'iga fa'afouga o lo'o i luga e ono fa'aletonu pe a leai sau fa'atagaga tatau faila. Siaki le OpenHomeKaraoke log mo mea sese.
+O lenei feso'ota'iga fa'afouga o lo'o i luga e ono fa'aletonu pe a leai sau fa'atagaga tatau faila. Siaki le HomeBodyKaraoke log mo mea sese.
 Tapuni i lalo
 Aua le na'o le tosoina o le polo! Tapuni lelei lau server i taimi uma e aloese ai mai le pala o faʻamatalaga.
-Tuu le OpenHomeKaraoke
+Tuu le HomeBodyKaraoke
 Toe Toe Fa'atonu
 Faiga Tapuni
 Isi
 Fa'alautele le faiga faila o le Raspberry Pi
-Afai na'o e fa'apipi'i le ata OpenHomeKaraoke pi na muai fausia ma lau SD card e tele atu i le 4GB, atonu e te mana'o e fa'alautele le faila faila e fa'aoga ai le avanoa o totoe. E na'o le tasi le mea e te mana'omia. O le a toe fa'afouina le faiga.
+Afai na'o e fa'apipi'i le ata HomeBodyKaraoke pi na muai fausia ma lau SD card e tele atu i le 4GB, atonu e te mana'o e fa'alautele le faila faila e fa'aoga ai le avanoa o totoe. E na'o le tasi le mea e te mana'omia. O le a toe fa'afouina le faiga.
 Ta'e le faiga fa'atonu
 Fa'agaoioi le pulega
 saini ese j
@@ -185,7 +185,7 @@ Suia Gagana
 Fa'amolemole filifili le gagana
 Gagana Fa'atonu
 Gagana o lo'o iai nei:
-E suia ai le gagana o le OpenHomeKaraoke backend system lea e fa'aalia i luga o lau TV; e le gata i lea, e mafai foi e tagata fa'aoga feso'ota'i ta'ito'atasi ona suia a latou lava gagana Web UI i le fa'amau o le kelope i le lisi taumatau i luga.
+E suia ai le gagana o le HomeBodyKaraoke backend system lea e fa'aalia i luga o lau TV; e le gata i lea, e mafai foi e tagata fa'aoga feso'ota'i ta'ito'atasi ona suia a latou lava gagana Web UI i le fa'amau o le kelope i le lisi taumatau i luga.
 Ua mae'a le download!
 Ua le maua le la'uina!
 Ua faaopoopo le pese i le laina!

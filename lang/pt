@@ -32,7 +32,7 @@ Parou
 Atualizando youtube-dl! Deve demorar um ou dois minutos...
 Você não tem permissão para atualizar o youtube-dl
 Você não tem permissão para desligar
-Saindo do OpenHomeKaraoke agora!
+Saindo do HomeBodyKaraoke agora!
 Você não tem permissão para sair
 Desligando o sistema agora!
 Você não tem permissão para desligar
@@ -49,7 +49,7 @@ Wifi/rede não conectado. Desligando em 10s...
 Para selecionar músicas, escaneie o QR ou conecte-se a
 Para exibição de TV, conecte-se a
 Pressione F para alternar para tela inteira
-Pressione ESC para sair do OpenHomeKaraoke
+Pressione ESC para sair do HomeBodyKaraoke
 Modo de configuração RaspiWifiConfig detectado!
 Conecte outro dispositivo/smartphone ao AP Wifi: '%s'
 Em seguida, aponte seu navegador para: '%s://%s%s' e siga as instruções.
@@ -60,7 +60,7 @@ Modo de administrador concedido!
 Aumentar o atraso do áudio lhe dará mais tempo para ler a letra antes de cantar a próxima frase.
 Diminuir o atraso da legenda lhe dará mais tempo para ler a letra antes de cantar a próxima frase.
 Um semitom também é conhecido como meio tom. É o menor intervalo usado na música clássica ocidental, igual a um duodécimo de oitava ou meio tom.
-O divisor vocal baseado em DNN está habilitado. OpenHomeKaraoke usa PyTorch (do Facebook) para executar uma rede neural profunda para dividir o som instrumental e vocal em cada faixa, dando origem ao som estéreo.
+O divisor vocal baseado em DNN está habilitado. HomeBodyKaraoke usa PyTorch (do Facebook) para executar uma rede neural profunda para dividir o som instrumental e vocal em cada faixa, dando origem ao som estéreo.
 Controle do jogador
 Música
 Misturado
@@ -152,7 +152,7 @@ Opções de controle avançadas
 Modo divisor vocal:
 Use LR/L+R
 Usar DNN
-O áudio padrão da MTV possui dois canais estéreo (L e R) codificados de tal forma que: LR é a trilha do instrumento, L+R é a trilha vocal. Assim, simplesmente subtraindo ou somando os dois canais estéreo, podemos obter a trilha instrumental e vocal em som mono. O divisor vocal integrado baseado em DNN (rede neural profunda) do OpenHomeKaraoke usa algoritmo de IA para dividir o som instrumental e vocal em cada faixa estéreo de forma independente, resultando em faixas instrumentais e vocais estéreo.
+O áudio padrão da MTV possui dois canais estéreo (L e R) codificados de tal forma que: LR é a trilha do instrumento, L+R é a trilha vocal. Assim, simplesmente subtraindo ou somando os dois canais estéreo, podemos obter a trilha instrumental e vocal em som mono. O divisor vocal integrado baseado em DNN (rede neural profunda) do HomeBodyKaraoke usa algoritmo de IA para dividir o som instrumental e vocal em cada faixa estéreo de forma independente, resultando em faixas instrumentais e vocais estéreo.
 Parar divisor
 Reiniciar divisor
 O divisor vocal (que suporta subtração baseada em DNN e estéreo) é executado como um processo separado em segundo plano, gerando arquivo de áudio instrumental/vocal para cada música.
@@ -162,11 +162,11 @@ Reinicie o streamer
 Isso afeta apenas a reprodução do KTV via navegador da web. Reiniciar a captura de tela e streaming melhora a sincronização de áudio/vídeo, mas também diminui a latência entre o servidor e o navegador.
 Atualize a lista de músicas:
 Digitalizar novamente o diretório de músicas
-Você só precisará fazer isso se tiver copiado manualmente os arquivos para o diretório de download enquanto o OpenHomeKaraoke estava em execução.
+Você só precisará fazer isso se tiver copiado manualmente os arquivos para o diretório de download enquanto o HomeBodyKaraoke estava em execução.
 Atualizações
 Se os downloads ou pesquisas pararem de funcionar, atualizar o youtube-dl provavelmente resolverá o problema. A versão atualmente instalada é:
 Atualizar youtube-dl
-Este link de atualização acima pode falhar se você não tiver as permissões de arquivo adequadas. Verifique se há erros no log do OpenHomeKaraoke.
+Este link de atualização acima pode falhar se você não tiver as permissões de arquivo adequadas. Verifique se há erros no log do HomeBodyKaraoke.
 Desligar
 Não basta puxar a tomada! Sempre desligue seu servidor corretamente para evitar corrupção de dados.
 Sair do OpenHomeKaraokê
@@ -174,7 +174,7 @@ Reiniciar sistema
 Sistema de desligamento
 Outro
 Expanda o sistema de arquivos Raspberry Pi
-Se você acabou de instalar a imagem pi OpenHomeKaraoke pré-construída e seu cartão SD for maior que 4 GB, você pode querer expandir o sistema de arquivos para utilizar o espaço restante. Você só precisa fazer isso uma vez. Isso irá reinicializar o sistema.
+Se você acabou de instalar a imagem pi HomeBodyKaraoke pré-construída e seu cartão SD for maior que 4 GB, você pode querer expandir o sistema de arquivos para utilizar o espaço restante. Você só precisa fazer isso uma vez. Isso irá reinicializar o sistema.
 Desativar modo de administrador
 Ativar modo de administrador
 sair
@@ -185,7 +185,7 @@ Mudar idioma
 Por favor escolha o idioma
 Idioma do sistema
 Idioma atual do sistema:
-Isso altera o idioma do sistema backend OpenHomeKaraoke que é exibido na tela da TV; além disso, cada usuário conectado também pode alterar o respectivo idioma da interface da Web no botão do globo no menu superior direito.
+Isso altera o idioma do sistema backend HomeBodyKaraoke que é exibido na tela da TV; além disso, cada usuário conectado também pode alterar o respectivo idioma da interface da Web no botão do globo no menu superior direito.
 Download concluído com sucesso!
 Download falhou!
 Música adicionada à fila!

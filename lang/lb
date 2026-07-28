@@ -32,7 +32,7 @@ Gestoppt
 Update youtube-dl! Sollt eng Minutt oder zwou daueren ...
 Dir hutt keng Erlaabnis fir youtube-dl ze aktualiséieren
 Dir hutt keng Erlaabnis fir auszeschalten
-Elo ophalen OpenHomeKaraoke!
+Elo ophalen HomeBodyKaraoke!
 Dir hutt keng Erlaabnis fir opzehalen
 Schalt de System elo aus!
 Dir hutt keng Erlaabnis fir auszeschalten
@@ -49,7 +49,7 @@ Wifi / Netz net ugeschloss. Schalten an 10s ...
 Fir Lidder ze wielen, scannt QR oder verbënnt mat
 Fir Fernsehsendung, verbannen mat
 Dréckt F fir de Vollbild ze wiesselen
-Press ESC fir OpenHomeKaraoke opzehalen
+Press ESC fir HomeBodyKaraoke opzehalen
 RaspiWifiConfig Setup Modus entdeckt!
 Connect en aneren Apparat/Smartphone mam Wifi AP: '%s'
 Gitt dann säi Browser op: '%s://%s%s' a befollegt d'Instruktioune.
@@ -60,7 +60,7 @@ Admin Modus accordéiert!
 D'Erhéijung vun der Audioverzögerung gëtt Iech méi Zäit fir Texter ze liesen ier Dir den nächste Saz séngt.
 Ofsenkung vum Ënnertitelverzögerung gëtt Iech méi Zäit fir Texter ze liesen ier Dir den nächste Saz séngt.
 En Hallefton ass och als Hallefschrëtt bekannt. Et ass dee klengste Intervall, deen an der klassescher westlecher Musek benotzt gëtt, gläich wéi en zwieleften Oktav oder en halleft Toun.
-DNN-baséiert Vokal Splitter ass aktivéiert. OpenHomeKaraoke benotzt PyTorch (vu Facebook) fir en déif neuralt Netzwierk auszeféieren fir instrumental a vokal Toun an all Streck opzedeelen, wat zu Stereo Sound entsteet.
+DNN-baséiert Vokal Splitter ass aktivéiert. HomeBodyKaraoke benotzt PyTorch (vu Facebook) fir en déif neuralt Netzwierk auszeféieren fir instrumental a vokal Toun an all Streck opzedeelen, wat zu Stereo Sound entsteet.
 Spiller Kontroll
 Musek
 Gemëscht
@@ -133,7 +133,7 @@ Verfügbar Lidder
 Wëllt Dir den Affichage Numm vun der Persoun änneren, déi dësen Apparat benotzt? Dëst erschéngt nieft de Lidder an der Schlaang. Aktuell:
 Aktuelle Benotzer
 Astellungen
-OpenHomeKaraoke
+HomeBodyKaraoke
 Sidd Dir sécher datt Dir wëllt ophalen?
 Sidd Dir sécher datt Dir wëllt zoumaachen?
 Sidd Dir sécher datt Dir wëllt nei starten?
@@ -147,12 +147,12 @@ Erënnerung
 Écran Capture
 Vocal Splitter
 Youtube-dl (yt-dlp) Versioun
-OpenHomeKaraoke Versioun
+HomeBodyKaraoke Versioun
 Fortgeschratt Kontroll Optiounen
 Vocal Splitter Modus:
 Benotzt L-R/L+R
 Benotzt DNN
-Standard MTV Audio huet déi zwee Stereo Kanäl (L a R) sou kodéiert datt: L-R d'Instrumentstreck ass, L+R d'Gesangstreck ass. Also, andeems mir déi zwee Stereo Kanäl einfach subtrahéieren oder derbäisetzen, kënne mir déi instrumental a Vokal Streck am Mono Sound kréien. OpenHomeKaraoke's agebauten DNN-baséierten (deep neuralen Netzwierk) Vokal Splitter benotzt AI Algorithmus fir instrumental a Vokal Sound an all Stereo Track onofhängeg ze spalten, wat zu Stereo instrumental a Vokal Tracks resultéiert.
+Standard MTV Audio huet déi zwee Stereo Kanäl (L a R) sou kodéiert datt: L-R d'Instrumentstreck ass, L+R d'Gesangstreck ass. Also, andeems mir déi zwee Stereo Kanäl einfach subtrahéieren oder derbäisetzen, kënne mir déi instrumental a Vokal Streck am Mono Sound kréien. HomeBodyKaraoke's agebauten DNN-baséierten (deep neuralen Netzwierk) Vokal Splitter benotzt AI Algorithmus fir instrumental a Vokal Sound an all Stereo Track onofhängeg ze spalten, wat zu Stereo instrumental a Vokal Tracks resultéiert.
 Stop Splitter
 Restart Splitter
 De Gesangsplitter (deen souwuel DNN-baséiert wéi och Stereo-Subtraktioun ënnerstëtzt) leeft als separat Prozess am Hannergrond, generéiert instrumental / Vokal Audiodatei fir all Song.
@@ -162,19 +162,19 @@ Restart Streamer
 Dëst beaflosst nëmmen KTV iwwer Webbrowser ze spillen. Neistarten vum Bildschierm-Fang-a-Streaming verbessert d'Audio / Video Synchroniséierung, et reduzéiert och d'Latenz tëscht dem Server an dem Browser.
 D'Liddlëscht erfrëschen:
 Rescan Song Verzeechnes
-Dir sollt dat nëmmen maachen wann Dir Dateien manuell an den Downloadverzeichnis kopéiert hutt wärend OpenHomeKaraoke leeft.
+Dir sollt dat nëmmen maachen wann Dir Dateien manuell an den Downloadverzeichnis kopéiert hutt wärend HomeBodyKaraoke leeft.
 Aktualiséierungen
 Wann d'Downloads oder d'Sichunge gestoppt hunn ze schaffen, wäert d'Aktualiséierung vun YouTube-dl et wahrscheinlech fixéieren. Déi aktuell installéiert Versioun ass:
 Update youtube-dl
-Dësen Updatelink uewendriwwer ka falen wann Dir net déi richteg Dateirechter hutt. Kuckt de OpenHomeKaraoke-Logbuch fir Feeler.
+Dësen Updatelink uewendriwwer ka falen wann Dir net déi richteg Dateirechter hutt. Kuckt de HomeBodyKaraoke-Logbuch fir Feeler.
 Ausmaachen
 Net nëmmen de Stecker zéien! Schalt Äre Server ëmmer richteg aus fir Datenkorruptioun ze vermeiden.
-Opzemaachen OpenHomeKaraoke
+Opzemaachen HomeBodyKaraoke
 Restart System
 Shutdown System
 Aner
 Raspberry Pi Dateisystem erweideren
-Wann Dir just de pre-built OpenHomeKaraoke pi Bild installéiert hutt an Är SD Kaart méi grouss ass wéi 4GB, wëllt Dir vläicht de Dateiesystem ausbauen fir de verbleiwen Raum ze benotzen. Dir musst dat nëmmen eemol maachen. Dëst wäert de System nei starten.
+Wann Dir just de pre-built HomeBodyKaraoke pi Bild installéiert hutt an Är SD Kaart méi grouss ass wéi 4GB, wëllt Dir vläicht de Dateiesystem ausbauen fir de verbleiwen Raum ze benotzen. Dir musst dat nëmmen eemol maachen. Dëst wäert de System nei starten.
 Admin Modus auszeschalten
 Admin Modus aktivéieren
 ausloggen
@@ -185,7 +185,7 @@ Sprooch änneren
 Wielt w.e.g. Sprooch
 System Sprooch
 Aktuell System Sprooch:
-Dëst ännert d'Sprooch vum OpenHomeKaraoke Backend System deen op der Fernsehbildschierm ugewise gëtt; Desweideren, all konnektéieren Benotzer kann och hir jeeweileg Web UI Sprooch am Globus Knäppchen am riets-Top Menü änneren.
+Dëst ännert d'Sprooch vum HomeBodyKaraoke Backend System deen op der Fernsehbildschierm ugewise gëtt; Desweideren, all konnektéieren Benotzer kann och hir jeeweileg Web UI Sprooch am Globus Knäppchen am riets-Top Menü änneren.
 Download erfollegräich ofgeschloss!
 Eroflueden gescheitert!
 Lidd dobäi an d'Schlaang!

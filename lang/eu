@@ -32,7 +32,7 @@ Gelditu
 YouTube-dl eguneratzen! Minutu bat edo bi beharko lituzke...
 Ez duzu youtube-dl eguneratzeko baimenik
 Ez duzu ixteko baimenik
-OpenHomeKaraoke-tik irten orain!
+HomeBodyKaraoke-tik irten orain!
 Ez duzu irteteko baimenik
 Sistema ixten orain!
 Ez duzu ixteko baimenik
@@ -49,7 +49,7 @@ Wifi/sarea ez dago konektatuta. 10 segundotan itxiko da...
 Abestiak hautatzeko, eskaneatu QR edo konektatu
 Telebista bistaratzeko, konektatu
 Sakatu F pantaila osora aldatzeko
-Sakatu ESC OpenHomeKaraoke-tik irteteko
+Sakatu ESC HomeBodyKaraoke-tik irteteko
 RaspiWifiConfig konfigurazio modua detektatu da!
 Konektatu beste gailu/smartphone bat Wifi AP-ra: '%s'
 Ondoren, zuzendu bere arakatzailea: '%s://%s%s' eta jarraitu argibideak.
@@ -60,7 +60,7 @@ Admin modua eman da!
 Audio-atzerapena handitzeak denbora gehiago emango dizu letra irakurtzeko hurrengo esaldia abestu aurretik.
 Azpitituluen atzerapena murrizteak denbora gehiago emango dizu letra irakurtzeko hurrengo esaldia abestu aurretik.
 Tonu erdi bat urrats erdi gisa ere ezagutzen da. Mendebaldeko musika klasikoan erabiltzen den tarterik txikiena da, zortzidun baten hamabiaren edo tonu erdiaren berdina.
-DNNn oinarritutako ahots banatzailea gaituta dago. OpenHomeKaraoke-k PyTorch erabiltzen du (Facebook-ek) sare neuronal sakon bat exekutatzeko, soinu instrumentala eta ahotsa banatzeko soinu estereoa sortuz pista bakoitzean.
+DNNn oinarritutako ahots banatzailea gaituta dago. HomeBodyKaraoke-k PyTorch erabiltzen du (Facebook-ek) sare neuronal sakon bat exekutatzeko, soinu instrumentala eta ahotsa banatzeko soinu estereoa sortuz pista bakoitzean.
 Jokalari Kontrola
 Musika
 Mistoa
@@ -133,7 +133,7 @@ Eskuragarri dauden abestiak
 Gailu hau erabiltzen duen pertsonaren bistaratzeko izena aldatu nahi duzu? Hau ilaran dauden abestien ondoan agertuko da. Unekoa:
 Egungo erabiltzailea
 Ezarpenak
-OpenHomeKaraokea
+HomeBodyKaraokea
 Ziur utzi nahi duzula?
 Ziur itxi nahi duzula?
 Ziur berrabiarazi nahi duzula?
@@ -147,12 +147,12 @@ Memoria
 Pantaila Harrapatzea
 Ahots zatitzailea
 Youtube-dl (yt-dlp) bertsioa
-OpenHomeKaraoke bertsioa
+HomeBodyKaraoke bertsioa
 Kontrol-aukera aurreratuak
 Ahots banatzaile modua:
 Erabili L-R/L+R
 Erabili DNN
-MTV audio estandarrak bi kanal estereo (L eta R) ditu honela kodetuta: L-R instrumentuaren pista da, L+R ahotsaren pista da. Horrela, bi kanal estereo kenduz edo gehituz, pista instrumentala eta ahotsa mono soinuan lor ditzakegu. OpenHomeKaraoke-ren DNNn oinarritutako (sare neuronal sakona) ahots-banatzaileak AI algoritmoa erabiltzen du soinu instrumentala eta ahotsa pista estereo bakoitzean modu independentean banatzeko, instrumental eta ahots-pista estereoen ondorioz.
+MTV audio estandarrak bi kanal estereo (L eta R) ditu honela kodetuta: L-R instrumentuaren pista da, L+R ahotsaren pista da. Horrela, bi kanal estereo kenduz edo gehituz, pista instrumentala eta ahotsa mono soinuan lor ditzakegu. HomeBodyKaraoke-ren DNNn oinarritutako (sare neuronal sakona) ahots-banatzaileak AI algoritmoa erabiltzen du soinu instrumentala eta ahotsa pista estereo bakoitzean modu independentean banatzeko, instrumental eta ahots-pista estereoen ondorioz.
 Gelditu Splitter
 Berrabiarazi Splitter
 Ahots zatitzailea (DNNn oinarritutako kenketa estereoa onartzen duena) prozesu bereizi gisa exekutatzen da atzeko planoan, abesti bakoitzaren audio instrumental/ahots fitxategia sortuz.
@@ -162,19 +162,19 @@ Berrabiarazi Streamer
 Honek KTV-a web arakatzailearen bidez erreproduzitzen du soilik. Pantaila-harrapaketa-eta-streaming-a berrabiarazteak audio/bideoaren sinkronizazioa hobetzen du, zerbitzariaren eta arakatzailearen arteko latentzia ere murrizten du.
 Freskatu abestien zerrenda:
 Berriro eskaneatu abestien direktorioa
-OpenHomeKaraoke martxan zegoen bitartean fitxategiak eskuz kopiatu badituzu deskarga-direktoriora bakarrik egin beharko zenuke.
+HomeBodyKaraoke martxan zegoen bitartean fitxategiak eskuz kopiatu badituzu deskarga-direktoriora bakarrik egin beharko zenuke.
 Eguneraketak
 Deskargak edo bilaketak funtzionatzeari uzten badiote, ziurrenik youtube-dl eguneratzeak konponduko du. Oraingo instalatutako bertsioa hau da:
 Eguneratu youtube-dl
-Goiko eguneratze-esteka honek huts egin dezake fitxategien baimen egokiak ez badituzu. Egiaztatu OpenHomeKaraoke erregistroan akatsak dauden.
+Goiko eguneratze-esteka honek huts egin dezake fitxategien baimen egokiak ez badituzu. Egiaztatu HomeBodyKaraoke erregistroan akatsak dauden.
 Itzali
 Ez atera entxufea bakarrik! Itzali beti zerbitzaria behar bezala datuak usteltzea ekiditeko.
-Irten OpenHomeKaraoke-tik
+Irten HomeBodyKaraoke-tik
 Berrabiarazi sistema
 Itzte sistema
 Bestela
 Zabaldu Raspberry Pi fitxategi-sistema
-Aurrez eraikitako OpenHomeKaraoke pi irudia instalatu berri baduzu eta zure SD txartela 4GB baino handiagoa bada, baliteke fitxategi-sistema zabaldu nahi izatea geratzen den espazioa erabiltzeko. Hau behin bakarrik egin behar duzu. Honek sistema berrabiaraziko du.
+Aurrez eraikitako HomeBodyKaraoke pi irudia instalatu berri baduzu eta zure SD txartela 4GB baino handiagoa bada, baliteke fitxategi-sistema zabaldu nahi izatea geratzen den espazioa erabiltzeko. Hau behin bakarrik egin behar duzu. Honek sistema berrabiaraziko du.
 Desgaitu administratzaile modua
 Gaitu administratzaile modua
 Saioa amaitu
@@ -185,7 +185,7 @@ Hizkuntza aldatu
 Mesedez, aukeratu hizkuntza
 Sistemaren hizkuntza
 Egungo sistemaren hizkuntza:
-Honek telebistako pantailan bistaratzen den OpenHomeKaraoke backend sistemaren hizkuntza aldatzen du; gainera, konektatzen den erabiltzaile bakoitzak dagokion Web UI hizkuntza ere alda dezake eskuineko goiko menuko globo-botoian.
+Honek telebistako pantailan bistaratzen den HomeBodyKaraoke backend sistemaren hizkuntza aldatzen du; gainera, konektatzen den erabiltzaile bakoitzak dagokion Web UI hizkuntza ere alda dezake eskuineko goiko menuko globo-botoian.
 Deskarga ondo osatu da!
 Deskargatu huts egin du!
 Abestia ilaran gehitu da!

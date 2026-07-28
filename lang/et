@@ -32,7 +32,7 @@ Peatatud
 youtube-dl värskendamine! See peaks võtma minuti või kaks...
 Teil pole luba youtube-dl värskendamiseks
 Sul pole luba sulgeda
-Lõpetan OpenHomeKaraoke kohe!
+Lõpetan HomeBodyKaraoke kohe!
 Sul pole luba loobuda
 Süsteemi väljalülitamine kohe!
 Sul pole luba sulgeda
@@ -49,7 +49,7 @@ WiFi/võrk pole ühendatud. Suletakse 10 sekundi pärast...
 Lugude valimiseks skannige QR-koodi või looge ühendus
 Teleri kuvamiseks looge ühendus
 Täisekraani sisselülitamiseks vajutage F
-OpenHomeKaraoke'ist väljumiseks vajutage ESC
+HomeBodyKaraoke'ist väljumiseks vajutage ESC
 Tuvastati RaspiWifiConfigi seadistusrežiim!
 Ühendage Wifi AP-ga teine ​​seade/nutitelefon: '%s'
 Seejärel suunake brauser aadressile: '%s://%s%s' ja järgige juhiseid.
@@ -60,7 +60,7 @@ Administraatorirežiim lubatud!
 Suurenev heliviivitus annab teile rohkem aega laulusõnade lugemiseks enne järgmise lause väljalaulmist.
 Subtiitrite viivituse vähendamine annab teile rohkem aega laulusõnade lugemiseks enne järgmise lause väljalaulmist.
 Pooltooni tuntakse ka kui poolsammu. See on väikseim klassikalises lääne muusikas kasutatav intervall, mis on võrdne kaheteistkümnendikuga oktaavist või pooltoonist.
-DNN-põhine häälejaotur on lubatud. OpenHomeKaraoke kasutab PyTorchi (Facebook), et käitada sügavat närvivõrku, et jagada instrumentaal- ja vokaaliheli igal rajal, tekitades stereoheli.
+DNN-põhine häälejaotur on lubatud. HomeBodyKaraoke kasutab PyTorchi (Facebook), et käitada sügavat närvivõrku, et jagada instrumentaal- ja vokaaliheli igal rajal, tekitades stereoheli.
 Mängija juhtimine
 Muusika
 Segatud
@@ -133,7 +133,7 @@ Saadaolevad laulud
 Kas soovite muuta seda seadet kasutava inimese kuvatavat nime? See kuvatakse järjekorras olevate lugude kõrval. Praegune:
 Praegune kasutaja
 Seaded
-OpenHomeKaraoke
+HomeBodyKaraoke
 Kas olete kindel, et soovite lõpetada?
 Kas soovite kindlasti sulgeda?
 Kas olete kindel, et soovite taaskäivitada?
@@ -147,12 +147,12 @@ Mälu
 Ekraanitõmmis
 Vokaal Splitter
 Youtube-dl (yt-dlp) versioon
-OpenHomeKaraoke versioon
+HomeBodyKaraoke versioon
 Täpsemad juhtimisvalikud
 Vokaaljaoturi režiim:
 Kasutage L-R/L+R
 Kasutage DNN-i
-Standardse MTV heli puhul on kaks stereokanalit (L ja R) kodeeritud järgmiselt: L-R on instrumendirada, L+R on vokaalrada. Seega, lihtsalt lahutades või liites kaks stereokanalit, saame instrumentaal- ja vokaalraja monohelis. OpenHomeKaraoke sisseehitatud DNN-põhine (sügava närvivõrgu) häälejaotur kasutab AI-algoritmi, et jagada instrumentaal- ja vokaaliheli igas stereorajas eraldi, mille tulemuseks on stereo-instrumentaal- ja vokaalrajad.
+Standardse MTV heli puhul on kaks stereokanalit (L ja R) kodeeritud järgmiselt: L-R on instrumendirada, L+R on vokaalrada. Seega, lihtsalt lahutades või liites kaks stereokanalit, saame instrumentaal- ja vokaalraja monohelis. HomeBodyKaraoke sisseehitatud DNN-põhine (sügava närvivõrgu) häälejaotur kasutab AI-algoritmi, et jagada instrumentaal- ja vokaaliheli igas stereorajas eraldi, mille tulemuseks on stereo-instrumentaal- ja vokaalrajad.
 Peatage Splitter
 Taaskäivitage Splitter
 Vokaalijaotur (mis toetab nii DNN-põhist kui ka stereolahutamist) töötab taustal eraldi protsessina, genereerides iga loo jaoks instrumentaalse/vokaalse helifaili.
@@ -162,19 +162,19 @@ Taaskäivitage Streamer
 See mõjutab ainult KTV mängimist veebibrauseri kaudu. Ekraanihõive ja voogesituse taaskäivitamine parandab heli/video sünkroonimist, samuti vähendab see serveri ja brauseri vahelist latentsust.
 Värskenda laululoendit:
 Lugude kataloogi uuesti skannimine
-Peaksite seda tegema ainult siis, kui kopeerisite failid OpenHomeKaraoke töötamise ajal käsitsi allalaadimiskataloogi.
+Peaksite seda tegema ainult siis, kui kopeerisite failid HomeBodyKaraoke töötamise ajal käsitsi allalaadimiskataloogi.
 Värskendused
 Kui allalaadimised või otsingud lakkasid töötamast, parandab selle tõenäoliselt youtube-dl värskendamine. Praegune installitud versioon on:
 Värskendage youtube-dl
-See ülaltoodud värskenduslink võib ebaõnnestuda, kui teil pole õigeid failiõigusi. Kontrollige OpenHomeKaraoke logist vigu.
+See ülaltoodud värskenduslink võib ebaõnnestuda, kui teil pole õigeid failiõigusi. Kontrollige HomeBodyKaraoke logist vigu.
 Lülita välja
 Ärge tõmmake lihtsalt pistikust! Andmete kahjustamise vältimiseks lülitage server alati korralikult välja.
-Lõpetage OpenHomeKaraoke
+Lõpetage HomeBodyKaraoke
 Taaskäivitage süsteem
 Väljalülitussüsteem
 muud
 Laiendage Raspberry Pi failisüsteemi
-Kui installisite just eelehitatud OpenHomeKaraoke pi pildi ja teie SD-kaart on suurem kui 4 GB, võiksite järelejäänud ruumi ärakasutamiseks failisüsteemi laiendada. Peate seda tegema ainult üks kord. See taaskäivitab süsteemi.
+Kui installisite just eelehitatud HomeBodyKaraoke pi pildi ja teie SD-kaart on suurem kui 4 GB, võiksite järelejäänud ruumi ärakasutamiseks failisüsteemi laiendada. Peate seda tegema ainult üks kord. See taaskäivitab süsteemi.
 Keela administraatori režiim
 Luba administraatorirežiim
 Logi välja
@@ -185,7 +185,7 @@ Muuda keelt
 Palun valige keel
 Süsteemi keel
 Praegune süsteemi keel:
-See muudab OpenHomeKaraoke taustasüsteemi keelt, mis kuvatakse teleriekraanil; pealegi saab iga ühenduse loov kasutaja muuta oma vastavat veebiliidese keelt ka parempoolses ülamenüüs asuval gloobusnupul.
+See muudab HomeBodyKaraoke taustasüsteemi keelt, mis kuvatakse teleriekraanil; pealegi saab iga ühenduse loov kasutaja muuta oma vastavat veebiliidese keelt ka parempoolses ülamenüüs asuval gloobusnupul.
 Allalaadimine on edukalt lõpule viidud!
 Allalaadimine ebaõnnestus!
 Laul lisati järjekorda!

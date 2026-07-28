@@ -32,7 +32,7 @@ Stoppet
 Oppdaterer youtube-dl! Burde ta et minutt eller to...
 Du har ikke tillatelse til å oppdatere youtube-dl
 Du har ikke tillatelse til å stenge
-Avslutter OpenHomeKaraoke nå!
+Avslutter HomeBodyKaraoke nå!
 Du har ikke tillatelse til å slutte
 Slår av systemet nå!
 Du har ikke tillatelse til å stenge
@@ -49,7 +49,7 @@ Wifi/nettverk er ikke tilkoblet. Slår av om 10...
 For å velge sanger, skann QR eller koble til
 For TV-visning, koble til
 Trykk F for å bytte fullskjerm
-Trykk ESC for å avslutte OpenHomeKaraoke
+Trykk ESC for å avslutte HomeBodyKaraoke
 RaspiWifiConfig-oppsettmodus oppdaget!
 Koble en annen enhet/smarttelefon til Wifi AP: '%s'
 Pek deretter nettleseren til: '%s://%s%s' og følg instruksjonene.
@@ -60,7 +60,7 @@ Administrasjonsmodus gitt!
 Økende lydforsinkelse vil gi deg mer tid til å lese tekster før du synger ut neste setning.
 Redusere undertekstforsinkelse vil gi deg mer tid til å lese tekster før du synger ut neste setning.
 En halvtone er også kjent som et halvtrinn. Det er det minste intervallet som brukes i klassisk vestlig musikk, lik en tolvtedel av en oktav eller en halv tone.
-DNN-basert vokalsplitter er aktivert. OpenHomeKaraoke bruker PyTorch (fra Facebook) for å kjøre et dypt nevralt nettverk for å dele instrumental- og vokallyd i hvert spor som gir opphav til stereolyd.
+DNN-basert vokalsplitter er aktivert. HomeBodyKaraoke bruker PyTorch (fra Facebook) for å kjøre et dypt nevralt nettverk for å dele instrumental- og vokallyd i hvert spor som gir opphav til stereolyd.
 Spillerkontroll
 Musikk
 Blandet
@@ -133,7 +133,7 @@ Tilgjengelige sanger
 Vil du endre visningsnavnet til personen som bruker denne enheten? Dette vil vises ved siden av sangene i køen. Nåværende:
 Nåværende bruker
 Innstillinger
-OpenHomeKaraoke
+HomeBodyKaraoke
 Er du sikker på at du vil slutte?
 Er du sikker på at du vil avslutte?
 Er du sikker på at du vil starte på nytt?
@@ -147,12 +147,12 @@ Hukommelse
 Skjermfangst
 Vokal Splitter
 Youtube-dl (yt-dlp) versjon
-OpenHomeKaraoke-versjon
+HomeBodyKaraoke-versjon
 Avanserte kontrollalternativer
 Vocal splitter-modus:
 Bruk L-R/L+R
 Bruk DNN
-Standard MTV-lyd har de to stereokanalene (L og R) kodet på en slik måte at: L-R er instrumentsporet, L+R er vokalsporet. Ved ganske enkelt å trekke fra eller legge til de to stereokanalene, kan vi altså få instrumental- og vokalsporet i monolyd. OpenHomeKaraokes innebygde DNN-baserte (dyp nevrale nettverk) vokalsplitter bruker AI-algoritme til å dele instrumental- og vokallyd i hvert stereospor uavhengig, noe som resulterer i stereoinstrumental- og vokalspor.
+Standard MTV-lyd har de to stereokanalene (L og R) kodet på en slik måte at: L-R er instrumentsporet, L+R er vokalsporet. Ved ganske enkelt å trekke fra eller legge til de to stereokanalene, kan vi altså få instrumental- og vokalsporet i monolyd. HomeBodyKaraokes innebygde DNN-baserte (dyp nevrale nettverk) vokalsplitter bruker AI-algoritme til å dele instrumental- og vokallyd i hvert stereospor uavhengig, noe som resulterer i stereoinstrumental- og vokalspor.
 Stopp splitter
 Start Splitter på nytt
 Vokalsplitteren (som støtter både DNN-basert og stereosubtraksjon) kjører som en separat prosess i bakgrunnen, og genererer instrumental/vokal lydfil for hver sang.
@@ -162,19 +162,19 @@ Start Streamer på nytt
 Dette påvirker kun å spille KTV via nettleseren. Omstart av skjermfangst-og-streaming forbedrer lyd/video-synkronisering, det reduserer også ventetiden mellom serveren og nettleseren.
 Oppdater sanglisten:
 Skann sangkatalogen på nytt
-Du skal bare trenge å gjøre dette hvis du manuelt kopierte filer til nedlastingsmappen mens OpenHomeKaraoke kjørte.
+Du skal bare trenge å gjøre dette hvis du manuelt kopierte filer til nedlastingsmappen mens HomeBodyKaraoke kjørte.
 Oppdateringer
 Hvis nedlastinger eller søk sluttet å virke, vil oppdatering av youtube-dl sannsynligvis fikse det. Den nåværende installerte versjonen er:
 Oppdater youtube-dl
-Denne oppdateringslenken ovenfor kan mislykkes hvis du ikke har riktige filtillatelser. Sjekk OpenHomeKaraoke-loggen for feil.
+Denne oppdateringslenken ovenfor kan mislykkes hvis du ikke har riktige filtillatelser. Sjekk HomeBodyKaraoke-loggen for feil.
 Skru av
 Ikke bare trekk ut støpselet! Slå alltid av serveren på riktig måte for å unngå datakorrupsjon.
-Avslutt OpenHomeKaraoke
+Avslutt HomeBodyKaraoke
 Restart systemet
 Slå av systemet
 Annen
 Utvid Raspberry Pi-filsystemet
-Hvis du nettopp installerte det forhåndsbygde OpenHomeKaraoke pi-bildet og SD-kortet ditt er større enn 4 GB, kan det være lurt å utvide filsystemet for å utnytte den gjenværende plassen. Du trenger bare å gjøre dette én gang. Dette vil starte systemet på nytt.
+Hvis du nettopp installerte det forhåndsbygde HomeBodyKaraoke pi-bildet og SD-kortet ditt er større enn 4 GB, kan det være lurt å utvide filsystemet for å utnytte den gjenværende plassen. Du trenger bare å gjøre dette én gang. Dette vil starte systemet på nytt.
 Deaktiver admin-modus
 Aktiver admin-modus
 Logg ut
@@ -185,7 +185,7 @@ Skifte språk
 Vennligst velg språk
 Systemspråk
 Gjeldende systemspråk:
-Dette endrer språket til OpenHomeKaraoke-backend-systemet som vises på TV-skjermen; dessuten kan hver tilkoblende bruker også endre sitt respektive web-UI-språk i globusknappen i menyen øverst til høyre.
+Dette endrer språket til HomeBodyKaraoke-backend-systemet som vises på TV-skjermen; dessuten kan hver tilkoblende bruker også endre sitt respektive web-UI-språk i globusknappen i menyen øverst til høyre.
 Nedlasting fullført!
 Nedlasting mislyktes!
 Sang lagt til i køen!

@@ -32,7 +32,7 @@ Fermato
 Aggiornamento di youtube-dl! Dovrebbero volerci un minuto o due...
 Non hai l'autorizzazione per aggiornare youtube-dl
 Non hai il permesso di spegnere
-Esci da OpenHomeKaraoke adesso!
+Esci da HomeBodyKaraoke adesso!
 Non hai il permesso di uscire
 Spegnimento del sistema adesso!
 Non hai il permesso di spegnere
@@ -49,7 +49,7 @@ Wifi/rete non connessa. Spegnimento tra 10 secondi...
 Per selezionare i brani, scansiona il QR o connettiti a
 Per lo schermo TV, connettersi a
 Premi F per attivare la modalità a schermo intero
-Premi ESC per uscire da OpenHomeKaraoke
+Premi ESC per uscire da HomeBodyKaraoke
 Rilevata modalità di configurazione RaspiWifiConfig!
 Connetti un altro dispositivo/smartphone all'AP Wifi: '%s'
 Quindi puntare il browser su: '%s://%s%s' e seguire le istruzioni.
@@ -60,7 +60,7 @@ Modalità amministratore concessa!
 Aumentando il ritardo audio avrai più tempo per leggere il testo prima di cantare la frase successiva.
 Diminuendo il ritardo dei sottotitoli avrai più tempo per leggere i testi prima di cantare la frase successiva.
 Un semitono è noto anche come mezzo passo. È l'intervallo più piccolo utilizzato nella musica classica occidentale, pari a un dodicesimo di ottava o mezzo tono.
-Lo splitter vocale basato su DNN è abilitato. OpenHomeKaraoke utilizza PyTorch (di Facebook) per eseguire una rete neurale profonda per dividere il suono strumentale e vocale in ogni traccia dando origine al suono stereo.
+Lo splitter vocale basato su DNN è abilitato. HomeBodyKaraoke utilizza PyTorch (di Facebook) per eseguire una rete neurale profonda per dividere il suono strumentale e vocale in ogni traccia dando origine al suono stereo.
 Controllo del giocatore
 Musica
 Misto
@@ -133,7 +133,7 @@ Canzoni disponibili
 Vuoi modificare il nome visualizzato della persona che utilizza questo dispositivo? Questo apparirà accanto ai brani in coda. Attuale:
 Utente attuale
 Impostazioni
-OpenHomeKaraoke
+HomeBodyKaraoke
 Sei sicuro di voler uscire?
 Sei sicuro di voler chiudere?
 Sei sicuro di voler riavviare?
@@ -147,12 +147,12 @@ Memoria
 Cattura schermo
 Splitter vocale
 Versione Youtube-dl (yt-dlp).
-Versione OpenHomeKaraoke
+Versione HomeBodyKaraoke
 Opzioni di controllo avanzate
 Modalità splitter vocale:
 Usa L-R/L+R
 Utilizza DNN
-L'audio standard di MTV ha i due canali stereo (L e R) codificati in modo tale che: L-R è la traccia dello strumento, L+R è la traccia vocale. Quindi, semplicemente sottraendo o sommando i due canali stereo, possiamo ottenere la traccia strumentale e quella vocale in suono mono. Lo splitter vocale integrato basato su DNN (rete neurale profonda) di OpenHomeKaraoke utilizza l'algoritmo AI per dividere il suono strumentale e vocale in ciascuna traccia stereo in modo indipendente risultando in tracce strumentali e vocali stereo.
+L'audio standard di MTV ha i due canali stereo (L e R) codificati in modo tale che: L-R è la traccia dello strumento, L+R è la traccia vocale. Quindi, semplicemente sottraendo o sommando i due canali stereo, possiamo ottenere la traccia strumentale e quella vocale in suono mono. Lo splitter vocale integrato basato su DNN (rete neurale profonda) di HomeBodyKaraoke utilizza l'algoritmo AI per dividere il suono strumentale e vocale in ciascuna traccia stereo in modo indipendente risultando in tracce strumentali e vocali stereo.
 Arresta lo spaccalegna
 Riavvia lo splitter
 Lo splitter vocale (che supporta sia la sottrazione basata su DNN che quella stereo) viene eseguito come processo separato in background, generando file audio strumentali/vocali per ogni canzone.
@@ -162,19 +162,19 @@ Riavvia lo streamer
 Ciò influisce solo sulla riproduzione di KTV tramite browser web. Il riavvio dell'acquisizione e dello streaming dello schermo migliora la sincronizzazione audio/video e diminuisce anche la latenza tra il server e il browser.
 Aggiorna l'elenco dei brani:
 Eseguire nuovamente la scansione della directory dei brani
-Dovresti farlo solo se hai copiato manualmente i file nella directory di download mentre OpenHomeKaraoke era in esecuzione.
+Dovresti farlo solo se hai copiato manualmente i file nella directory di download mentre HomeBodyKaraoke era in esecuzione.
 Aggiornamenti
 Se i download o le ricerche smettono di funzionare, l'aggiornamento di youtube-dl probabilmente risolverà il problema. La versione attualmente installata è:
 Aggiorna youtube-dl
-Questo collegamento di aggiornamento sopra potrebbe non riuscire se non disponi delle autorizzazioni file adeguate. Controlla la presenza di errori nel registro di OpenHomeKaraoke.
+Questo collegamento di aggiornamento sopra potrebbe non riuscire se non disponi delle autorizzazioni file adeguate. Controlla la presenza di errori nel registro di HomeBodyKaraoke.
 Fermare
 Non staccare semplicemente la spina! Spegni sempre il server correttamente per evitare il danneggiamento dei dati.
-Esci da OpenHomeKaraoke
+Esci da HomeBodyKaraoke
 Riavvio del sistema
 Sistema di arresto
 Altro
 Espandi il file system Raspberry Pi
-Se hai appena installato l'immagine OpenHomeKaraoke pi precostruita e la tua scheda SD è più grande di 4 GB, potresti voler espandere il filesystem per utilizzare lo spazio rimanente. Devi farlo solo una volta. Questo riavvierà il sistema.
+Se hai appena installato l'immagine HomeBodyKaraoke pi precostruita e la tua scheda SD è più grande di 4 GB, potresti voler espandere il filesystem per utilizzare lo spazio rimanente. Devi farlo solo una volta. Questo riavvierà il sistema.
 Disabilita la modalità amministratore
 Abilita la modalità amministratore
 disconnettersi
@@ -185,7 +185,7 @@ Cambia lingua
 Per favore scegli la lingua
 Lingua del sistema
 Lingua del sistema attuale:
-Ciò cambia la lingua del sistema backend OpenHomeKaraoke che viene visualizzata sullo schermo TV; inoltre, ciascun utente che si connette può anche modificare la rispettiva lingua dell'interfaccia utente Web utilizzando il pulsante del globo nel menu in alto a destra.
+Ciò cambia la lingua del sistema backend HomeBodyKaraoke che viene visualizzata sullo schermo TV; inoltre, ciascun utente che si connette può anche modificare la rispettiva lingua dell'interfaccia utente Web utilizzando il pulsante del globo nel menu in alto a destra.
 Download completato con successo!
 Scaricamento fallito!
 Canzone aggiunta alla coda!

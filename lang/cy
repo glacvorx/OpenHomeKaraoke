@@ -32,7 +32,7 @@ Wedi stopio
 Yn diweddaru youtube-dl! Dylai gymryd munud neu ddwy...
 Nid oes gennych ganiatâd i ddiweddaru youtube-dl
 Nid oes gennych ganiatâd i gau i lawr
-Rhoi'r gorau i OpenHomeKaraoke nawr!
+Rhoi'r gorau i HomeBodyKaraoke nawr!
 Nid oes gennych ganiatâd i roi'r gorau iddi
 System cau i lawr nawr!
 Nid oes gennych ganiatâd i gau i lawr
@@ -49,7 +49,7 @@ Wifi/Rhwydwaith heb ei gysylltu. Cau i lawr mewn 10s...
 Ar gyfer dewis caneuon, sganiwch QR neu cysylltwch â
 Ar gyfer arddangosfa deledu, cysylltwch â
 Pwyswch F i doglo sgrin lawn
-Pwyswch ESC i roi'r gorau iddi OpenHomeKaraoke
+Pwyswch ESC i roi'r gorau iddi HomeBodyKaraoke
 Wedi canfod modd gosod RaspiWifiConfig!
 Cysylltwch dyfais/ffôn clyfar arall i'r AP Wifi: '%s'
 Yna pwyntiwch ei borwr at: '%s://%s%s' a dilynwch y cyfarwyddiadau.
@@ -60,7 +60,7 @@ Modd gweinyddol wedi'i ganiatáu!
 Bydd oedi cynyddol sain yn rhoi mwy o amser i chi ddarllen geiriau cyn canu'r frawddeg nesaf.
 Bydd oedi is-deitlau yn rhoi mwy o amser i chi ddarllen geiriau cyn canu'r frawddeg nesaf.
 Gelwir hanner tôn hefyd yn hanner cam. Dyma'r cyfwng lleiaf a ddefnyddir yng ngherddoriaeth glasurol y Gorllewin, sy'n hafal i ddeuddegfed wythfed neu hanner tôn.
-Mae holltwr lleisiol seiliedig ar DNN wedi'i alluogi. Mae OpenHomeKaraoke yn defnyddio PyTorch (gan Facebook) i redeg rhwydwaith niwral dwfn i hollti sain offerynnol a lleisiol ym mhob trac gan arwain at sain stereo.
+Mae holltwr lleisiol seiliedig ar DNN wedi'i alluogi. Mae HomeBodyKaraoke yn defnyddio PyTorch (gan Facebook) i redeg rhwydwaith niwral dwfn i hollti sain offerynnol a lleisiol ym mhob trac gan arwain at sain stereo.
 Rheoli Chwaraewr
 Cerddoriaeth
 Cymysg
@@ -147,12 +147,12 @@ Cof
 Dal Sgrin
 Llorweddol Lleisiol
 Fersiwn Youtube-dl (yt-dlp).
-Fersiwn OpenHomeKaraoke
+Fersiwn HomeBodyKaraoke
 Opsiynau Rheoli Uwch
 Modd hollti lleisiol:
 Defnyddiwch L-R/L+R
 Defnyddiwch DNN
-Mae gan sain MTV safonol y ddwy sianel stereo (L ac R) wedi'u hamgodio yn y fath fodd fel: LR yw'r trac offeryn, L + R yw'r trac lleisiol. Felly, trwy dynnu neu ychwanegu'r ddwy sianel stereo yn unig, gallwn gael y trac offerynnol a lleisiol mewn sain mono. Mae holltwr lleisiol wedi'i seilio ar DNN (rhwydwaith niwral dwfn) OpenHomeKaraoke yn defnyddio algorithm AI i hollti sain offerynnol a lleisiol ym mhob trac stereo yn annibynnol gan arwain at draciau stereo offerynnol a lleisiol.
+Mae gan sain MTV safonol y ddwy sianel stereo (L ac R) wedi'u hamgodio yn y fath fodd fel: LR yw'r trac offeryn, L + R yw'r trac lleisiol. Felly, trwy dynnu neu ychwanegu'r ddwy sianel stereo yn unig, gallwn gael y trac offerynnol a lleisiol mewn sain mono. Mae holltwr lleisiol wedi'i seilio ar DNN (rhwydwaith niwral dwfn) HomeBodyKaraoke yn defnyddio algorithm AI i hollti sain offerynnol a lleisiol ym mhob trac stereo yn annibynnol gan arwain at draciau stereo offerynnol a lleisiol.
 Stopiwch Hollti
 Ailgychwyn Hollti
 Mae'r holltwr lleisiol (sy'n cefnogi tynnu seiliedig ar DNN a stereo) yn rhedeg fel proses ar wahân yn y cefndir, gan gynhyrchu ffeil sain offerynnol / lleisiol ar gyfer pob cân.
@@ -162,19 +162,19 @@ Ailgychwyn Streamer
 Mae hyn ond yn effeithio ar chwarae KTV trwy borwr gwe. Mae ailgychwyn y sgrin-dal-a-ffrydio yn gwella cydamseru sain/fideo, mae hefyd yn lleihau'r hwyrni rhwng y gweinydd a'r porwr.
 Adnewyddu'r rhestr caneuon:
 Ailsganio cyfeiriadur caneuon
-Dim ond os gwnaethoch chi gopïo ffeiliau â llaw i'r cyfeiriadur lawrlwytho tra roedd OpenHomeKaraoke yn rhedeg y dylai fod angen i chi wneud hyn.
+Dim ond os gwnaethoch chi gopïo ffeiliau â llaw i'r cyfeiriadur lawrlwytho tra roedd HomeBodyKaraoke yn rhedeg y dylai fod angen i chi wneud hyn.
 Diweddariadau
 Pe bai lawrlwythiadau neu chwiliadau yn stopio gweithio, mae'n debyg y bydd diweddaru youtube-dl yn ei drwsio. Y fersiwn sydd wedi'i gosod ar hyn o bryd yw:
 Diweddaru youtube-dl
-Mae'n bosibl y bydd y ddolen diweddaru hon uchod yn methu os nad oes gennych ganiatâd ffeil priodol. Gwiriwch log OpenHomeKaraoke am wallau.
+Mae'n bosibl y bydd y ddolen diweddaru hon uchod yn methu os nad oes gennych ganiatâd ffeil priodol. Gwiriwch log HomeBodyKaraoke am wallau.
 Cau i lawr
 Peidiwch â thynnu'r plwg yn unig! Caewch eich gweinydd yn iawn bob amser er mwyn osgoi llygredd data.
-Rhoi'r gorau i OpenHomeKaraoke
+Rhoi'r gorau i HomeBodyKaraoke
 System Ailgychwyn
 System Shutdown
 Arall
 Ehangu system ffeiliau Raspberry Pi
-Os ydych chi newydd osod y ddelwedd pi OpenHomeKaraoke a adeiladwyd ymlaen llaw a bod eich cerdyn SD yn fwy na 4GB, efallai y byddwch am ehangu'r system ffeiliau i ddefnyddio'r gofod sy'n weddill. Dim ond unwaith y mae angen i chi wneud hyn. Bydd hyn yn ailgychwyn y system.
+Os ydych chi newydd osod y ddelwedd pi HomeBodyKaraoke a adeiladwyd ymlaen llaw a bod eich cerdyn SD yn fwy na 4GB, efallai y byddwch am ehangu'r system ffeiliau i ddefnyddio'r gofod sy'n weddill. Dim ond unwaith y mae angen i chi wneud hyn. Bydd hyn yn ailgychwyn y system.
 Analluogi modd gweinyddol
 Galluogi modd gweinyddol
 allgofnodi
@@ -185,7 +185,7 @@ Newid Iaith
 Dewiswch iaith
 Iaith System
 Iaith system gyfredol:
-Mae hyn yn newid iaith system backend OpenHomeKaraoke sy'n cael ei harddangos ar sgrin deledu; ar ben hynny, gall pob defnyddiwr cyswllt hefyd newid eu hiaith Web UI priodol yn y botwm glôb yn y ddewislen top dde.
+Mae hyn yn newid iaith system backend HomeBodyKaraoke sy'n cael ei harddangos ar sgrin deledu; ar ben hynny, gall pob defnyddiwr cyswllt hefyd newid eu hiaith Web UI priodol yn y botwm glôb yn y ddewislen top dde.
 Cwblhawyd y lawrlwythiad yn llwyddiannus!
 Wedi methu llwytho i lawr!
 Cân wedi'i hychwanegu at y ciw!

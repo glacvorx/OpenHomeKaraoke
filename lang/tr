@@ -32,7 +32,7 @@ Durduruldu
 Youtube-dl güncelleniyor! Bir veya iki dakikanızı alır...
 youtube-dl'yi güncelleme izniniz yok
 Kapatma izniniz yok
-OpenHomeKaraoke'yi artık bırakıyorum!
+HomeBodyKaraoke'yi artık bırakıyorum!
 Çıkma izniniz yok
 Sistemi hemen kapatıyorum!
 Kapatma izniniz yok
@@ -49,7 +49,7 @@ Wifi/Ağ bağlı değil. 10 saniye içinde kapanıyor...
 Şarkı seçmek için QR'yi tarayın veya
 TV ekranı için şuraya bağlanın:
 Tam ekrana geçiş yapmak için F tuşuna basın
-OpenHomeKaraoke'den çıkmak için ESC'ye basın
+HomeBodyKaraoke'den çıkmak için ESC'ye basın
 RaspiWifiConfig kurulum modu algılandı!
 Başka bir cihazı/akıllı telefonu Wifi AP'ye bağlayın: '%s'
 Daha sonra tarayıcısını şu adrese yönlendirin: '%s://%s%s' ve talimatları izleyin.
@@ -60,7 +60,7 @@ Yönetici modu verildi!
 Ses gecikmesini artırmak, bir sonraki cümleyi söylemeden önce şarkı sözlerini okumak için size daha fazla zaman verecektir.
 Altyazı gecikmesini azaltmak, bir sonraki cümleyi söylemeden önce şarkı sözlerini okumak için size daha fazla zaman verecektir.
 Yarım ton aynı zamanda yarım adım olarak da bilinir. Klasik Batı müziğinde kullanılan, bir oktavın on ikide birine veya yarım tona eşit olan en küçük aralıktır.
-DNN tabanlı ses ayırıcı etkinleştirildi. OpenHomeKaraoke, stereo sese yol açacak şekilde her parçadaki enstrümantal ve vokal sesi bölmek üzere derin bir sinir ağını çalıştırmak için PyTorch'u (Facebook tarafından) kullanıyor.
+DNN tabanlı ses ayırıcı etkinleştirildi. HomeBodyKaraoke, stereo sese yol açacak şekilde her parçadaki enstrümantal ve vokal sesi bölmek üzere derin bir sinir ağını çalıştırmak için PyTorch'u (Facebook tarafından) kullanıyor.
 Oyuncu Kontrolü
 Müzik
 Karışık
@@ -133,7 +133,7 @@ Mevcut Şarkılar
 Bu cihazı kullanan kişinin ekran adını değiştirmek istiyor musunuz? Bu, sıradaki şarkıların yanında görünecektir. Akım:
 Şu anki kullanıcı
 Ayarlar
-OpenHomeKaraoke
+HomeBodyKaraoke
 Çıkmak istediğinden emin misin?
 Kapatmak istediğinizden emin misiniz?
 Yeniden başlatmak istediğinizden emin misiniz?
@@ -147,12 +147,12 @@ Hafıza
 Ekran görüntüsü
 Vokal Ayırıcı
 Youtube-dl (yt-dlp) sürümü
-OpenHomeKaraoke versiyonu
+HomeBodyKaraoke versiyonu
 Gelişmiş Kontrol Seçenekleri
 Vokal ayırıcı modu:
 Sol-Sağ/Sol+Sağ'ı kullanın
 DNN'yi kullan
-Standart MTV ses, şu şekilde kodlanmış iki stereo kanala (Sol ve Sağ) sahiptir: Sol-R enstrüman parçası, L+R vokal parçası. Böylece, iki stereo kanalı basitçe çıkararak veya ekleyerek enstrümantal ve vokal parçayı mono seste elde edebiliriz. OpenHomeKaraoke'nin yerleşik DNN tabanlı (derin sinir ağı) vokal ayırıcısı, her stereo parçadaki enstrümantal ve vokal sesi bağımsız olarak bölerek stereo enstrümantal ve vokal parçaları oluşturmak için AI algoritmasını kullanır.
+Standart MTV ses, şu şekilde kodlanmış iki stereo kanala (Sol ve Sağ) sahiptir: Sol-R enstrüman parçası, L+R vokal parçası. Böylece, iki stereo kanalı basitçe çıkararak veya ekleyerek enstrümantal ve vokal parçayı mono seste elde edebiliriz. HomeBodyKaraoke'nin yerleşik DNN tabanlı (derin sinir ağı) vokal ayırıcısı, her stereo parçadaki enstrümantal ve vokal sesi bağımsız olarak bölerek stereo enstrümantal ve vokal parçaları oluşturmak için AI algoritmasını kullanır.
 Ayırıcıyı Durdur
 Splitter'ı yeniden başlat
 Vokal ayırıcı (hem DNN tabanlı hem de stereo çıkarmayı destekleyen), arka planda ayrı bir işlem olarak çalışarak her şarkı için enstrümantal/vokal ses dosyası oluşturur.
@@ -162,19 +162,19 @@ Streamer'ı yeniden başlat
 Bu yalnızca KTV'nin web tarayıcısı üzerinden oynatılmasını etkiler. Ekran yakalama ve akışının yeniden başlatılması ses/video senkronizasyonunu iyileştirir, aynı zamanda sunucu ile tarayıcı arasındaki gecikmeyi de azaltır.
 Şarkı listesini yenileyin:
 Şarkı dizinini yeniden tara
-Bunu yalnızca OpenHomeKaraoke çalışırken dosyaları indirme dizinine manuel olarak kopyaladıysanız yapmanız gerekir.
+Bunu yalnızca HomeBodyKaraoke çalışırken dosyaları indirme dizinine manuel olarak kopyaladıysanız yapmanız gerekir.
 Güncellemeler
 İndirmeler veya aramalar çalışmayı durdurduysa youtube-dl'yi güncellemek muhtemelen sorunu çözecektir. Şu anda yüklü olan sürüm:
 youtube-dl'yi güncelle
-Uygun dosya izinleriniz yoksa yukarıdaki güncelleme bağlantısı başarısız olabilir. Hatalar için OpenHomeKaraoke günlüğünü kontrol edin.
+Uygun dosya izinleriniz yoksa yukarıdaki güncelleme bağlantısı başarısız olabilir. Hatalar için HomeBodyKaraoke günlüğünü kontrol edin.
 Kapat
 Sadece fişi çekmeyin! Veri bozulmasını önlemek için sunucunuzu her zaman düzgün şekilde kapatın.
-OpenHomeKaraoke'den çık
+HomeBodyKaraoke'den çık
 Sistemi yeniden başlatma
 Sistemi kapat
 Diğer
 Raspberry Pi dosya sistemini genişletin
-Önceden oluşturulmuş OpenHomeKaraoke pi görüntüsünü yeni yüklediyseniz ve SD kartınız 4 GB'tan büyükse, kalan alanı kullanmak için dosya sistemini genişletmek isteyebilirsiniz. Bunu sadece bir kez yapmanız gerekir. Bu sistemi yeniden başlatacaktır.
+Önceden oluşturulmuş HomeBodyKaraoke pi görüntüsünü yeni yüklediyseniz ve SD kartınız 4 GB'tan büyükse, kalan alanı kullanmak için dosya sistemini genişletmek isteyebilirsiniz. Bunu sadece bir kez yapmanız gerekir. Bu sistemi yeniden başlatacaktır.
 Yönetici modunu devre dışı bırak
 Yönetici modunu etkinleştir
 çıkış Yap
@@ -185,7 +185,7 @@ Dili değiştir
 Lütfen dili seçin
 Sistem Dili
 Mevcut sistem dili:
-Bu, TV ekranında görüntülenen OpenHomeKaraoke arka uç sisteminin dilini değiştirir; ayrıca bağlanan her kullanıcı, sağ üst menüdeki dünya düğmesinden kendi Web Kullanıcı Arayüzü dilini de değiştirebilir.
+Bu, TV ekranında görüntülenen HomeBodyKaraoke arka uç sisteminin dilini değiştirir; ayrıca bağlanan her kullanıcı, sağ üst menüdeki dünya düğmesinden kendi Web Kullanıcı Arayüzü dilini de değiştirebilir.
 İndirme başarıyla tamamlandı!
 Yükleme başarısız!
 Şarkı sıraya eklendi!

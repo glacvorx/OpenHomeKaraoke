@@ -32,7 +32,7 @@ Ka mutu
 Kei te whakahōu youtube-dl! Kia kotahi, e rua ranei meneti...
 Kaore koe e whai mana ki te whakahou i te youtube-dl
 Kaore koe e whai mana ki te kati
-Ka mutu te OpenHomeKaraoke inaianei!
+Ka mutu te HomeBodyKaraoke inaianei!
 Kaore koe e whai mana ki te whakamutu
 Whakawetohia te punaha inaianei!
 Kaore koe e whai mana ki te kati
@@ -49,7 +49,7 @@ Wifi/Whatunga kore hono. Ka kati i roto i te 10s...
 Mo te whiriwhiri waiata, matawai QR, hono atu ranei ki
 Mo te whakaaturanga pouaka whakaata, hono atu ki
 Pēhia te F hei takahuri mata-katoa
-Patohia te ESC kia mutu te OpenHomeKaraoke
+Patohia te ESC kia mutu te HomeBodyKaraoke
 I kitea te aratau tatūnga RaspiWifiConfig!
 Tūhonohia tētahi atu pūrere/pūkoro atamai ki te Wifi AP: '%s'
 Katahi ka tohuhia tana kaitirotiro ki: '%s://%s%s' ka whai i nga tohutohu.
@@ -60,7 +60,7 @@ Kua whakaaetia te aratau kaiwhakahaere!
 Ka nui ake te roa o te ororongo ka nui ake te wa ki te panui i nga kupu i mua i te waiata i te rerenga korero e whai ake nei.
 Ko te whakaheke i te whakaroa taitararoto ka nui ake te wa ki te panui kupu i mua i te waiata i te rerenga korero e whai ake nei.
 Ko te semitone e mohiotia ana ko te hawhe-taahiraa. Koinei te waahi iti rawa e whakamahia ana i roto i nga puoro puoro o te Tai Hauauru, e rite ana ki te tekau ma rua o te octave, te haurua ranei o te oro.
-Kei te whakahohea te wehenga reo-a-DNN. Ka whakamahi a OpenHomeKaraoke i a PyTorch (na Facebook) ki te whakahaere i tetahi whatunga neural hohonu ki te wehe i nga oro whakatangitangi me nga oro oro i ia riipene ka puta te tangi tiwharewha.
+Kei te whakahohea te wehenga reo-a-DNN. Ka whakamahi a HomeBodyKaraoke i a PyTorch (na Facebook) ki te whakahaere i tetahi whatunga neural hohonu ki te wehe i nga oro whakatangitangi me nga oro oro i ia riipene ka puta te tangi tiwharewha.
 Mana Player
 Waiata
 Whakaranuhia
@@ -133,7 +133,7 @@ Waiata Wātea
 Me huri te ingoa whakaatu o te tangata e whakamahi ana i tenei taputapu? Ka puta tenei ki te taha o nga waiata kua rarangi. o nāianei:
 Kaiwhakamahi o naianei
 Tautuhinga
-OpenHomeKaraoke
+HomeBodyKaraoke
 Kei te tino hiahia koe ki te whakamutu?
 Kei te tino hiahia koe ki te kati?
 Me whakaara ano koe?
@@ -147,12 +147,12 @@ Maharahara
 Hopu Mata
 Whakawehe reo
 Youtube-dl (yt-dlp) putanga
-OpenHomeKaraoke putanga
+HomeBodyKaraoke putanga
 Kōwhiringa Mana Arā Atu Anō
 Aratau Wehenga Wao:
 Whakamahia te L-R/L+R
 Whakamahia te DNN
-Ko te oro MTV paerewa e rua nga hongere tiwharewha (L me R) kua whakawaeheretia kia penei ai: Ko L-R te riu taputapu, ko L+R te riu reo. No reira, ma te tango noa, ma te taapiri ranei i nga hongere tiwharewha e rua, ka taea te tiki i te riu puoro me te riu reo i roto i te oro kotahi. Ka whakamahia e te OpenHomeKaraoke te DNN-a-roto (whatunga neural hohonu) te whakawehe oro puoro AI algorithm ki te wehe i nga oro whakatangitangi me te oro oro i roto i ia riipene hiko motuhake ka puta mai he riipene whakatangitangi me te tangi oro.
+Ko te oro MTV paerewa e rua nga hongere tiwharewha (L me R) kua whakawaeheretia kia penei ai: Ko L-R te riu taputapu, ko L+R te riu reo. No reira, ma te tango noa, ma te taapiri ranei i nga hongere tiwharewha e rua, ka taea te tiki i te riu puoro me te riu reo i roto i te oro kotahi. Ka whakamahia e te HomeBodyKaraoke te DNN-a-roto (whatunga neural hohonu) te whakawehe oro puoro AI algorithm ki te wehe i nga oro whakatangitangi me te oro oro i roto i ia riipene hiko motuhake ka puta mai he riipene whakatangitangi me te tangi oro.
 Kati te Splitter
 Tīmata anō te Splitter
 Ko te wehenga oro (e tautoko ana i te tangohanga DNN me te tiwharewha) he mahi motuhake ki te papamuri, ka whakaputa i te konae puoro puoro/orooro mo ia waiata.
@@ -162,19 +162,19 @@ Tīmata anō i te Streamer
 Ka pa noa tenei ki te purei KTV ma te tirotiro paetukutuku. Ko te whakaara ano i te hopu-mata-a-whakarere ka pai ake te tukutahitanga oro/ataata, ka whakaitihia ano te roanga i waenga i te tūmau me te kaitirotiro.
 Tāmatahia te rārangi waiata:
 Matawai ano i te raarangi waiata
-Me mahi noa tenei mena ka kape a ringa koe i nga konae ki te raarangi tangohanga i te wa e whakahaere ana a OpenHomeKaraoke.
+Me mahi noa tenei mena ka kape a ringa koe i nga konae ki te raarangi tangohanga i te wa e whakahaere ana a HomeBodyKaraoke.
 Nga whakahou
 Mena ka mutu te mahi tango, rapunga ranei, ma te whakahou i a youtube-dl ka whakatika. Ko te putanga kua whakauruhia inaianei ko:
 Whakahoutia te youtube-dl
-Ka rahua pea tenei hononga whakahou ki runga ake mena karekau koe i nga whakaaetanga konae tika. Tirohia te rangitaki OpenHomeKaraoke mo nga hapa.
+Ka rahua pea tenei hononga whakahou ki runga ake mena karekau koe i nga whakaaetanga konae tika. Tirohia te rangitaki HomeBodyKaraoke mo nga hapa.
 Whakaweto
 Kaua e kumea noa te mono! Whakawetohia to tūmau i nga wa katoa kia kore ai e pirau nga raraunga.
-Whakamutua OpenHomeKaraoke
+Whakamutua HomeBodyKaraoke
 Whakahoutia te Pūnaha
 Pūnaha Whakaweto
 Ētahi atu
 Whakanuia te punaha konae Raspberry Pi
-Mena ka whakauruhia e koe te ahua OpenHomeKaraoke pi i hangaia i mua, ka nui ake to kaari SD i te 4GB, ka hiahia pea koe ki te whakawhanui i te punaha konae ki te whakamahi i te waahi e toe ana. Kia kotahi anake te mahi. Ma tenei ka whakaara ano i te punaha.
+Mena ka whakauruhia e koe te ahua HomeBodyKaraoke pi i hangaia i mua, ka nui ake to kaari SD i te 4GB, ka hiahia pea koe ki te whakawhanui i te punaha konae ki te whakamahi i te waahi e toe ana. Kia kotahi anake te mahi. Ma tenei ka whakaara ano i te punaha.
 Monokia te aratau whakahaere
 Whakahohehia te aratau whakahaere
 takiputa atu
@@ -185,7 +185,7 @@ Hurihia te Reo
 Kōwhirihia te reo
 Te Reo Pūnaha
 Reo pūnaha o nāianei:
-Ka huri te reo o te punaha whakamuri OpenHomeKaraoke ka whakaatuhia ki te mata pouaka whakaata; i tua atu, ka taea hoki e ia kaiwhakamahi hono te huri i o raatau reo UI Tukutuku i roto i te paatene o te ao i te tahua matau-runga.
+Ka huri te reo o te punaha whakamuri HomeBodyKaraoke ka whakaatuhia ki te mata pouaka whakaata; i tua atu, ka taea hoki e ia kaiwhakamahi hono te huri i o raatau reo UI Tukutuku i roto i te paatene o te ao i te tahua matau-runga.
 Kua oti pai te tango!
 I rahua te tango!
 Waiata kua tapirihia ki te rarangi!

@@ -32,7 +32,7 @@ Apstājās
 Notiek youtube-dl atjaunināšana! Vajadzētu kādu minūti vai divas...
 Jums nav atļaujas atjaunināt youtube-dl
 Jums nav atļaujas izslēgt
-Tagad aiziet no OpenHomeKaraoke!
+Tagad aiziet no HomeBodyKaraoke!
 Jums nav atļaujas atmest
 Sistēmas izslēgšana tūlīt!
 Jums nav atļaujas izslēgt
@@ -49,7 +49,7 @@ Wi-Fi/tīkls nav savienots. Izslēgsies pēc 10 s...
 Lai atlasītu dziesmas, skenējiet QR kodu vai izveidojiet savienojumu ar
 Televizora displejam izveidojiet savienojumu ar
 Nospiediet F, lai pārslēgtu pilnekrāna režīmu
-Nospiediet ESC, lai aizvērtu OpenHomeKaraoke
+Nospiediet ESC, lai aizvērtu HomeBodyKaraoke
 Konstatēts RaspiWifiConfig iestatīšanas režīms!
 Savienojiet citu ierīci/viedtālruni ar Wifi AP: '%s'
 Pēc tam norādiet pārlūkprogrammu uz: '%s://%s%s' un izpildiet norādījumus.
@@ -60,7 +60,7 @@ Administrēšanas režīms ir piešķirts!
 Palielinot audio aizkavi, jums būs vairāk laika, lai lasītu dziesmu tekstus pirms nākamā teikuma izdziedāšanas.
 Subtitru aizkaves samazināšana dos jums vairāk laika, lai lasītu dziesmu tekstus pirms nākamā teikuma izdziedāšanas.
 Pustonis ir pazīstams arī kā pussolis. Tas ir mazākais klasiskajā Rietumu mūzikā izmantotais intervāls, kas vienāds ar oktāvas divpadsmito daļu vai pustoni.
-Ir iespējots DNN balss sadalītājs. OpenHomeKaraoke izmanto PyTorch (no Facebook), lai palaistu dziļu neironu tīklu, lai sadalītu instrumentālo un vokālo skaņu katrā ierakstā, radot stereo skaņu.
+Ir iespējots DNN balss sadalītājs. HomeBodyKaraoke izmanto PyTorch (no Facebook), lai palaistu dziļu neironu tīklu, lai sadalītu instrumentālo un vokālo skaņu katrā ierakstā, radot stereo skaņu.
 Spēlētāja vadība
 Mūzika
 Jaukti
@@ -133,7 +133,7 @@ Pieejamās dziesmas
 Vai vēlaties mainīt šīs ierīces lietotājas parādāmo vārdu? Tas tiks parādīts blakus rindā esošajām dziesmām. Pašreizējais:
 Pašreizējais lietotājs
 Iestatījumi
-OpenHomeKaraoke
+HomeBodyKaraoke
 Vai tiešām vēlaties atmest?
 Vai tiešām vēlaties aizvērt?
 Vai tiešām vēlaties atsāknēt?
@@ -147,12 +147,12 @@ Atmiņa
 Ekrāna tveršana
 Vokālais sadalītājs
 Youtube-dl (yt-dlp) versija
-OpenHomeKaraoke versija
+HomeBodyKaraoke versija
 Papildu vadības opcijas
 Vokālā sadalītāja režīms:
 Izmantojiet L-R/L+R
 Izmantojiet DNN
-Standarta MTV audio ir divi stereo kanāli (L un R), kas kodēti tā, ka: L-R ir instrumenta celiņš, L+R ir vokālais celiņš. Tādējādi, vienkārši atņemot vai pievienojot divus stereo kanālus, mēs varam iegūt instrumentālo un vokālo celiņu mono skaņā. OpenHomeKaraoke iebūvētais DNN (dziļā neironu tīkla) balss sadalītājs izmanto AI algoritmu, lai sadalītu instrumentālo un vokālo skaņu katrā stereo celiņā neatkarīgi, tādējādi radot stereo instrumentālos un vokālos ierakstus.
+Standarta MTV audio ir divi stereo kanāli (L un R), kas kodēti tā, ka: L-R ir instrumenta celiņš, L+R ir vokālais celiņš. Tādējādi, vienkārši atņemot vai pievienojot divus stereo kanālus, mēs varam iegūt instrumentālo un vokālo celiņu mono skaņā. HomeBodyKaraoke iebūvētais DNN (dziļā neironu tīkla) balss sadalītājs izmanto AI algoritmu, lai sadalītu instrumentālo un vokālo skaņu katrā stereo celiņā neatkarīgi, tādējādi radot stereo instrumentālos un vokālos ierakstus.
 Apturiet sadalītāju
 Restartējiet Splitter
 Balss sadalītājs (kas atbalsta gan uz DNN balstītu, gan stereo atņemšanu) darbojas kā atsevišķs process fonā, ģenerējot instrumentālo/vokālo audio failu katrai dziesmai.
@@ -162,19 +162,19 @@ Restartējiet programmu Streamer
 Tas ietekmē tikai KTV atskaņošanu, izmantojot tīmekļa pārlūkprogrammu. Ekrāna tveršanas un straumēšanas restartēšana uzlabo audio/video sinhronizāciju, kā arī samazina latentumu starp serveri un pārlūkprogrammu.
 Atsvaidziniet dziesmu sarakstu:
 Atkārtoti skenēt dziesmu direktoriju
-Tas jādara tikai tad, ja manuāli kopējāt failus lejupielādes direktorijā, kamēr darbojās OpenHomeKaraoke.
+Tas jādara tikai tad, ja manuāli kopējāt failus lejupielādes direktorijā, kamēr darbojās HomeBodyKaraoke.
 Atjauninājumi
 Ja lejupielāde vai meklēšana pārstāja darboties, youtube-dl atjaunināšana, iespējams, to novērsīs. Pašreizējā instalētā versija ir:
 Atjaunināt youtube-dl
-Ja jums nav atbilstošu faila atļauju, šī atjaunināšanas saite var nedarboties. Pārbaudiet, vai OpenHomeKaraoke žurnālā nav kļūdu.
+Ja jums nav atbilstošu faila atļauju, šī atjaunināšanas saite var nedarboties. Pārbaudiet, vai HomeBodyKaraoke žurnālā nav kļūdu.
 Izslēgt
 Nevelciet tikai aiz kontaktdakšas! Vienmēr pareizi izslēdziet serveri, lai izvairītos no datu sabojāšanas.
-Aizveriet OpenHomeKaraoke
+Aizveriet HomeBodyKaraoke
 Restartējiet sistēmu
 Izslēgšanas sistēma
 Cits
 Paplašiniet Raspberry Pi failu sistēmu
-Ja tikko instalējāt iepriekš izveidoto OpenHomeKaraoke pi attēlu un jūsu SD karte ir lielāka par 4 GB, iespējams, vēlēsities paplašināt failu sistēmu, lai izmantotu atlikušo vietu. Jums tas jādara tikai vienu reizi. Tādējādi sistēma tiks restartēta.
+Ja tikko instalējāt iepriekš izveidoto HomeBodyKaraoke pi attēlu un jūsu SD karte ir lielāka par 4 GB, iespējams, vēlēsities paplašināt failu sistēmu, lai izmantotu atlikušo vietu. Jums tas jādara tikai vienu reizi. Tādējādi sistēma tiks restartēta.
 Atspējot administratora režīmu
 Iespējot administratora režīmu
 izlogoties
@@ -185,7 +185,7 @@ Mainīt VALODU
 Lūdzu, izvēlieties valodu
 Sistēmas valoda
 Pašreizējā sistēmas valoda:
-Tas maina OpenHomeKaraoke aizmugursistēmas valodu, kas tiek parādīta TV ekrānā; turklāt katrs lietotājs, kas izveido savienojumu, var arī mainīt savu Web UI valodu, izmantojot globusa pogu augšējā labajā izvēlnē.
+Tas maina HomeBodyKaraoke aizmugursistēmas valodu, kas tiek parādīta TV ekrānā; turklāt katrs lietotājs, kas izveido savienojumu, var arī mainīt savu Web UI valodu, izmantojot globusa pogu augšējā labajā izvēlnē.
 Lejupielāde ir veiksmīgi pabeigta!
 Lejupielāde neizdevās!
 Dziesma pievienota rindai!

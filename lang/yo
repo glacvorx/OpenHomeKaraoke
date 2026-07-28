@@ -32,7 +32,7 @@ Duro
 Ṣe imudojuiwọn youtube-dl! O yẹ ki o gba iṣẹju kan tabi meji ...
 O ko ni igbanilaaye lati ṣe imudojuiwọn youtube-dl
 O ko ni igbanilaaye lati tiipa
-Pa OpenHomeKaraoke kuro ni bayi!
+Pa HomeBodyKaraoke kuro ni bayi!
 O ko ni igbanilaaye lati dawọ silẹ
 Tiipa eto bayi!
 O ko ni igbanilaaye lati tiipa
@@ -49,7 +49,7 @@ Wifi/Nẹtiwọọki ko sopọ. Tiipa ni awọn ọdun 10 ...
 Fun yiyan awọn orin, ṣayẹwo QR tabi sopọ si
 Fun ifihan TV, sopọ si
 Tẹ F lati yi iboju kikun pada
-Tẹ ESC lati da OpenHomeKaraoke silẹ
+Tẹ ESC lati da HomeBodyKaraoke silẹ
 Ipo iṣeto RaspiWifiConfig ti ṣawari!
 So ẹrọ miiran/foonuiyara pọ mọ Wifi AP: '%s'
 Lẹhinna tọka ẹrọ aṣawakiri rẹ si: '%s://%s%s' ati tẹle awọn ilana naa.
@@ -60,7 +60,7 @@ Abojuto mode funni!
 Idaduro ohun afetigbọ ti o pọ si yoo fun ọ ni akoko diẹ sii lati ka awọn orin ṣaaju ki o to kọrin gbolohun ọrọ atẹle.
 Idinku idaduro atunkọ yoo fun ọ ni akoko diẹ sii lati ka awọn orin ṣaaju ki o to kọrin gbolohun ti o tẹle.
 A tun mọ semitone bi idaji-igbesẹ kan. O jẹ aarin ti o kere julọ ti a lo ninu orin iwọ-oorun kilasika, dogba si ida kejila ti octave tabi idaji ohun orin kan.
-Pinpin ohun ti o da lori DNS ti ṣiṣẹ. OpenHomeKaraoke nlo PyTorch (nipasẹ Facebook) lati ṣiṣẹ nẹtiwọọki nkankikan ti o jinlẹ lati pin ohun elo ati ohun ohun ni orin kọọkan ti n mu ohun sitẹrio dide.
+Pinpin ohun ti o da lori DNS ti ṣiṣẹ. HomeBodyKaraoke nlo PyTorch (nipasẹ Facebook) lati ṣiṣẹ nẹtiwọọki nkankikan ti o jinlẹ lati pin ohun elo ati ohun ohun ni orin kọọkan ti n mu ohun sitẹrio dide.
 Iṣakoso ẹrọ orin
 Orin
 Adalu
@@ -147,12 +147,12 @@ Iranti
 Iboju Iboju
 T'ohun Splitter
 Youtube-dl (yt-dlp) ẹya
-OpenHomeKaraoke version
+HomeBodyKaraoke version
 Awọn aṣayan Iṣakoso ilọsiwaju
 Ipo pipin ohun:
 Lo L-R/L+R
 Lo DNS
-Ohun orin MTV boṣewa ni awọn ikanni sitẹrio meji (L ati R) ti a fi koodu si ni ọna ti: L-R jẹ orin irinse, L + R jẹ orin ohun. Nitorinaa, nipa yiyọkuro tabi ṣafikun awọn ikanni sitẹrio meji, a le gba ohun elo ati orin ohun ni ohun mono. OpenHomeKaraoke ti a ṣe sinu ipilẹ DNN (nẹtiwọọki ti o jinlẹ) pipin ohun nlo AI algorithm lati pin ohun elo ati ohun ohun ni orin sitẹrio kọọkan ni ominira ti o mu abajade ohun elo sitẹrio ati awọn orin ohun.
+Ohun orin MTV boṣewa ni awọn ikanni sitẹrio meji (L ati R) ti a fi koodu si ni ọna ti: L-R jẹ orin irinse, L + R jẹ orin ohun. Nitorinaa, nipa yiyọkuro tabi ṣafikun awọn ikanni sitẹrio meji, a le gba ohun elo ati orin ohun ni ohun mono. HomeBodyKaraoke ti a ṣe sinu ipilẹ DNN (nẹtiwọọki ti o jinlẹ) pipin ohun nlo AI algorithm lati pin ohun elo ati ohun ohun ni orin sitẹrio kọọkan ni ominira ti o mu abajade ohun elo sitẹrio ati awọn orin ohun.
 Duro Splitter
 Tun Splitter bẹrẹ
 Pipin ohun (ti o ṣe atilẹyin mejeeji orisun-DNN ati iyokuro sitẹrio) nṣiṣẹ bi ilana lọtọ ni abẹlẹ, ti n ṣe ipilẹṣẹ ohun elo / faili ohun ohun fun gbogbo orin.
@@ -162,19 +162,19 @@ Tun Streamer bẹrẹ
 Eyi nikan kan ti ndun KTV nipasẹ ẹrọ aṣawakiri wẹẹbu. Atunbere iboju-yaworan-ati-sisanwọle ṣe imuṣiṣẹpọ ohun/fidio, o tun dinku lairi laarin olupin ati ẹrọ aṣawakiri.
 Tun akojọ orin naa sọ:
 Atunyẹwo orin liana
-O yẹ ki o nilo lati ṣe eyi nikan ti o ba da awọn faili pẹlu ọwọ si ilana igbasilẹ lakoko ti OpenHomeKaraoke nṣiṣẹ.
+O yẹ ki o nilo lati ṣe eyi nikan ti o ba da awọn faili pẹlu ọwọ si ilana igbasilẹ lakoko ti HomeBodyKaraoke nṣiṣẹ.
 Awọn imudojuiwọn
 Ti awọn igbasilẹ tabi awọn wiwa ba dẹkun ṣiṣẹ, imudojuiwọn youtube-dl yoo ṣee ṣe atunṣe. Ẹya ti a fi sori ẹrọ lọwọlọwọ jẹ:
 Ṣe imudojuiwọn youtube-dl
-Ọna asopọ imudojuiwọn loke le kuna ti o ko ba ni awọn igbanilaaye faili to dara. Ṣayẹwo OpenHomeKaraoke log fun awọn aṣiṣe.
+Ọna asopọ imudojuiwọn loke le kuna ti o ko ba ni awọn igbanilaaye faili to dara. Ṣayẹwo HomeBodyKaraoke log fun awọn aṣiṣe.
 Paade
 Maṣe fa pulọọgi naa nikan! Nigbagbogbo ku olupin rẹ daradara lati yago fun ibajẹ data.
-Jade OpenHomeKaraoke
+Jade HomeBodyKaraoke
 Atunbere System
 Tiipa System
 Omiiran
 Faagun Rasipibẹri Pi filesystem
-Ti o ba kan fi aworan OpenHomeKaraoke pi ti a ti kọ tẹlẹ sori ẹrọ ati pe kaadi SD rẹ tobi ju 4GB, o le fẹ lati faagun eto faili lati lo aaye to ku. O nilo lati ṣe eyi ni ẹẹkan. Eyi yoo tun atunbere eto naa.
+Ti o ba kan fi aworan HomeBodyKaraoke pi ti a ti kọ tẹlẹ sori ẹrọ ati pe kaadi SD rẹ tobi ju 4GB, o le fẹ lati faagun eto faili lati lo aaye to ku. O nilo lati ṣe eyi ni ẹẹkan. Eyi yoo tun atunbere eto naa.
 Pa ipo abojuto kuro
 Mu ipo alabojuto ṣiṣẹ
 jade
@@ -185,7 +185,7 @@ Yi ede pada
 Jọwọ yan ede
 Ede Eto
 Ede eto lọwọlọwọ:
-Eyi yipada ede ti OpenHomeKaraoke backend eto eyiti o han loju iboju TV; pẹlupẹlu, kọọkan asopọ olumulo tun le yi awọn oniwun wọn UI ede ni agbaiye bọtini ni awọn ọtun-oke akojọ.
+Eyi yipada ede ti HomeBodyKaraoke backend eto eyiti o han loju iboju TV; pẹlupẹlu, kọọkan asopọ olumulo tun le yi awọn oniwun wọn UI ede ni agbaiye bọtini ni awọn ọtun-oke akojọ.
 Ṣe igbasilẹ ti pari ni aṣeyọri!
 Gbigbasilẹ kuna!
 Orin kun si awọn ti isinyi!

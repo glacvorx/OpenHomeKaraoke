@@ -32,7 +32,7 @@ Joogsaday
 Cusbooneysiinta youtube-dl! Waa inay qaadataa hal ama laba daqiiqo...
 Ma haysatid fasax aad ku cusbooneysiiso youtube-dl
 Ma haysatid fasax aad ku xidhid
-Joojinta OpenHomeKaraoke hadda!
+Joojinta HomeBodyKaraoke hadda!
 Ma haysatid fasax aad ku joojiso
 Deminta nidaamka hadda!
 Ma haysatid fasax aad ku xidhid
@@ -49,7 +49,7 @@ Wifi/Shabakad kuma xidhna La xirayo 10s ka...
 Xulashada heesaha, sawir QR ama ku xidh
 Bandhigga TV-ga, ku xidh
 Riix F si aad u rogto shaashadda buuxda
-Taabo ESC si aad uga baxdo OpenHomeKaraoke
+Taabo ESC si aad uga baxdo HomeBodyKaraoke
 Habka dejinta RaspiWifiConfig waa la helay!
 Ku xidh qalab kale/taleefanka casriga ah Wifi AP: '%s'
 Kadibna u fiiq browser-keeda: '%s://%s%s' oo raac tilmaamaha.
@@ -60,7 +60,7 @@ Habka maamulka waa la siiyay!
 Kordhinta daahitaanka maqalku waxay ku siin doontaa wakhti dheeraad ah oo aad ku akhrido erayada ka hor intaadan heesin jumlada xigta.
 Hoos u dhigista daahitaanka qoraal-hoosaadku waxay ku siin doontaa wakhti dheeraad ah oo aad ku akhrido erayada ka hor intaadan heesin jumlada xigta.
 Semitone sidoo kale waxaa loo yaqaannaa tallaabo nus ah. Waa inta u dhexaysa ugu yar ee loo isticmaalo muusiga reer galbeedka ee qadiimiga ah, oo la mid ah laba iyo tobnaad ee octave ama codka badhkii.
-Qaybiyaha codka ku salaysan ee DNS waa la dajiyay OpenHomeKaraoke waxay isticmaashaa PyTorch (ee Facebook) si ay u socodsiiso shabakad neerfaha qoto dheer si ay u kala qaybiso dhawaaqa qalabka iyo codka ee waddo kasta oo kor u qaada codka stereo.
+Qaybiyaha codka ku salaysan ee DNS waa la dajiyay HomeBodyKaraoke waxay isticmaashaa PyTorch (ee Facebook) si ay u socodsiiso shabakad neerfaha qoto dheer si ay u kala qaybiso dhawaaqa qalabka iyo codka ee waddo kasta oo kor u qaada codka stereo.
 Xakamaynta Ciyaartoyga
 Muusiga
 Isku dhafan
@@ -152,7 +152,7 @@ Doorashooyinka Sare ee Xakamaynta
 Habka qaybiyaha codka:
 Isticmaal L-R/L+R
 Isticmaal DNS
-Maqalka caadiga ah ee MTV waxa uu leeyahay labada kanaal ee isteeriyo (L iyo R) oo loo habeeyey si ay: L-R waa track-ga qalabka, L+R waa raad-raaca codka. Haddaba, innaga oo si fudud u kala jaraya ama ku daraya labada kanaal ee isteeriyo, waxa aynu ku heli karnaa qalab-qalabka iyo codka dhawaaqa mono. OpenHomeKaraoke ee ku dhisan DNN-ku-saleysan (shabakadda neerfaha qoto dheer) qaybiyaha codka wuxuu adeegsadaa AI algorithm si uu u kala qaybiyo dhawaaqa qalabka iyo codka ee raadad kasta oo stereo ah si madax-bannaan taasoo keentay qalab stereo ah iyo raad-raac dhawaaqeed.
+Maqalka caadiga ah ee MTV waxa uu leeyahay labada kanaal ee isteeriyo (L iyo R) oo loo habeeyey si ay: L-R waa track-ga qalabka, L+R waa raad-raaca codka. Haddaba, innaga oo si fudud u kala jaraya ama ku daraya labada kanaal ee isteeriyo, waxa aynu ku heli karnaa qalab-qalabka iyo codka dhawaaqa mono. HomeBodyKaraoke ee ku dhisan DNN-ku-saleysan (shabakadda neerfaha qoto dheer) qaybiyaha codka wuxuu adeegsadaa AI algorithm si uu u kala qaybiyo dhawaaqa qalabka iyo codka ee raadad kasta oo stereo ah si madax-bannaan taasoo keentay qalab stereo ah iyo raad-raac dhawaaqeed.
 Jooji Kala-bax
 Dib u bilow Splitter
 Kala qaybisa codka (ta taageerta labada ku salaysan DNN iyo kala goynta stereo) waxay u shaqeysaa sidii hab gooni ah oo gadaal ka jira, isaga oo soo saaraya galka maqalka qalabka/codka ee hees kasta.
@@ -162,19 +162,19 @@ Dib u bilow Streamer
 Tani waxay kaliya saamaynaysaa ku ciyaarista KTV iyada oo loo marayo browserka webka. Dib u bilaabida shaashada-qabsashada-iyo-qulqulka waxay wanaajisaa wada shaqaynta maqalka/muuqaalka, waxay sidoo kale hoos u dhigtaa daahitaanka u dhexeeya server-ka iyo browserka.
 Dib u cusboonaysii liiska heesta:
 Dib u baadh hagaha heesaha
-Waa inaad tan samaysaa oo keliya haddii aad gacanta ku koobisay faylasha hagaha soo dejinta iyadoo OpenHomeKaraoke uu soconayo.
+Waa inaad tan samaysaa oo keliya haddii aad gacanta ku koobisay faylasha hagaha soo dejinta iyadoo HomeBodyKaraoke uu soconayo.
 Cusbooneysii
 Haddii soo dejinta ama raadinta ay joojiyaan shaqada, cusboonaysiinta youtube-dl waxay u badan tahay inay hagaajin doonto. Nooca hadda la rakibay waa:
 Cusbooneysii youtube-dl
-Xidhiidhkan cusboonaysiinta ee sare waxa laga yaabaa inuu guul-darraysto haddii aanad haysan oggolaansho fayl habboon. Ka hubi diiwaanka OpenHomeKaraoke khaladaadka.
+Xidhiidhkan cusboonaysiinta ee sare waxa laga yaabaa inuu guul-darraysto haddii aanad haysan oggolaansho fayl habboon. Ka hubi diiwaanka HomeBodyKaraoke khaladaadka.
 Bakhtii
 Kaliya ha jiidin balka! Had iyo jeer xidh server-kaaga si sax ah si aad uga fogaato musuqmaasuqa xogta.
-Jooji OpenHomeKaraoke
+Jooji HomeBodyKaraoke
 Nidaamka dib u soo kabashada
 Nidaamka Xiritaanka
 Mid kale
 Kordhi nidaamka faylka Raspberry Pi
-Haddii aad hadda rakibtay sawirka OpenHomeKaraoke pi ee horay loo dhisay kaarka SD-gaaguna uu ka weyn yahay 4GB, waxaa laga yaabaa inaad rabto inaad balaadhiso nidaamka faylka si aad uga faa'iidaysato meesha hadhay. Waxa aad u baahan tahay inaad tan samayso hal mar. Tani waxay dib u bilaabi doontaa nidaamka.
+Haddii aad hadda rakibtay sawirka HomeBodyKaraoke pi ee horay loo dhisay kaarka SD-gaaguna uu ka weyn yahay 4GB, waxaa laga yaabaa inaad rabto inaad balaadhiso nidaamka faylka si aad uga faa'iidaysato meesha hadhay. Waxa aad u baahan tahay inaad tan samayso hal mar. Tani waxay dib u bilaabi doontaa nidaamka.
 Dami qaabka maamulka
 Daar habka maamulka
 ka bax
@@ -185,7 +185,7 @@ Beddel luqadda
 Fadlan door luqadda
 Luuqadda Nidaamka
 Luuqadda nidaamka hadda:
-Tani waxay bedeshaa luqadda nidaamka dhabarka dambe ee OpenHomeKaraoke kaas oo lagu soo bandhigo shaashadda TV-ga; Intaa waxaa dheer, isticmaale kasta oo isku xira ayaa sidoo kale beddeli kara luqaddooda Shabakadda UI ee badhanka adduunka ee menu-ka sare ee midig.
+Tani waxay bedeshaa luqadda nidaamka dhabarka dambe ee HomeBodyKaraoke kaas oo lagu soo bandhigo shaashadda TV-ga; Intaa waxaa dheer, isticmaale kasta oo isku xira ayaa sidoo kale beddeli kara luqaddooda Shabakadda UI ee badhanka adduunka ee menu-ka sare ee midig.
 Soo dejintu waxay dhammaatay si guul leh!
 Soo dejintu way fashilantay!
 Hees ayaa lagu daray safka!

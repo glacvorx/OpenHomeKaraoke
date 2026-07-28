@@ -32,7 +32,7 @@ Zatrzymany
 Aktualizacja youtube-dl! Powinno zająć minutę lub dwie...
 Nie masz uprawnień do aktualizacji youtube-dl
 Nie masz pozwolenia na zamknięcie
-Opuszczam teraz OpenHomeKaraoke!
+Opuszczam teraz HomeBodyKaraoke!
 Nie masz pozwolenia na rezygnację
 Zamykam system, teraz!
 Nie masz pozwolenia na zamknięcie
@@ -49,7 +49,7 @@ Wi-Fi/sieć nie jest podłączona. Wyłączenie za 10 s...
 Aby wybrać utwory, zeskanuj kod QR lub połącz się z
 Aby wyświetlić telewizor, podłącz do
 Naciśnij F, aby przełączyć na pełny ekran
-Naciśnij ESC, aby wyjść z OpenHomeKaraoke
+Naciśnij ESC, aby wyjść z HomeBodyKaraoke
 Wykryto tryb konfiguracji RaspiWifiConfig!
 Podłącz inne urządzenie/smartfon do punktu dostępowego Wi-Fi: „%s”
 Następnie wskaż przeglądarkę na: „%s://%s%s” i postępuj zgodnie z instrukcjami.
@@ -60,7 +60,7 @@ Tryb administratora przyznany!
 Zwiększenie opóźnienia dźwięku zapewni więcej czasu na przeczytanie tekstu przed wyśpiewaniem kolejnego zdania.
 Zmniejszenie opóźnienia napisów zapewni więcej czasu na przeczytanie tekstu przed wyśpiewaniem kolejnego zdania.
 Półton jest również nazywany półtonem. Jest to najmniejszy interwał używany w klasycznej muzyce zachodniej, równy dwunastej oktawie lub pół tonu.
-Rozdzielacz wokalu oparty na DNN jest włączony. OpenHomeKaraoke wykorzystuje PyTorch (z Facebooka) do uruchomienia głębokiej sieci neuronowej w celu rozdzielenia dźwięku instrumentalnego i wokalnego w każdej ścieżce, tworząc dźwięk stereo.
+Rozdzielacz wokalu oparty na DNN jest włączony. HomeBodyKaraoke wykorzystuje PyTorch (z Facebooka) do uruchomienia głębokiej sieci neuronowej w celu rozdzielenia dźwięku instrumentalnego i wokalnego w każdej ścieżce, tworząc dźwięk stereo.
 Kontrola gracza
 Muzyka
 Mieszany
@@ -147,12 +147,12 @@ Pamięć
 Zrzut ekranu
 Rozdzielacz wokalny
 Wersja Youtube-dl (yt-dlp).
-Wersja OpenHomeKaraoke
+Wersja HomeBodyKaraoke
 Zaawansowane opcje sterowania
 Tryb rozdzielacza wokalu:
 Użyj L-R/L+R
 Skorzystaj z DNN
-Standardowy dźwięk MTV ma dwa kanały stereo (L i R) zakodowane w taki sposób, że: L-R to ścieżka instrumentu, L+R to ścieżka wokalu. Zatem po prostu odejmując lub dodając dwa kanały stereo, możemy uzyskać ścieżkę instrumentalną i wokalną w dźwięku monofonicznym. Wbudowany w OpenHomeKaraoke rozdzielacz wokalu oparty na DNN (głębokiej sieci neuronowej) wykorzystuje algorytm AI do niezależnego dzielenia dźwięku instrumentalnego i wokalnego w każdej ścieżce stereo, co daje stereofoniczne ścieżki instrumentalne i wokalne.
+Standardowy dźwięk MTV ma dwa kanały stereo (L i R) zakodowane w taki sposób, że: L-R to ścieżka instrumentu, L+R to ścieżka wokalu. Zatem po prostu odejmując lub dodając dwa kanały stereo, możemy uzyskać ścieżkę instrumentalną i wokalną w dźwięku monofonicznym. Wbudowany w HomeBodyKaraoke rozdzielacz wokalu oparty na DNN (głębokiej sieci neuronowej) wykorzystuje algorytm AI do niezależnego dzielenia dźwięku instrumentalnego i wokalnego w każdej ścieżce stereo, co daje stereofoniczne ścieżki instrumentalne i wokalne.
 Zatrzymaj Splittera
 Uruchom ponownie Splitter
 Rozdzielacz wokalu (obsługujący zarówno odejmowanie oparte na DNN, jak i stereo) działa jako oddzielny proces w tle, generując plik audio instrumentalny/wokalny dla każdego utworu.
@@ -162,19 +162,19 @@ Uruchom ponownie Streamera
 Dotyczy to wyłącznie odtwarzania KTV za pośrednictwem przeglądarki internetowej. Ponowne uruchomienie przechwytywania i przesyłania strumieniowego ekranu poprawia synchronizację audio/wideo, a także zmniejsza opóźnienie między serwerem a przeglądarką.
 Odśwież listę utworów:
 Przeskanuj ponownie katalog utworów
-Powinieneś to zrobić tylko wtedy, gdy ręcznie skopiowałeś pliki do katalogu pobierania podczas działania OpenHomeKaraoke.
+Powinieneś to zrobić tylko wtedy, gdy ręcznie skopiowałeś pliki do katalogu pobierania podczas działania HomeBodyKaraoke.
 Aktualizacje
 Jeśli pobieranie lub wyszukiwanie przestanie działać, aktualizacja youtube-dl prawdopodobnie to naprawi. Aktualnie zainstalowana wersja to:
 Zaktualizuj youtube-dl
-Powyższy link do aktualizacji może się nie powieść, jeśli nie masz odpowiednich uprawnień do plików. Sprawdź dziennik OpenHomeKaraoke pod kątem błędów.
+Powyższy link do aktualizacji może się nie powieść, jeśli nie masz odpowiednich uprawnień do plików. Sprawdź dziennik HomeBodyKaraoke pod kątem błędów.
 Zamknięcie
 Nie tylko wyciągaj wtyczkę! Zawsze prawidłowo zamykaj serwer, aby uniknąć uszkodzenia danych.
-Zakończ OpenHomeKaraoke
+Zakończ HomeBodyKaraoke
 Uruchom ponownie system
 System wyłączania
 Inny
 Rozwiń system plików Raspberry Pi
-Jeśli właśnie zainstalowałeś gotowy obraz pi OpenHomeKaraoke, a Twoja karta SD jest większa niż 4 GB, możesz rozszerzyć system plików, aby wykorzystać pozostałe miejsce. Wystarczy to zrobić tylko raz. Spowoduje to ponowne uruchomienie systemu.
+Jeśli właśnie zainstalowałeś gotowy obraz pi HomeBodyKaraoke, a Twoja karta SD jest większa niż 4 GB, możesz rozszerzyć system plików, aby wykorzystać pozostałe miejsce. Wystarczy to zrobić tylko raz. Spowoduje to ponowne uruchomienie systemu.
 Wyłącz tryb administratora
 Włącz tryb administratora
 Wyloguj
@@ -185,7 +185,7 @@ Zmień język
 Proszę wybrać język
 Język systemu
 Aktualny język systemu:
-Spowoduje to zmianę języka systemu zaplecza OpenHomeKaraoke wyświetlanego na ekranie telewizora; co więcej, każdy łączący się użytkownik może również zmienić swój język interfejsu WWW za pomocą przycisku kuli ziemskiej w prawym górnym menu.
+Spowoduje to zmianę języka systemu zaplecza HomeBodyKaraoke wyświetlanego na ekranie telewizora; co więcej, każdy łączący się użytkownik może również zmienić swój język interfejsu WWW za pomocą przycisku kuli ziemskiej w prawym górnym menu.
 Pobieranie zakończone pomyślnie!
 Pobieranie nie udane!
 Piosenka dodana do kolejki!

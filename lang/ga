@@ -32,7 +32,7 @@ Stopadh
 Youtube-dl á nuashonrú! Ba cheart go dtógfadh sé nóiméad nó dhó...
 Níl cead agat youtube-dl a nuashonrú
 Níl cead agat dúnadh
-Ag éirí as OpenHomeKaraoke anois!
+Ag éirí as HomeBodyKaraoke anois!
 Níl cead agat éirí as
 Córas múchadh anois!
 Níl cead agat dúnadh
@@ -49,7 +49,7 @@ Wifi/Líonra nach bhfuil ceangailte. A mhúchadh i 10s...
 Chun amhráin a roghnú, scanadh QR nó ceangail leis
 Le haghaidh taispeáint teilifíse, ceangail le
 Brúigh F chun lánscáileán a scoránú
-Brúigh ESC chun OpenHomeKaraoke a scor
+Brúigh ESC chun HomeBodyKaraoke a scor
 Braitheadh ​​mód socraithe RaspiWifiConfig!
 Ceangail gléas/fón cliste eile leis an AP Wifi: '%s'
 Ansin pointeáil a bhrabhsálaí chuig: '%s://%s%s' agus lean na treoracha.
@@ -60,7 +60,7 @@ Mód riaracháin ceadaithe!
 Má mhéadaítear moille fuaime, tabharfar níos mó ama duit chun liricí a léamh sula gcanann tú an chéad abairt eile.
 Má laghdaítear an mhoill ar fhotheideal beidh níos mó ama agat chun liricí a léamh sula gcanfaidh tú an chéad abairt eile.
 Tugtar leathchéim ar leath-thón freisin. Is é an t-eatramh is lú a úsáidtear i gceol clasaiceach an Iarthair é, arb ionann é agus an dóú cuid déag d’ochtábh nó leath ton.
-Tá scoilteoir gutha bunaithe ar DNN cumasaithe. Úsáideann OpenHomeKaraoke PyTorch (le Facebook) chun líonra néarach domhain a reáchtáil chun fuaim uirlise agus gutha a roinnt i ngach rian as a dtagann fuaim steirió.
+Tá scoilteoir gutha bunaithe ar DNN cumasaithe. Úsáideann HomeBodyKaraoke PyTorch (le Facebook) chun líonra néarach domhain a reáchtáil chun fuaim uirlise agus gutha a roinnt i ngach rian as a dtagann fuaim steirió.
 Rialú Imreoir
 Ceol
 Measctha
@@ -133,7 +133,7 @@ Amhráin ar Fáil
 Ar mhaith leat ainm taispeána an duine a úsáideann an gléas seo a athrú? Taispeánfar é seo in aice leis na hamhráin atá i scuaine. Reatha:
 Úsáideoir reatha
 Socruithe
-OpenHomeKaraoke
+HomeBodyKaraoke
 An bhfuil tú cinnte gur mhaith leat éirí as?
 An bhfuil tú cinnte gur mhaith leat dúnadh?
 An bhfuil tú cinnte gur mhaith leat a atosú?
@@ -147,12 +147,12 @@ Cuimhne
 Gabháil Scáileáin
 Scoilteoir gutha
 Leagan Youtube-dl (yt-dlp).
-OpenHomeKaraoke leagan
+HomeBodyKaraoke leagan
 Ardroghanna Rialaithe
 Mód scoilteoir gutha:
 Úsáid L-R/L+R
 Úsáid DNN
-Tá an dá chainéal steirió (L agus R) ionchódaithe i bhfuaim chaighdeánach MTV sa chaoi seo a leanas: Is é L-R an rian uirlise, is é L+R an rian gutha. Mar sin, tríd an dá bhealach steirió a dhealú nó a chur leis, is féidir linn an rian uirlise agus gutha a fháil i bhfuaim mona. Úsáideann scoilteoir gutha ionsuite DNN (líonra domhain néarúil) OpenHomeKaraoke algartam AI chun fuaim uirlise agus gutha a roinnt i ngach rian steirió go neamhspleách agus mar thoradh ar rianta steirió uirlise agus gutha.
+Tá an dá chainéal steirió (L agus R) ionchódaithe i bhfuaim chaighdeánach MTV sa chaoi seo a leanas: Is é L-R an rian uirlise, is é L+R an rian gutha. Mar sin, tríd an dá bhealach steirió a dhealú nó a chur leis, is féidir linn an rian uirlise agus gutha a fháil i bhfuaim mona. Úsáideann scoilteoir gutha ionsuite DNN (líonra domhain néarúil) HomeBodyKaraoke algartam AI chun fuaim uirlise agus gutha a roinnt i ngach rian steirió go neamhspleách agus mar thoradh ar rianta steirió uirlise agus gutha.
 Stop Scoilteoir
 Atosaigh Scoilteoir
 Ritheann an scoilteoir gutha (a thacaíonn le dealú DNN-bhunaithe agus steirió araon) mar phróiseas ar leith sa chúlra, ag giniúint comhad fuaime uirlise / gutha do gach amhrán.
@@ -162,19 +162,19 @@ Atosaigh Streamer
 Ní dhéanann sé seo ach difear do imirt KTV trí bhrabhsálaí gréasáin. Feabhsaítear an sioncronú fuaime/físeán má atosaítear an scáileán-gabháil-agus-sruthú, laghdaítear an foighne idir an freastalaí agus an brabhsálaí freisin.
 Athnuaigh an liosta amhrán:
 Athscan eolaire amhrán
-Níor cheart go mbeadh ort é seo a dhéanamh ach amháin má chóipeáil tú comhaid de láimh chuig an eolaire íoslódála agus OpenHomeKaraoke ar siúl.
+Níor cheart go mbeadh ort é seo a dhéanamh ach amháin má chóipeáil tú comhaid de láimh chuig an eolaire íoslódála agus HomeBodyKaraoke ar siúl.
 Nuashonruithe
 Mura n-oibríonn íoslódálacha nó cuardaigh ag obair, is dócha go socróidh nuashonrú youtube-dl é. Is é an leagan suiteáilte reatha ná:
 Nuashonraigh youtube-dl
-Seans go dteipfidh ar an nasc nuashonraithe seo thuas mura bhfuil cead comhaid chuí agat. Seiceáil logáil OpenHomeKaraoke le haghaidh earráidí.
+Seans go dteipfidh ar an nasc nuashonraithe seo thuas mura bhfuil cead comhaid chuí agat. Seiceáil logáil HomeBodyKaraoke le haghaidh earráidí.
 Múchadh
 Ná tarraing an breiseán díreach! Dún do fhreastalaí síos i gceart i gcónaí chun éilliú sonraí a sheachaint.
-Scoir OpenHomeKaraoke
+Scoir HomeBodyKaraoke
 Córas Atosaigh
 Córas múchta
 Eile
 Leathnaigh córas comhaid Raspberry Pi
-Má tá tú díreach tar éis an íomhá pi OpenHomeKaraoke réamhthógtha a shuiteáil agus go bhfuil do chárta SD níos mó ná 4GB, b'fhéidir gur mhaith leat an córas comhaid a leathnú chun an spás atá fágtha a úsáid. Ní mór duit é seo a dhéanamh ach uair amháin. Atosóidh sé seo an córas.
+Má tá tú díreach tar éis an íomhá pi HomeBodyKaraoke réamhthógtha a shuiteáil agus go bhfuil do chárta SD níos mó ná 4GB, b'fhéidir gur mhaith leat an córas comhaid a leathnú chun an spás atá fágtha a úsáid. Ní mór duit é seo a dhéanamh ach uair amháin. Atosóidh sé seo an córas.
 Díchumasaigh mód riaracháin
 Cumasaigh mód riaracháin
 Logáil Amach
@@ -185,7 +185,7 @@ Athrú Teanga
 Roghnaigh teanga le do thoil
 Teanga an Chórais
 Teanga an chórais reatha:
-Athraíonn sé seo teanga an chórais backend OpenHomeKaraoke a thaispeánfar ar scáileán na teilifíse; ina theannta sin, is féidir le gach úsáideoir nasctha a dteanga Chomhéadain Gréasáin faoi seach a athrú freisin sa chnaipe cruinne sa roghchlár ar dheis.
+Athraíonn sé seo teanga an chórais backend HomeBodyKaraoke a thaispeánfar ar scáileán na teilifíse; ina theannta sin, is féidir le gach úsáideoir nasctha a dteanga Chomhéadain Gréasáin faoi seach a athrú freisin sa chnaipe cruinne sa roghchlár ar dheis.
 Íosluchtú críochnaithe go rathúil!
 Theip ar an íoslódáil!
 Amhrán curtha leis an scuaine!

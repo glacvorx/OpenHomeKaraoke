@@ -32,7 +32,7 @@ Fermatu
 Aghjurnà youtube-dl! Duverebbe piglià un minutu o dui ...
 Ùn avete micca permessu di aghjurnà youtube-dl
 Ùn avete micca permessu di chjude
-Abbandunà OpenHomeKaraoke avà!
+Abbandunà HomeBodyKaraoke avà!
 Ùn avete micca permessu di abbandunà
 Chiudi u sistema avà!
 Ùn avete micca permessu di chjude
@@ -49,7 +49,7 @@ Wifi / Rete micca cunnessu. Chiude in 10s...
 Per selezziunà e canzoni, scansione QR o cunnetta
 Per a visualizazione di TV, cunnette à
 Pulsà F per cambià a pantalla piena
-Press ESC per abbandunà OpenHomeKaraoke
+Press ESC per abbandunà HomeBodyKaraoke
 U modu di installazione di RaspiWifiConfig rilevatu!
 Cunnette un altru dispositivu/smartphone à l'AP Wifi: '%s'
 Dopu puntate u so navigatore à: '%s://%s%s' è seguite e struzzioni.
@@ -60,7 +60,7 @@ Modu amministratore cuncessu!
 L'aumentu di u ritardu audio vi darà più tempu per leghje e parole prima di cantà a prossima frase.
 A diminuzione di u ritardu di i sottotitoli vi darà più tempu per leghje e parole prima di cantà a prossima frase.
 Un semitone hè ancu cunnisciutu cum'è mezzu passu. Hè u più chjucu intervallu utilizatu in a musica classica occidentale, uguali à un dodicesimu d'ottava o a mità di tonu.
-U splitter vocale basatu in DNN hè attivatu. OpenHomeKaraoke usa PyTorch (da Facebook) per eseguisce una rete neurale profonda per sparghje u sonu strumentale è vocale in ogni traccia chì dà origine à un sonu stereo.
+U splitter vocale basatu in DNN hè attivatu. HomeBodyKaraoke usa PyTorch (da Facebook) per eseguisce una rete neurale profonda per sparghje u sonu strumentale è vocale in ogni traccia chì dà origine à un sonu stereo.
 Cuntrolla di u ghjucatore
 Musica
 mistu
@@ -133,7 +133,7 @@ Canzoni dispunibuli
 Vulete cambià u nome di visualizazione di a persona chì usa stu dispusitivu? Questu apparirà accantu à e canzoni in fila. attuale:
 Utente attuale
 Settings
-OpenHomeKaraoke
+HomeBodyKaraoke
 Sò sicuru chì vulete lascià?
 Sò sicuru chì vulete chjude ?
 Sò sicuru chì vulete riavvià ?
@@ -147,12 +147,12 @@ Memoria
 Screen Capture
 Splitter vocale
 Versione Youtube-dl (yt-dlp).
-Versione OpenHomeKaraoke
+Versione HomeBodyKaraoke
 Opzioni di cuntrollu avanzatu
 Modu di splitter vocale:
 Utilizà L-R/L+R
 Aduprate DNN
-L'audio MTV standard hà i dui canali stereo (L è R) codificati in modu chì: L-R hè a traccia di l'instrumentu, L + R hè a traccia vocale. Cusì, solu sottumettendu o aghjunghjendu i dui canali stereo, pudemu uttene a pista instrumentale è vocale in u sonu mono. U splitter vocale integratu basatu in DNN (rete neurale profonda) di OpenHomeKaraoke usa l'algoritmu AI per sparghje u sonu strumentale è vocale in ogni traccia stereo in modu indipindenti, risultatu in tracce strumentali è vocali stereo.
+L'audio MTV standard hà i dui canali stereo (L è R) codificati in modu chì: L-R hè a traccia di l'instrumentu, L + R hè a traccia vocale. Cusì, solu sottumettendu o aghjunghjendu i dui canali stereo, pudemu uttene a pista instrumentale è vocale in u sonu mono. U splitter vocale integratu basatu in DNN (rete neurale profonda) di HomeBodyKaraoke usa l'algoritmu AI per sparghje u sonu strumentale è vocale in ogni traccia stereo in modu indipindenti, risultatu in tracce strumentali è vocali stereo.
 Stop Splitter
 Riavvia Splitter
 U splitter vocale (chì supporta a sottrazione basata in DNN è stereo) funziona cum'è un prucessu separatu in u sfondate, generendu un schedariu audio instrumentale / vocale per ogni canzone.
@@ -162,19 +162,19 @@ Riavvia Streamer
 Questu solu afecta à ghjucà KTV via navigatore web. Riavvia a screen-capture-and-streaming mellora a sincronizazione audio / video, diminuisce ancu a latenza trà u servitore è u navigatore.
 Refresh a lista di canzoni:
 Rescannu u repertoriu di canzone
-Duvete bisognu di fà questu solu s'ellu avete copiatu manualmente i schedari à u cartulare di scaricamentu mentre OpenHomeKaraoke era in esecuzione.
+Duvete bisognu di fà questu solu s'ellu avete copiatu manualmente i schedari à u cartulare di scaricamentu mentre HomeBodyKaraoke era in esecuzione.
 Aghjurnamenti
 Se i scaricamenti o e ricerche anu cessatu di travaglià, l'aghjurnamentu di youtube-dl probabilmente risolverà. A versione installata attuale hè:
 Aghjurnate youtube-dl
-Stu ligame di l'aghjurnamentu sopra pò fallu s'ellu ùn avete micca permessi adatti à u schedariu. Verificate u log OpenHomeKaraoke per errori.
+Stu ligame di l'aghjurnamentu sopra pò fallu s'ellu ùn avete micca permessi adatti à u schedariu. Verificate u log HomeBodyKaraoke per errori.
 Chjodi
 Ùn tirate micca solu u plug! Sempre chjude u vostru servitore bè per evità a corruzzione di dati.
-Quit OpenHomeKaraoke
+Quit HomeBodyKaraoke
 Reboot System
 Sistema di arrestu
 Altru
 Espandi u sistema di file Raspberry Pi
-Se avete appena installatu l'imagine OpenHomeKaraoke pi pre-custruita è a vostra carta SD hè più grande di 4GB, pudete vulete espansione u filesystem per utilizà u spaziu restante. Solu bisognu di fà questu una volta. Questu riavviarà u sistema.
+Se avete appena installatu l'imagine HomeBodyKaraoke pi pre-custruita è a vostra carta SD hè più grande di 4GB, pudete vulete espansione u filesystem per utilizà u spaziu restante. Solu bisognu di fà questu una volta. Questu riavviarà u sistema.
 Disattivà u modu di amministratore
 Attivà u modu amministratore
 scunnettà si
@@ -185,7 +185,7 @@ Cambia lingua
 Per piacè sceglite a lingua
 Lingua di sistema
 Lingua di u sistema attuale:
-Questu cambia a lingua di u sistema di backend OpenHomeKaraoke chì si vede nantu à u screnu TV; in più, ogni utilizatore di cunnessione pò ancu cambià a so lingua rispettiva Web UI in u buttone globu in u menù di u dirittu-top.
+Questu cambia a lingua di u sistema di backend HomeBodyKaraoke chì si vede nantu à u screnu TV; in più, ogni utilizatore di cunnessione pò ancu cambià a so lingua rispettiva Web UI in u buttone globu in u menù di u dirittu-top.
 Scaricamentu cumpletu cù successu!
 Scaricamentu fiascatu!
 Canzona aghjunta à a fila !

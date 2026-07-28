@@ -32,7 +32,7 @@ Gestoppt
 Aktualisiere youtube-dl! Sollte ein bis zwei Minuten dauern...
 Du hast keine Berechtigung, youtube-dl zu aktualisieren
 Sie haben keine Berechtigung zum Herunterfahren
-Beenden Sie OpenHomeKaraoke jetzt!
+Beenden Sie HomeBodyKaraoke jetzt!
 Sie haben keine Berechtigung zum Beenden
 System jetzt herunterfahren!
 Sie haben keine Berechtigung zum Herunterfahren
@@ -49,7 +49,7 @@ WLAN/Netzwerk nicht verbunden. Abschaltung in 10 Sekunden...
 Um Songs auszuwählen, scannen Sie QR oder stellen Sie eine Verbindung her
 Für die TV-Anzeige schließen Sie an
 Drücken Sie F, um zum Vollbildmodus umzuschalten
-Drücken Sie ESC, um OpenHomeKaraoke zu beenden
+Drücken Sie ESC, um HomeBodyKaraoke zu beenden
 RaspiWifiConfig-Setup-Modus erkannt!
 Verbinden Sie ein anderes Gerät/Smartphone mit dem WLAN-AP: „%s“
 Richten Sie dann den Browser auf „%s://%s%s“ und befolgen Sie die Anweisungen.
@@ -60,7 +60,7 @@ Admin-Modus gewährt!
 Durch die Erhöhung der Audioverzögerung haben Sie mehr Zeit, den Liedtext zu lesen, bevor Sie den nächsten Satz vorsingen.
 Durch die Verringerung der Untertitelverzögerung haben Sie mehr Zeit, den Liedtext zu lesen, bevor Sie den nächsten Satz vorsingen.
 Ein Halbton wird auch als Halbton bezeichnet. Es ist das kleinste in der klassischen westlichen Musik verwendete Intervall und entspricht einer Zwölftel Oktave oder einem halben Ton.
-DNN-basierter Stimmsplitter ist aktiviert. OpenHomeKaraoke nutzt PyTorch (von Facebook), um ein tiefes neuronales Netzwerk zu betreiben, um den Instrumental- und Gesangsklang in jedem Track aufzuteilen und so Stereoklang zu erzeugen.
+DNN-basierter Stimmsplitter ist aktiviert. HomeBodyKaraoke nutzt PyTorch (von Facebook), um ein tiefes neuronales Netzwerk zu betreiben, um den Instrumental- und Gesangsklang in jedem Track aufzuteilen und so Stereoklang zu erzeugen.
 Spielerkontrolle
 Musik
 Gemischt
@@ -133,7 +133,7 @@ Verfügbare Songs
 Möchten Sie den Anzeigenamen der Person ändern, die dieses Gerät verwendet? Dies wird neben den Songs in der Warteschlange angezeigt. Aktuell:
 Aktueller Benutzer
 Einstellungen
-OpenHomeKaraoke
+HomeBodyKaraoke
 Sind Sie sicher, dass Sie aufhören wollen?
 Möchten Sie wirklich herunterfahren?
 Sind Sie sicher, dass Sie einen Neustart durchführen möchten?
@@ -147,12 +147,12 @@ Erinnerung
 Bildschirmaufnahme
 Gesangssplitter
 Youtube-dl (yt-dlp)-Version
-OpenHomeKaraoke-Version
+HomeBodyKaraoke-Version
 Erweiterte Steuerungsoptionen
 Vocal-Splitter-Modus:
 Verwenden Sie L-R/L+R
 Verwenden Sie DNN
-Bei Standard-MTV-Audio sind die beiden Stereokanäle (L und R) so codiert, dass: L-R die Instrumentenspur und L+R die Gesangsspur ist. Durch einfaches Subtrahieren oder Addieren der beiden Stereokanäle erhalten wir also die Instrumental- und Gesangsspur im Monoklang. Der integrierte DNN-basierte (Deep Neural Network) Gesangssplitter von OpenHomeKaraoke verwendet einen KI-Algorithmus, um den Instrumental- und Gesangsklang in jeder Stereospur unabhängig aufzuteilen, was zu Stereo-Instrumental- und Gesangsspuren führt.
+Bei Standard-MTV-Audio sind die beiden Stereokanäle (L und R) so codiert, dass: L-R die Instrumentenspur und L+R die Gesangsspur ist. Durch einfaches Subtrahieren oder Addieren der beiden Stereokanäle erhalten wir also die Instrumental- und Gesangsspur im Monoklang. Der integrierte DNN-basierte (Deep Neural Network) Gesangssplitter von HomeBodyKaraoke verwendet einen KI-Algorithmus, um den Instrumental- und Gesangsklang in jeder Stereospur unabhängig aufzuteilen, was zu Stereo-Instrumental- und Gesangsspuren führt.
 Splitter stoppen
 Splitter neu starten
 Der Gesangssplitter (der sowohl DNN-basierte als auch Stereo-Subtraktion unterstützt) läuft als separater Prozess im Hintergrund und generiert für jedes Lied eine Instrumental-/Gesangs-Audiodatei.
@@ -162,19 +162,19 @@ Streamer neu starten
 Dies betrifft nur die Wiedergabe von KTV über einen Webbrowser. Durch einen Neustart der Bildschirmaufnahme und des Streamings wird die Audio-/Videosynchronisierung verbessert und die Latenz zwischen Server und Browser verringert.
 Aktualisieren Sie die Songliste:
 Songverzeichnis erneut durchsuchen
-Dies sollte nur erforderlich sein, wenn Sie Dateien manuell in das Download-Verzeichnis kopiert haben, während OpenHomeKaraoke ausgeführt wurde.
+Dies sollte nur erforderlich sein, wenn Sie Dateien manuell in das Download-Verzeichnis kopiert haben, während HomeBodyKaraoke ausgeführt wurde.
 Aktualisierung
 Wenn Downloads oder Suchvorgänge nicht mehr funktionieren, wird das Problem wahrscheinlich durch die Aktualisierung von youtube-dl behoben. Die aktuell installierte Version ist:
 Aktualisiere youtube-dl
-Dieser Update-Link oben schlägt möglicherweise fehl, wenn Sie nicht über die entsprechenden Dateiberechtigungen verfügen. Überprüfen Sie das OpenHomeKaraoke-Protokoll auf Fehler.
+Dieser Update-Link oben schlägt möglicherweise fehl, wenn Sie nicht über die entsprechenden Dateiberechtigungen verfügen. Überprüfen Sie das HomeBodyKaraoke-Protokoll auf Fehler.
 Abschalten
 Ziehen Sie nicht einfach den Stecker! Fahren Sie Ihren Server immer ordnungsgemäß herunter, um eine Datenbeschädigung zu vermeiden.
-Beenden Sie OpenHomeKaraoke
+Beenden Sie HomeBodyKaraoke
 System neu starten
 System herunterfahren
 Andere
 Erweitern Sie das Raspberry Pi-Dateisystem
-Wenn Sie gerade das vorgefertigte OpenHomeKaraoke-Pi-Image installiert haben und Ihre SD-Karte größer als 4 GB ist, möchten Sie möglicherweise das Dateisystem erweitern, um den verbleibenden Speicherplatz zu nutzen. Sie müssen dies nur einmal tun. Dadurch wird das System neu gestartet.
+Wenn Sie gerade das vorgefertigte HomeBodyKaraoke-Pi-Image installiert haben und Ihre SD-Karte größer als 4 GB ist, möchten Sie möglicherweise das Dateisystem erweitern, um den verbleibenden Speicherplatz zu nutzen. Sie müssen dies nur einmal tun. Dadurch wird das System neu gestartet.
 Deaktivieren Sie den Admin-Modus
 Aktivieren Sie den Admin-Modus
 Ausloggen
@@ -185,7 +185,7 @@ Sprache ändern
 Bitte wählen Sie die Sprache aus
 Systemsprache
 Aktuelle Systemsprache:
-Dadurch wird die Sprache des OpenHomeKaraoke-Backend-Systems geändert, die auf dem Fernsehbildschirm angezeigt wird. Darüber hinaus kann jeder verbindende Benutzer auch seine jeweilige Web-UI-Sprache über die Globus-Schaltfläche im Menü oben rechts ändern.
+Dadurch wird die Sprache des HomeBodyKaraoke-Backend-Systems geändert, die auf dem Fernsehbildschirm angezeigt wird. Darüber hinaus kann jeder verbindende Benutzer auch seine jeweilige Web-UI-Sprache über die Globus-Schaltfläche im Menü oben rechts ändern.
 Download erfolgreich abgeschlossen!
 Herunterladen fehlgeschlagen!
 Lied zur Warteschlange hinzugefügt!

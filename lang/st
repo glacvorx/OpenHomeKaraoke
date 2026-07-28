@@ -32,7 +32,7 @@ E emisitsoe
 E nchafatsa youtube-dl! E ka nka motsotso kapa e 'meli...
 Ha u na tumello ea ho nchafatsa youtube-dl
 Ha u na tumello ea ho koala
-Ho tlohela OpenHomeKaraoke hona joale!
+Ho tlohela HomeBodyKaraoke hona joale!
 Ha u na tumello ea ho tlohela
 Ho koala sistimi hona joale!
 Ha u na tumello ea ho koala
@@ -49,7 +49,7 @@ Wifi/Network ha e hokahane. E koala ka mor'a 10s...
 Bakeng sa ho khetha lipina, hlahloba QR kapa hokela ho
 Bakeng sa pontšo ea TV, hokela ho
 Tobetsa F ho fetola skrineng se felletseng
-Tobetsa ESC ho tlohela OpenHomeKaraoke
+Tobetsa ESC ho tlohela HomeBodyKaraoke
 Mokhoa oa ho seta oa RaspiWifiConfig o fumanoe!
 Hokela sesebelisoa se seng/smartphone ho Wifi AP: '%s'
 Ebe u supa sebatli sa eona ho: '%s://%s%s' 'me u latele litaelo.
@@ -60,7 +60,7 @@ Mokhoa oa taolo o lumelletsoe!
 Ho eketsa ho lieha ha molumo ho tla u fa nako e eketsehileng ea ho bala mantsoe pele u bina polelo e latelang.
 Ho fokotsa ho lieha ha sehloohoana ho tla u fa nako e eketsehileng ea ho bala mantsoe pele u bina polelo e latelang.
 Semitone e boetse e tsejoa e le halofo ea mohato. Ke nako e nyane ka ho fetisisa e sebelisoang 'minong oa khale oa Bophirimela, e lekanang le karolo ea leshome le metso e' meli ea octave kapa halofo ea molumo.
-Sesebelisoa sa ho arola mantsoe se thehiloeng ho DNN se lumelletsoe. OpenHomeKaraoke e sebelisa PyTorch (ka Facebook) ho tsamaisa marang-rang a tebileng a methapo ea kutlo ho arola molumo oa liletsa le lentsoe pina ka 'ngoe e hlahisang molumo oa stereo.
+Sesebelisoa sa ho arola mantsoe se thehiloeng ho DNN se lumelletsoe. HomeBodyKaraoke e sebelisa PyTorch (ka Facebook) ho tsamaisa marang-rang a tebileng a methapo ea kutlo ho arola molumo oa liletsa le lentsoe pina ka 'ngoe e hlahisang molumo oa stereo.
 Taolo ea Sebapali
 Mmino
 Kopantsoeng
@@ -133,7 +133,7 @@ Lipina Tse Fumanehang
 Na u batla ho fetola lebitso la motho ea sebelisang sesebelisoa see? Sena se tla hlaha haufi le lipina tse behiloeng. Hona joale:
 Mosebelisi oa hajoale
 Litlhophiso
-OpenHomeKaraoke
+HomeBodyKaraoke
 Na ehlile u batla ho tlohela?
 Na ehlile u batla ho koala?
 Na ehlile u batla ho qala bocha?
@@ -147,12 +147,12 @@ Mohopolo
 Screen Capture
 Sekhahla sa Vocal
 Mofuta oa Youtube-dl (yt-dlp).
-Mofuta oa OpenHomeKaraoke
+Mofuta oa HomeBodyKaraoke
 Mekhoa e tsoetseng pele ea ho laola
 Mokhoa oa ho arohana ha lentsoe:
 Sebelisa L-R/L+R
 Sebelisa DNN
-Molumo o tloaelehileng oa MTV o na le likanale tse peli tsa stereo (L le R) tse kentsoeng ka tsela eo: L-R ke pina ea seletsa, L+R ke pina ea lentsoe. Kahoo, ka ho tlosa kapa ho kenyelletsa liteishene tse peli tsa stereo, re ka fumana pina ea liletsa le lentsoe ka molumo oa mono. OpenHomeKaraoke e hahelletsoeng ka hare ho DNN-based (deep neural network) vocal splitter e sebelisa algorithm ea AI ho arola molumo oa liletsa le oa lentsoe pina e 'ngoe le e 'ngoe ea stereo ka boikemelo e hlahisang liletsa tsa stereo le mantsoe.
+Molumo o tloaelehileng oa MTV o na le likanale tse peli tsa stereo (L le R) tse kentsoeng ka tsela eo: L-R ke pina ea seletsa, L+R ke pina ea lentsoe. Kahoo, ka ho tlosa kapa ho kenyelletsa liteishene tse peli tsa stereo, re ka fumana pina ea liletsa le lentsoe ka molumo oa mono. HomeBodyKaraoke e hahelletsoeng ka hare ho DNN-based (deep neural network) vocal splitter e sebelisa algorithm ea AI ho arola molumo oa liletsa le oa lentsoe pina e 'ngoe le e 'ngoe ea stereo ka boikemelo e hlahisang liletsa tsa stereo le mantsoe.
 Emisa Splitter
 Qala hape Splitter
 Moqapi oa lentsoe (o tšehetsang ho tlosoa ha DNN-based le stereo) o sebetsa e le mokhoa o arohaneng ka morao, o hlahisa faele ea molumo oa liletsa / lentsoe bakeng sa pina e 'ngoe le e 'ngoe.
@@ -162,19 +162,19 @@ Qala Streamer hape
 Sena se ama feela ho bapala KTV ka sebatli sa marang-rang. Ho qala skrini-ts'oants'o-le-streaming ho ntlafatsa khokahano ea molumo / video, hape ho fokotsa latency lipakeng tsa seva le sebatli.
 Hlahisa lenane la lipina hape:
 Hlakola bukana ea lipina hape
-U lokela ho etsa sena feela haeba u kopitsitse lifaele bukeng ea download ha OpenHomeKaraoke e ntse e sebetsa.
+U lokela ho etsa sena feela haeba u kopitsitse lifaele bukeng ea download ha HomeBodyKaraoke e ntse e sebetsa.
 Lintlafatso
 Haeba download kapa lipatlisiso li emisa ho sebetsa, ho nchafatsa youtube-dl mohlomong ho tla e lokisa. Mofuta oa hajoale o kentsoeng ke:
 Ntlafatsa youtube-dl
-Sehokelo sena sa ntlafatso se kaholimo se ka hloleha haeba o sena tumello e nepahetseng ea faele. Sheba lethathamo la OpenHomeKaraoke bakeng sa liphoso.
+Sehokelo sena sa ntlafatso se kaholimo se ka hloleha haeba o sena tumello e nepahetseng ea faele. Sheba lethathamo la HomeBodyKaraoke bakeng sa liphoso.
 Koala
 U se ke ua hula polaka feela! Kamehla koala seva ea hau hantle ho qoba bobolu ba data.
-Tlohela OpenHomeKaraoke
+Tlohela HomeBodyKaraoke
 Qala hape Sisteme
 Sistimi ea ho koala
 Tse ding
 Eketsa tsamaiso ea lifaele tsa Raspberry Pi
-Haeba u sa tsoa kenya setšoantšo sa OpenHomeKaraoke pi se hahiloeng pele 'me karete ea hau ea SD e kholo ho feta 4GB, u ka' na ua batla ho atolosa tsamaiso ea lifaele ho sebelisa sebaka se setseng. U hloka ho etsa sena hang feela. Sena se tla qala sistimi hape.
+Haeba u sa tsoa kenya setšoantšo sa HomeBodyKaraoke pi se hahiloeng pele 'me karete ea hau ea SD e kholo ho feta 4GB, u ka' na ua batla ho atolosa tsamaiso ea lifaele ho sebelisa sebaka se setseng. U hloka ho etsa sena hang feela. Sena se tla qala sistimi hape.
 Tlosa mokhoa oa admin
 Lumella mokhoa oa admin
 tsoa
@@ -185,7 +185,7 @@ Fetola Puo
 Ka kopo, khetha puo
 Puo ea Tsamaiso
 Puo ea hajoale ea sistimi:
-Sena se fetola puo ea OpenHomeKaraoke backend system e hlahang skrineng sa TV; Ho feta moo, mosebelisi e mong le e mong ea hokahanyang a ka fetola puo ea bona ea Web UI ka har'a konopo ea globe ho menu e kaholimo ho le letona.
+Sena se fetola puo ea HomeBodyKaraoke backend system e hlahang skrineng sa TV; Ho feta moo, mosebelisi e mong le e mong ea hokahanyang a ka fetola puo ea bona ea Web UI ka har'a konopo ea globe ho menu e kaholimo ho le letona.
 Ho phethela ka katleho!
 Ho daunelouta ho hlolehile!
 Pina e kentsoe moleng!

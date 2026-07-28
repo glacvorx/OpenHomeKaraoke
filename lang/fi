@@ -32,7 +32,7 @@ Pysähtynyt
 Päivitetään youtube-dl! Pitäisi kestää minuutti tai kaksi...
 Sinulla ei ole lupaa päivittää youtube-dl
 Sinulla ei ole lupaa sulkea
-Lopeta OpenHomeKaraoke nyt!
+Lopeta HomeBodyKaraoke nyt!
 Sinulla ei ole lupaa lopettaa
 Sulje järjestelmä nyt!
 Sinulla ei ole lupaa sulkea
@@ -49,7 +49,7 @@ Wifi/verkko ei yhdistetty. Suljetaan 10 sekunnissa...
 Voit valita kappaleita skannaamalla QR-koodin tai muodostamalla yhteyden
 Yhdistä TV-näyttöä varten
 Paina F vaihtaaksesi koko näytön tilaan
-Paina ESC sulkeaksesi OpenHomeKaraoken
+Paina ESC sulkeaksesi HomeBodyKaraoken
 RaspiWifiConfig-asennustila havaittu!
 Yhdistä toinen laite/älypuhelin Wifi-tukiasemaan: '%s'
 Valitse sitten selain osoitteeseen %s://%s%s ja seuraa ohjeita.
@@ -60,7 +60,7 @@ Järjestelmänvalvojatila myönnetty!
 Lisääntyvä äänen viive antaa sinulle enemmän aikaa lukea sanoituksia ennen seuraavan lauseen laulamista.
 Tekstityksen viiveen vähentäminen antaa sinulle enemmän aikaa lukea sanoituksia ennen seuraavan lauseen laulamista.
 Puolisäveltä kutsutaan myös puoliaskeleeksi. Se on pienin klassisessa länsimaisessa musiikissa käytetty intervalli, joka vastaa oktaavin kahdestoistaosaa tai puolisäveltä.
-DNN-pohjainen äänenjakaja on käytössä. OpenHomeKaraoke käyttää PyTorchia (Facebook) pyörittääkseen syvää hermoverkkoa instrumentaali- ja lauluäänen jakamiseksi kussakin kappaleessa, jolloin syntyy stereoääntä.
+DNN-pohjainen äänenjakaja on käytössä. HomeBodyKaraoke käyttää PyTorchia (Facebook) pyörittääkseen syvää hermoverkkoa instrumentaali- ja lauluäänen jakamiseksi kussakin kappaleessa, jolloin syntyy stereoääntä.
 Pelaajan ohjaus
 Musiikki
 Sekoitettu
@@ -133,7 +133,7 @@ Saatavilla olevat kappaleet
 Haluatko muuttaa tätä laitetta käyttävän henkilön näyttönimeä? Tämä näkyy jonossa olevien kappaleiden vieressä. Nykyinen:
 Nykyinen käyttäjä
 asetukset
-OpenHomeKaraoke
+HomeBodyKaraoke
 Oletko varma, että haluat lopettaa?
 Haluatko varmasti sulkea?
 Oletko varma, että haluat käynnistää uudelleen?
@@ -147,12 +147,12 @@ Muisti
 Kuvakaappaus
 Vocal Splitter
 Youtube-dl (yt-dlp) -versio
-OpenHomeKaraoke-versio
+HomeBodyKaraoke-versio
 Ohjauksen lisäasetukset
 Laulunjakajatila:
 Käytä L-R/L+R
 Käytä DNN:tä
-Tavallisessa MTV-äänessä on kaksi stereokanavaa (L ja R) koodattuina siten, että: L-R on instrumenttiraita, L+R on lauluraita. Näin ollen yksinkertaisesti vähentämällä tai lisäämällä kaksi stereokanavaa, saamme instrumentaali- ja lauluraidan monoäänellä. OpenHomeKaraoken sisäänrakennettu DNN-pohjainen (syvä hermoverkko) äänenjakaja käyttää AI-algoritmia instrumentaali- ja lauluäänen jakamiseen kussakin stereoraidassa itsenäisesti, jolloin tuloksena on stereo-instrumentaali- ja lauluraitoja.
+Tavallisessa MTV-äänessä on kaksi stereokanavaa (L ja R) koodattuina siten, että: L-R on instrumenttiraita, L+R on lauluraita. Näin ollen yksinkertaisesti vähentämällä tai lisäämällä kaksi stereokanavaa, saamme instrumentaali- ja lauluraidan monoäänellä. HomeBodyKaraoken sisäänrakennettu DNN-pohjainen (syvä hermoverkko) äänenjakaja käyttää AI-algoritmia instrumentaali- ja lauluäänen jakamiseen kussakin stereoraidassa itsenäisesti, jolloin tuloksena on stereo-instrumentaali- ja lauluraitoja.
 Pysäytä Splitteri
 Käynnistä Splitter uudelleen
 Laulunjakaja (joka tukee sekä DNN-pohjaista että stereovähennystä) toimii erillisenä prosessina taustalla, luoden instrumentaali-/lauluäänitiedoston jokaiselle kappaleelle.
@@ -162,19 +162,19 @@ Käynnistä Streamer uudelleen
 Tämä vaikuttaa vain KTV:n pelaamiseen verkkoselaimen kautta. Näytön kaappauksen ja suoratoiston käynnistäminen uudelleen parantaa äänen/videon synkronointia ja vähentää myös palvelimen ja selaimen välistä latenssia.
 Päivitä kappalelista:
 Skannaa kappalehakemisto uudelleen
-Sinun pitäisi tehdä tämä vain, jos kopioit tiedostot manuaalisesti lataushakemistoon OpenHomeKaraoken ollessa käynnissä.
+Sinun pitäisi tehdä tämä vain, jos kopioit tiedostot manuaalisesti lataushakemistoon HomeBodyKaraoken ollessa käynnissä.
 Päivitykset
 Jos lataukset tai haut lakkaavat toimimasta, youtube-dl:n päivittäminen todennäköisesti korjaa sen. Nykyinen asennettu versio on:
 Päivitä youtube-dl
-Tämä yllä oleva päivityslinkki saattaa epäonnistua, jos sinulla ei ole asianmukaisia ​​tiedostooikeuksia. Tarkista OpenHomeKaraoke-lokista virheitä.
+Tämä yllä oleva päivityslinkki saattaa epäonnistua, jos sinulla ei ole asianmukaisia ​​tiedostooikeuksia. Tarkista HomeBodyKaraoke-lokista virheitä.
 Sammuttaa
 Älä vain vedä pistokkeesta! Sammuta aina palvelin kunnolla tietojen vioittumisen välttämiseksi.
-Lopeta OpenHomeKaraoke
+Lopeta HomeBodyKaraoke
 Käynnistä järjestelmä uudelleen
 Sammutusjärjestelmä
 muu
 Laajenna Raspberry Pi -tiedostojärjestelmää
-Jos asensit juuri valmiiksi rakennetun OpenHomeKaraoke pi -kuvan ja SD-korttisi on suurempi kuin 4 Gt, saatat haluta laajentaa tiedostojärjestelmää hyödyntääksesi jäljellä olevan tilan. Sinun tarvitsee tehdä tämä vain kerran. Tämä käynnistää järjestelmän uudelleen.
+Jos asensit juuri valmiiksi rakennetun HomeBodyKaraoke pi -kuvan ja SD-korttisi on suurempi kuin 4 Gt, saatat haluta laajentaa tiedostojärjestelmää hyödyntääksesi jäljellä olevan tilan. Sinun tarvitsee tehdä tämä vain kerran. Tämä käynnistää järjestelmän uudelleen.
 Poista järjestelmänvalvojatila käytöstä
 Ota järjestelmänvalvojatila käyttöön
 kirjautua ulos
@@ -185,7 +185,7 @@ Vaihda kieltä
 Valitse kieli
 Järjestelmän kieli
 Nykyinen järjestelmän kieli:
-Tämä muuttaa OpenHomeKaraoke-taustajärjestelmän kielen, joka näytetään TV-ruudulla; Lisäksi jokainen yhteyden muodostava käyttäjä voi myös vaihtaa oman Web-käyttöliittymänsä kielen oikean ylävalikon maapallo-painikkeesta.
+Tämä muuttaa HomeBodyKaraoke-taustajärjestelmän kielen, joka näytetään TV-ruudulla; Lisäksi jokainen yhteyden muodostava käyttäjä voi myös vaihtaa oman Web-käyttöliittymänsä kielen oikean ylävalikon maapallo-painikkeesta.
 Lataus suoritettu onnistuneesti!
 Lataus epäonnistui!
 Kappale lisätty jonoon!

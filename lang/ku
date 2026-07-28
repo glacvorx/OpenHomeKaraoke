@@ -32,7 +32,7 @@ Rawestiyan
 youtube-dl nûvekirin! Divê yek an du hûrdeman bigire ...
 Destûra we tune ku hûn youtube-dl nûve bikin
 Destûra we ya girtinê nîne
-Naha dev ji OpenHomeKaraoke berdide!
+Naha dev ji HomeBodyKaraoke berdide!
 Destûra te tune ku dev jê berde
 Niha pergalê qut dike!
 Destûra we ya girtinê nîne
@@ -49,7 +49,7 @@ Wifi/Tor ne girêdayî ye. Di nava 10 saniyan de tê girtin...
 Ji bo hilbijartina stranan, QR bişopînin an pê ve girêdin
 Ji bo dîmendera TV-yê, pê ve girêdin
 F bikirtînin da ku tev-ekranê biguherînin
-ESC bikirtînin da ku hûn dev ji OpenHomeKaraoke berdin
+ESC bikirtînin da ku hûn dev ji HomeBodyKaraoke berdin
 Moda sazkirinê ya RaspiWifiConfig hate dîtin!
 Amûrek/smartphone din bi Wifi AP-ê ve girêdin: '%s'
 Paşê geroka wê nîşan bide: '%s://%s%s' û rêwerzan bişopîne.
@@ -60,7 +60,7 @@ Moda rêveberiyê hate dayîn!
 Zêdekirina derengiya deng dê bêtir wext bide we ku hûn stranan bixwînin berî ku hevoka din bistirên.
 Kêmkirina derengiya jêrnivîsê dê bêtir wext bide we ku hûn gotinên stranan bixwînin berî ku hevoka din bistirên.
 Nîvek jî wekî nîv-gavek tê zanîn. Ew navbera herî piçûk e ku di muzîka klasîk a rojavayî de tê bikar anîn, bi qasî duwazdehek oktavê an nîv tonekê ye.
-Parçekirina dengbêja-bingeha DNN-ê çalak e. OpenHomeKaraoke PyTorch (ji hêla Facebook) ve bikar tîne da ku torgilokek neuralî ya kûr bixebitîne da ku di her rêkê de dengê enstruman û dengbêjî parçe bike û dengê stereo derxe.
+Parçekirina dengbêja-bingeha DNN-ê çalak e. HomeBodyKaraoke PyTorch (ji hêla Facebook) ve bikar tîne da ku torgilokek neuralî ya kûr bixebitîne da ku di her rêkê de dengê enstruman û dengbêjî parçe bike û dengê stereo derxe.
 Player Control
 Mûzîk
 Mixed
@@ -133,7 +133,7 @@ Stranên Berdest
 Ma hûn dixwazin navê xuyangê yê kesê ku vê cîhazê bikar tîne biguherînin? Ev ê li kêleka stranên rêzkirî nîşan bide. Vêga:
 Bikarhênerê niha
 Settings
-OpenHomeKaraoke
+HomeBodyKaraoke
 Ma hûn guman dikin ku hûn dixwazin dev jê berdin?
 Ma tu bi rastî dixwazî ​​bigirî?
 Ma hûn guman dikin ku hûn dixwazin ji nû ve bidin destpêkirin?
@@ -147,12 +147,12 @@ Bîr
 Screen Capture
 Splitter Vocal
 Guhertoya Youtube-dl (yt-dlp).
-Guhertoya OpenHomeKaraoke
+Guhertoya HomeBodyKaraoke
 Vebijêrkên Kontrolê yên Pêşkeftî
 Moda dabeşkerê deng:
 L-R/L+R bikar bînin
 DNN bikar bînin
-Dengê MTV-ya standard du kanalên stereo (L û R) bi vî rengî têne kod kirin ku: L-R rêça amûrê ye, L+R rêça dengbêjê ye. Bi vî rengî, bi tenê kêmkirin an lê zêdekirina du kanalên stereo, em dikarin di dengê mono de rêça instrumental û dengbêjiyê bistînin. Parçekera dengbêjî ya li ser bingeha DNN-ê (tora neuralî ya kûr) ya OpenHomeKaraoke algorîtmaya AI-ê bikar tîne da ku dengê amûr û dengbêj di her rêça stereo de bi rengek serbixwe veqetîne û di encamê de rêyên stereo yên instrumental û dengbêjî peyda bike.
+Dengê MTV-ya standard du kanalên stereo (L û R) bi vî rengî têne kod kirin ku: L-R rêça amûrê ye, L+R rêça dengbêjê ye. Bi vî rengî, bi tenê kêmkirin an lê zêdekirina du kanalên stereo, em dikarin di dengê mono de rêça instrumental û dengbêjiyê bistînin. Parçekera dengbêjî ya li ser bingeha DNN-ê (tora neuralî ya kûr) ya HomeBodyKaraoke algorîtmaya AI-ê bikar tîne da ku dengê amûr û dengbêj di her rêça stereo de bi rengek serbixwe veqetîne û di encamê de rêyên stereo yên instrumental û dengbêjî peyda bike.
 Stop Splitter
 Splitter ji nû ve bidin destpêkirin
 Dabeşkirina dengbêjê (ku hem jêbirina DNN-based û hem jî stereo piştgirî dike) wekî pêvajoyek cihêreng di paşperdeyê de dimeşe, ji bo her stranê pelê dengî ya instrumental/vokal çêdike.
@@ -162,19 +162,19 @@ Streamer ji nû ve bidin destpêkirin
 Ev tenê bandorê li lîstina KTV-yê bi geroka webê dike. Ji nû ve destpêkirina girtina-û-vekişandina ekranê hevdengkirina deng/vîdyoyê baştir dike, di heman demê de derengiya di navbera server û gerokê de jî kêm dike.
 Lîsteya stranan nûve bikin:
 Pelrêça stranê dîsa bişopîne
-Pêdivî ye ku hûn tenê vê yekê bikin ger dema ku OpenHomeKaraoke xebitî we bi destan pelan li pelrêça dakêşanê kopî kir.
+Pêdivî ye ku hûn tenê vê yekê bikin ger dema ku HomeBodyKaraoke xebitî we bi destan pelan li pelrêça dakêşanê kopî kir.
 Updates
 Ger dakêşandin an lêgerînan nexebitin, nûvekirina youtube-dl belkî wê rast bike. Guhertoya sazkirî ya heyî ev e:
 YouTube-dl-ê nûve bikin
-Dibe ku ev girêdana nûvekirinê ya li jor têk biçe ger ku hûn destûrnameyên pelê yên rast nebin. Ji bo xeletiyan têketin OpenHomeKaraoke kontrol bikin.
+Dibe ku ev girêdana nûvekirinê ya li jor têk biçe ger ku hûn destûrnameyên pelê yên rast nebin. Ji bo xeletiyan têketin HomeBodyKaraoke kontrol bikin.
 Temirandin
 Ne tenê fîşê bikişînin! Her gav servera xwe bi rêkûpêk rawestînin da ku ji xirabûna daneyan dûr nekevin.
-OpenHomeKaraoke derkeve
+HomeBodyKaraoke derkeve
 Pergala Reboot
 System Shutdown
 Yên din
 Pergala pelên Raspberry Pi berfireh bikin
-Ger we tenê wêneya OpenHomeKaraoke pi-ya pêş-avakirî saz kir û qerta SD-ya we ji 4 GB mezintir e, dibe ku hûn bixwazin pergala pelan berfireh bikin da ku cîhê mayî bikar bînin. Hûn tenê hewce ne ku vê yekê carekê bikin. Ev ê pergalê ji nû ve dest pê bike.
+Ger we tenê wêneya HomeBodyKaraoke pi-ya pêş-avakirî saz kir û qerta SD-ya we ji 4 GB mezintir e, dibe ku hûn bixwazin pergala pelan berfireh bikin da ku cîhê mayî bikar bînin. Hûn tenê hewce ne ku vê yekê carekê bikin. Ev ê pergalê ji nû ve dest pê bike.
 Moda rêveberiyê neçalak bike
 Moda rêveberê çalak bike
 derkeve
@@ -185,7 +185,7 @@ Ziman biguherînin
 Ji kerema xwe ziman hilbijêrin
 Ziman Sîstem
 Zimanê pergalê yê niha:
-Ev zimanê pergala paşîna OpenHomeKaraoke ku li ser ekrana TV-yê tê xuyang kirin diguhezîne; Wekî din, her bikarhênerek têkildar dikare di menuya jorîn a rastê de di bişkoja gerdûnê de zimanê UI-ya Web-a xwe ya têkildar jî biguhezîne.
+Ev zimanê pergala paşîna HomeBodyKaraoke ku li ser ekrana TV-yê tê xuyang kirin diguhezîne; Wekî din, her bikarhênerek têkildar dikare di menuya jorîn a rastê de di bişkoja gerdûnê de zimanê UI-ya Web-a xwe ya têkildar jî biguhezîne.
 Daxistin bi serkeftî qediya!
 Daxistin bi ser neket!
 Stran li dorê hat zêdekirin!

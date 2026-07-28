@@ -32,7 +32,7 @@ không xác định
 Đang cập nhật youtube-dl! Sẽ mất một hoặc hai phút...
 Bạn không có quyền cập nhật youtube-dl
 Bạn không có quyền tắt
-Hãy thoát khỏi OpenHomeKaraoke ngay bây giờ!
+Hãy thoát khỏi HomeBodyKaraoke ngay bây giờ!
 Bạn không có quyền bỏ cuộc
 Tắt hệ thống ngay bây giờ!
 Bạn không có quyền tắt
@@ -49,7 +49,7 @@ Wifi/Mạng không được kết nối. Tắt máy sau 10s...
 Để chọn bài hát, hãy quét QR hoặc kết nối với
 Đối với màn hình TV, hãy kết nối với
 Nhấn F để chuyển sang chế độ toàn màn hình
-Nhấn ESC để thoát OpenHomeKaraoke
+Nhấn ESC để thoát HomeBodyKaraoke
 Đã phát hiện chế độ thiết lập RaspiWifiConfig!
 Kết nối thiết bị/điện thoại thông minh khác với Wifi AP: '%s'
 Sau đó trỏ trình duyệt của nó tới: '%s://%s%s' và làm theo hướng dẫn.
@@ -60,7 +60,7 @@ Tiếp theo:
 Việc tăng độ trễ âm thanh sẽ giúp bạn có nhiều thời gian hơn để đọc lời bài hát trước khi hát câu tiếp theo.
 Việc giảm độ trễ của phụ đề sẽ giúp bạn có nhiều thời gian hơn để đọc lời bài hát trước khi hát câu tiếp theo.
 Nửa cung còn được gọi là nửa cung. Đó là quãng nhỏ nhất được sử dụng trong âm nhạc cổ điển phương Tây, bằng một phần mười hai quãng tám hoặc nửa âm.
-Bộ chia giọng hát dựa trên DNN được bật. OpenHomeKaraoke sử dụng PyTorch (của Facebook) để chạy một mạng lưới thần kinh sâu nhằm phân chia âm thanh nhạc cụ và giọng hát trong mỗi bản nhạc để tạo ra âm thanh nổi.
+Bộ chia giọng hát dựa trên DNN được bật. HomeBodyKaraoke sử dụng PyTorch (của Facebook) để chạy một mạng lưới thần kinh sâu nhằm phân chia âm thanh nhạc cụ và giọng hát trong mỗi bản nhạc để tạo ra âm thanh nổi.
 Kiểm soát người chơi
 Âm nhạc
 Trộn
@@ -147,12 +147,12 @@ Ký ức
 Chụp màn hình
 Bộ chia giọng hát
 Phiên bản Youtube-dl (yt-dlp)
-Phiên bản OpenHomeKaraoke
+Phiên bản HomeBodyKaraoke
 Tùy chọn điều khiển nâng cao
 Chế độ tách giọng:
 Sử dụng L-R/L+R
 Sử dụng DNN
-Âm thanh MTV tiêu chuẩn có hai kênh âm thanh nổi (L và R) được mã hóa theo cách: L-R là rãnh nhạc cụ, L+R là rãnh giọng hát. Do đó, chỉ cần trừ hoặc thêm hai kênh âm thanh nổi, chúng ta có thể có được bản nhạc cụ và giọng hát ở dạng đơn âm. Bộ chia giọng hát dựa trên DNN (mạng thần kinh sâu) tích hợp của OpenHomeKaraoke sử dụng thuật toán AI để phân tách âm thanh nhạc cụ và giọng hát trong từng bản nhạc âm thanh nổi một cách độc lập, tạo ra các bản nhạc và giọng hát âm thanh nổi.
+Âm thanh MTV tiêu chuẩn có hai kênh âm thanh nổi (L và R) được mã hóa theo cách: L-R là rãnh nhạc cụ, L+R là rãnh giọng hát. Do đó, chỉ cần trừ hoặc thêm hai kênh âm thanh nổi, chúng ta có thể có được bản nhạc cụ và giọng hát ở dạng đơn âm. Bộ chia giọng hát dựa trên DNN (mạng thần kinh sâu) tích hợp của HomeBodyKaraoke sử dụng thuật toán AI để phân tách âm thanh nhạc cụ và giọng hát trong từng bản nhạc âm thanh nổi một cách độc lập, tạo ra các bản nhạc và giọng hát âm thanh nổi.
 Dừng bộ chia
 Khởi động lại bộ chia
 Bộ tách giọng hát (hỗ trợ cả phép trừ âm thanh nổi và dựa trên DNN) chạy dưới dạng một quy trình riêng biệt ở chế độ nền, tạo tệp âm thanh nhạc cụ/giọng hát cho mỗi bài hát.
@@ -162,19 +162,19 @@ Khởi động lại bộ truyền phát
 Điều này chỉ ảnh hưởng đến việc phát KTV qua trình duyệt web. Việc khởi động lại tính năng chụp và phát trực tuyến màn hình sẽ cải thiện khả năng đồng bộ hóa âm thanh/video, nó cũng làm giảm độ trễ giữa máy chủ và trình duyệt.
 Làm mới danh sách bài hát:
 Quét lại thư mục bài hát
-Bạn chỉ cần thực hiện việc này nếu bạn đã sao chép thủ công các tệp vào thư mục tải xuống trong khi OpenHomeKaraoke đang chạy.
+Bạn chỉ cần thực hiện việc này nếu bạn đã sao chép thủ công các tệp vào thư mục tải xuống trong khi HomeBodyKaraoke đang chạy.
 Cập nhật
 Nếu quá trình tải xuống hoặc tìm kiếm ngừng hoạt động thì việc cập nhật youtube-dl có thể sẽ khắc phục được sự cố. Phiên bản cài đặt hiện tại là:
 Cập nhật youtube-dl
-Liên kết cập nhật ở trên có thể không thành công nếu bạn không có quyền truy cập tệp thích hợp. Kiểm tra nhật ký OpenHomeKaraoke để tìm lỗi.
+Liên kết cập nhật ở trên có thể không thành công nếu bạn không có quyền truy cập tệp thích hợp. Kiểm tra nhật ký HomeBodyKaraoke để tìm lỗi.
 Tắt
 Đừng chỉ rút phích cắm! Luôn tắt máy chủ của bạn đúng cách để tránh hỏng dữ liệu.
-Thoát khỏi OpenHomeKaraoke
+Thoát khỏi HomeBodyKaraoke
 Hệ thống khởi động lại
 Hệ thống tắt máy
 Khác
 Mở rộng hệ thống tập tin Raspberry Pi
-Nếu bạn vừa cài đặt hình ảnh pi OpenHomeKaraoke dựng sẵn và thẻ SD của bạn lớn hơn 4GB, bạn có thể muốn mở rộng hệ thống tệp để tận dụng dung lượng còn lại. Bạn chỉ cần làm điều này một lần. Điều này sẽ khởi động lại hệ thống.
+Nếu bạn vừa cài đặt hình ảnh pi HomeBodyKaraoke dựng sẵn và thẻ SD của bạn lớn hơn 4GB, bạn có thể muốn mở rộng hệ thống tệp để tận dụng dung lượng còn lại. Bạn chỉ cần làm điều này một lần. Điều này sẽ khởi động lại hệ thống.
 Tắt chế độ quản trị viên
 Bật chế độ quản trị viên
 đăng xuất
@@ -185,7 +185,7 @@ Thay đổi ngôn ngữ
 Vui lòng chọn ngôn ngữ
 Ngôn ngữ hệ thống
 Ngôn ngữ hệ thống hiện tại:
-Điều này thay đổi ngôn ngữ của hệ thống phụ trợ OpenHomeKaraoke được hiển thị trên màn hình TV; hơn nữa, mỗi người dùng kết nối cũng có thể thay đổi ngôn ngữ giao diện người dùng Web tương ứng của họ bằng nút hình cầu ở menu trên cùng bên phải.
+Điều này thay đổi ngôn ngữ của hệ thống phụ trợ HomeBodyKaraoke được hiển thị trên màn hình TV; hơn nữa, mỗi người dùng kết nối cũng có thể thay đổi ngôn ngữ giao diện người dùng Web tương ứng của họ bằng nút hình cầu ở menu trên cùng bên phải.
 Tải xuống hoàn tất thành công!
 Tải xuống không thành công!
 Bài hát được thêm vào hàng đợi!

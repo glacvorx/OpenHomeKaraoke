@@ -32,7 +32,7 @@ Akwụsịla
 Na-emelite youtube-dl! Kwesịrị iwere otu nkeji ma ọ bụ abụọ ...
 Ịnweghị ikike imelite youtube-dl
 Ịnweghị ikike imechi
-Hapụ OpenHomeKaraoke ugbu a!
+Hapụ HomeBodyKaraoke ugbu a!
 Ịnweghị ikike ịkwụsị
 Na-emechi usoro ugbu a!
 Ịnweghị ikike imechi
@@ -49,7 +49,7 @@ Ejikọtaghị Wifi/Network. Na-emechi n'ime afọ 10 ...
 Maka ịhọrọ egwu, nyochaa QR ma ọ bụ jikọọ na
 Maka ngosi TV, jikọọ na
 Pịa F ka ịgbanwee ihuenyo zuru oke
-Pịa ESC ka ị kwụsị OpenHomeKaraoke
+Pịa ESC ka ị kwụsị HomeBodyKaraoke
 Achọpụtara ọnọdụ ntọlite ​​RaspiWifiConfig!
 Jikọọ ngwaọrụ/smartphone ọzọ na Wifi AP: '%s'
 Mgbe ahụ tụọ ihe nchọgharị ya na: '%s://%s%s' wee soro ntuziaka a.
@@ -60,7 +60,7 @@ Enyere ọnọdụ nchịkwa!
 Ịbawanye igbu oge nke ọdịyo ga-enyekwu gị oge ịgụ egwu tupu ịdepụta ahịrịokwu na-esote.
 Mbelata obere oge igbu oge ga-enyekwu gị oge ịgụ egwu tupu ịdepụta ahịrịokwu na-esote.
 A na-akpọkwa semitone dị ka ọkara nzọụkwụ. Ọ bụ nkeji kacha nta eji na egwu Western oge gboo, hà nhata nke iri na abụọ nke octave ma ọ bụ ọkara ụda.
-Agbanyere nkewa ụda olu dabere na DNN. OpenHomeKaraoke na-eji PyTorch (nke Facebook) na-agba ọsọ netwọk akwara dị omimi iji kewaa ngwa ngwa na ụda olu na egwu ọ bụla na-eme ka ụda stereo pụta.
+Agbanyere nkewa ụda olu dabere na DNN. HomeBodyKaraoke na-eji PyTorch (nke Facebook) na-agba ọsọ netwọk akwara dị omimi iji kewaa ngwa ngwa na ụda olu na egwu ọ bụla na-eme ka ụda stereo pụta.
 Njikwa ọkpụkpọ
 Egwu
 Ngwakọta
@@ -152,7 +152,7 @@ Nhọrọ njikwa dị elu
 Ụdị nkewa olu:
 Jiri L-R/L+R
 Jiri DNS
-Ọdịda MTV ọkọlọtọ nwere ọwa stereo abụọ (L na R) etinyere ya n'ụzọ na: L-R bụ egwu akụrụngwa, L + R bụ egwu olu. Ya mere, site na iwepụ ma ọ bụ ịgbakwunye ọwa abụọ stereo, anyị nwere ike nweta egwu egwu na ụda olu na ụda mono. OpenHomeKaraoke arụnyere n'ime DNN dabere (netwọk akwara miri emi) ụda olu nkewa na-eji AI algọridim kewaa ngwa ngwa na ụda olu na egwu stereo ọ bụla n'onwe ya na-ebute ngwa ngwa stereo na egwu olu.
+Ọdịda MTV ọkọlọtọ nwere ọwa stereo abụọ (L na R) etinyere ya n'ụzọ na: L-R bụ egwu akụrụngwa, L + R bụ egwu olu. Ya mere, site na iwepụ ma ọ bụ ịgbakwunye ọwa abụọ stereo, anyị nwere ike nweta egwu egwu na ụda olu na ụda mono. HomeBodyKaraoke arụnyere n'ime DNN dabere (netwọk akwara miri emi) ụda olu nkewa na-eji AI algọridim kewaa ngwa ngwa na ụda olu na egwu stereo ọ bụla n'onwe ya na-ebute ngwa ngwa stereo na egwu olu.
 Kwụsị Splitter
 Malitegharịa Splitter
 Nkewa olu (nke na-akwado ma DNN dabere na mwepu stereo) na-agba ọsọ dị ka usoro dị iche na ndabere, na-ewepụta faịlụ ọdịyo / ụda maka egwu ọ bụla.
@@ -162,19 +162,19 @@ Malitegharịa ekwentị Streamer
 Nke a na-emetụta naanị ịkpọ KTV site na ihe nchọgharị weebụ. Ịmalitegharịa ihuenyo-na-na-enuba na-emekọrịta mmekọrịta ọdịyo/video, ọ na-ebelata nkwụsị n'etiti ihe nkesa na ihe nchọgharị.
 Megharịa ndepụta egwu:
 Nyochaa ndekọ ndekọ egwu
-Naanị ị ga-eme nke a ma ọ bụrụ na iji aka depụta faịlụ na ndekọ nbudata mgbe OpenHomeKaraoke na-agba ọsọ.
+Naanị ị ga-eme nke a ma ọ bụrụ na iji aka depụta faịlụ na ndekọ nbudata mgbe HomeBodyKaraoke na-agba ọsọ.
 Mmelite
 Ọ bụrụ na nbudata ma ọ bụ ọchụchọ kwụsịrị ịrụ ọrụ, imelite youtube-dl ga-edozi ya. Ụdị arụnyere ugbu a bụ:
 Melite youtube-dl
-Njikọ mmelite a dị n'elu nwere ike daa ma ọ bụrụ na ịnweghị ikikere faịlụ kwesịrị ekwesị. Lelee ndekọ OpenHomeKaraoke maka mperi.
+Njikọ mmelite a dị n'elu nwere ike daa ma ọ bụrụ na ịnweghị ikikere faịlụ kwesịrị ekwesị. Lelee ndekọ HomeBodyKaraoke maka mperi.
 Mechie
 Akwụsịla plọg naanị! Mechie ihe nkesa gị mgbe niile ka ịzenarị nrụrụ data.
-Kwụsị OpenHomeKaraoke
+Kwụsị HomeBodyKaraoke
 Malitegharịa ekwentị Sistemu
 Sistemụ nkwụsị
 Ndị ọzọ
 Gbasaa sistemụ faịlụ Raspberry Pi
-Ọ bụrụ na ị rụnyere ihe oyiyi OpenHomeKaraoke pi nke arụgoro mbụ na kaadị SD gị karịrị 4GB, ịnwere ike ịgbasa sistemụ faịlụ iji jiri ohere fọdụrụnụ. Naanị otu ugboro ka ị ga-eme nke a. Nke a ga-amalitegharịa usoro.
+Ọ bụrụ na ị rụnyere ihe oyiyi HomeBodyKaraoke pi nke arụgoro mbụ na kaadị SD gị karịrị 4GB, ịnwere ike ịgbasa sistemụ faịlụ iji jiri ohere fọdụrụnụ. Naanị otu ugboro ka ị ga-eme nke a. Nke a ga-amalitegharịa usoro.
 Gbanyụọ ọnọdụ nchịkwa
 Kwado ọnọdụ nchịkwa
 pụọ
@@ -185,7 +185,7 @@ Gbanwee Asụsụ
 Biko họrọ asụsụ
 Asụsụ Sistemu
 Asụsụ sistemụ ugbu a:
-Nke a na-agbanwe asụsụ nke sistemụ azụ azụ OpenHomeKaraoke nke na-egosipụta na ihuenyo TV; Ọzọkwa, onye ọ bụla na-ejikọta ọnụ nwekwara ike ịgbanwe asụsụ UI nke ha na bọtịnụ ụwa dị na menu nri-elu.
+Nke a na-agbanwe asụsụ nke sistemụ azụ azụ HomeBodyKaraoke nke na-egosipụta na ihuenyo TV; Ọzọkwa, onye ọ bụla na-ejikọta ọnụ nwekwara ike ịgbanwe asụsụ UI nke ha na bọtịnụ ụwa dị na menu nri-elu.
 Budata emechara nke ọma!
 Nbudata agaghị!
 Abụ agbakwunyere n'ahịrị!

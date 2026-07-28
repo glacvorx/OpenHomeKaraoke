@@ -32,7 +32,7 @@ Haltis
 Ĝisdatigas youtube-dl! Devus preni unu aŭ du minutojn...
 Vi ne havas permeson ĝisdatigi youtube-dl
 Vi ne havas permeson fermi
-Forlasu OpenHomeKaraoke nun!
+Forlasu HomeBodyKaraoke nun!
 Vi ne havas permeson ĉesi
 Fermu la sistemon nun!
 Vi ne havas permeson fermi
@@ -49,7 +49,7 @@ Wifi/Reto ne konektita. Fermo post 10-aj jaroj...
 Por elekti kantojn, skanu QR aŭ konektu al
 Por televida ekrano, konektu al
 Premu F por ŝanĝi la plenan ekranon
-Premu ESC por ĉesi OpenHomeKaraoke
+Premu ESC por ĉesi HomeBodyKaraoke
 RaspiWifiConfig agorda reĝimo detektita!
 Konektu alian aparaton/smartphone al la Wifi AP: '%s'
 Poste direktu ĝian retumilon al: '%s://%s%s' kaj sekvu la instrukciojn.
@@ -60,7 +60,7 @@ Administra reĝimo koncedita!
 Pliigi sonprokraston donos al vi pli da tempo por legi kantotekston antaŭ ol kanti la sekvan frazon.
 Malkreskanta subtitolo prokrasto donos al vi pli da tempo por legi kantotekston antaŭ kanti la sekvan frazon.
 Duontono ankaŭ estas konata kiel duonpaŝo. Ĝi estas la plej malgranda intervalo uzita en klasika okcidenta muziko, egala al dekduono de oktavo aŭ duona tono.
-DNN-bazita voĉdividilo estas ebligita. OpenHomeKaraoke uzas PyTorch (de Facebook) por prizorgi profundan neŭralan reton por dividi instrumentan kaj voĉan sonon en ĉiu trako kaŭzante stereosonon.
+DNN-bazita voĉdividilo estas ebligita. HomeBodyKaraoke uzas PyTorch (de Facebook) por prizorgi profundan neŭralan reton por dividi instrumentan kaj voĉan sonon en ĉiu trako kaŭzante stereosonon.
 Ludanta Kontrolo
 Muziko
 Miksita
@@ -133,7 +133,7 @@ Disponeblaj Kantoj
 Ĉu vi volas ŝanĝi la montran nomon de la persono uzanta ĉi tiun aparaton? Ĉi tio aperos apud la vicigitaj kantoj. Aktualo:
 Nuna uzanto
 Agordoj
-OpenHomeKaraoke
+HomeBodyKaraoke
 Ĉu vi certas, ke vi volas ĉesi?
 Ĉu vi certas, ke vi volas fermi?
 Ĉu vi certas, ke vi volas rekomenci?
@@ -147,12 +147,12 @@ Memoro
 Ekrankapto
 Voĉa Spliter
 Youtube-dl (yt-dlp) versio
-OpenHomeKaraoke-versio
+HomeBodyKaraoke-versio
 Altnivelaj Kontrolaj Opcioj
 Voĉa dividita reĝimo:
 Uzu L-R/L+R
 Uzu DNN
-Norma MTV-aŭdio havas la du stereajn kanalojn (L kaj R) ĉifritajn tiel ke: L-R estas la instrumenttrako, L+R estas la voĉa trako. Tiel, simple subtrahante aŭ aldonante la du stereajn kanalojn, ni povas akiri la instrumentan kaj voĉan trakon en monoa sono. La enkonstruita DNN-bazita (profunda neŭrala reto) voĉdividilo de OpenHomeKaraoke uzas AI-algoritmon por dividi instrumentan kaj voĉan sonon en ĉiu stereofonia aŭtoveturejo sendepende rezultigante stereoajn instrumentajn kaj voĉajn spurojn.
+Norma MTV-aŭdio havas la du stereajn kanalojn (L kaj R) ĉifritajn tiel ke: L-R estas la instrumenttrako, L+R estas la voĉa trako. Tiel, simple subtrahante aŭ aldonante la du stereajn kanalojn, ni povas akiri la instrumentan kaj voĉan trakon en monoa sono. La enkonstruita DNN-bazita (profunda neŭrala reto) voĉdividilo de HomeBodyKaraoke uzas AI-algoritmon por dividi instrumentan kaj voĉan sonon en ĉiu stereofonia aŭtoveturejo sendepende rezultigante stereoajn instrumentajn kaj voĉajn spurojn.
 Haltu Splitter
 Rekomencu Splitter
 La voĉa disigilo (kiu subtenas kaj DNN-bazitan kaj stereon subtraho) funkcias kiel aparta procezo en la fono, generante instrumentan/voĉan sondosieron por ĉiu kanto.
@@ -162,19 +162,19 @@ Rekomencu Streamer
 Ĉi tio nur influas ludadon de KTV per retumilo. Rekomenci la ekrankapton-kaj-fluon plibonigas aŭd-/videon sinkronigon, ĝi ankaŭ malpliigas la latentecon inter la servilo kaj retumilo.
 Refreŝigu la kantoliston:
 Reskani kantodosierujon
-Vi devus fari tion nur se vi mane kopiis dosierojn al la elŝuta dosierujo dum OpenHomeKaraoke funkciis.
+Vi devus fari tion nur se vi mane kopiis dosierojn al la elŝuta dosierujo dum HomeBodyKaraoke funkciis.
 Ĝisdatigoj
 Se elŝutoj aŭ serĉoj ĉesis funkcii, ĝisdatigi youtube-dl verŝajne riparos ĝin. La nuna instalita versio estas:
 Ĝisdatigu youtube-dl
-Ĉi tiu supre ĝisdatiga ligilo povas malsukcesi se vi ne havas taŭgajn dosierpermesojn. Kontrolu la protokolon de OpenHomeKaraoke por eraroj.
+Ĉi tiu supre ĝisdatiga ligilo povas malsukcesi se vi ne havas taŭgajn dosierpermesojn. Kontrolu la protokolon de HomeBodyKaraoke por eraroj.
 Malŝalto
 Ne nur tiru la ŝtopilon! Ĉiam malŝaltu vian servilon ĝuste por eviti datuman korupton.
-Forlasu OpenHomeKaraoke
+Forlasu HomeBodyKaraoke
 Rekomencu Sistemon
 Malŝalta Sistemo
 Alia
 Vastigu dosiersistemon Raspberry Pi
-Se vi ĵus instalis la antaŭkonstruitan OpenHomeKaraoke pi-bildon kaj via SD-karto estas pli granda ol 4GB, vi eble volas vastigi la dosiersistemon por uzi la restantan spacon. Vi devas fari ĉi tion nur unufoje. Ĉi tio rekomencos la sistemon.
+Se vi ĵus instalis la antaŭkonstruitan HomeBodyKaraoke pi-bildon kaj via SD-karto estas pli granda ol 4GB, vi eble volas vastigi la dosiersistemon por uzi la restantan spacon. Vi devas fari ĉi tion nur unufoje. Ĉi tio rekomencos la sistemon.
 Malebligu administran reĝimon
 Ebligu administran reĝimon
 elsaluti
@@ -185,7 +185,7 @@ Hejmo
 Bonvolu elekti lingvon
 Sistema Lingvo
 Nuna sistema lingvo:
-Ĉi tio ŝanĝas la lingvon de la malantaŭa sistemo OpenHomeKaraoke, kiu montriĝas sur televida ekrano; plie, ĉiu konektanta uzanto ankaŭ povas ŝanĝi sian respektivan Retejan Interfacon-lingvon en la globbutono en la dekstra supra menuo.
+Ĉi tio ŝanĝas la lingvon de la malantaŭa sistemo HomeBodyKaraoke, kiu montriĝas sur televida ekrano; plie, ĉiu konektanta uzanto ankaŭ povas ŝanĝi sian respektivan Retejan Interfacon-lingvon en la globbutono en la dekstra supra menuo.
 Elŝuto sukcese kompletigita!
 Elŝuto malsukcesis!
 Kanto aldonita al la vico!

@@ -32,7 +32,7 @@ To'xtatildi
 youtube-dl yangilanmoqda! Bir-ikki daqiqa kerak ...
 Sizda youtube-dl-ni yangilash uchun ruxsat yo'q
 Oʻchirishga ruxsatingiz yoʻq
-OpenHomeKaraoke-dan hozir chiqmoqdamiz!
+HomeBodyKaraoke-dan hozir chiqmoqdamiz!
 Chiqish uchun ruxsatingiz yo‘q
 Tizim hozir o'chirilmoqda!
 Oʻchirishga ruxsatingiz yoʻq
@@ -49,7 +49,7 @@ Wi-Fi/tarmoq ulanmagan. 10 soniyadan keyin yopiladi...
 Qo'shiqlarni tanlash uchun QR ni skanerlang yoki ulaning
 Televizor ekrani uchun ulaning
 Toʻliq ekranga oʻtish uchun F tugmasini bosing
-OpenHomeKaraoke-dan chiqish uchun ESC tugmasini bosing
+HomeBodyKaraoke-dan chiqish uchun ESC tugmasini bosing
 RaspiWifiConfig sozlash rejimi aniqlandi!
 Boshqa qurilmani/smartfonni Wi-Fi APga ulang: '%s'
 Keyin brauzerni '%s://%s%s' manziliga yo'naltiring va ko'rsatmalarga amal qiling.
@@ -60,7 +60,7 @@ Administrator rejimi berildi!
 Ovozni kechiktirishni oshirish sizga keyingi jumlani kuylashdan oldin matnlarni o'qish uchun ko'proq vaqt beradi.
 Subtitr kechikishini kamaytirish keyingi jumlani kuylashdan oldin matnlarni o'qish uchun ko'proq vaqt beradi.
 Yarim ohang yarim qadam sifatida ham tanilgan. Bu klassik Gʻarb musiqasida qoʻllaniladigan eng kichik interval boʻlib, oktavaning oʻn ikkidan biriga yoki yarim tonga teng.
-DNN-ga asoslangan vokal splitter yoqilgan. OpenHomeKaraoke PyTorch-dan (Facebook tomonidan) chuqur neyron tarmoqni ishga tushirish uchun har bir trekda instrumental va vokal tovushlarni ajratib, stereo tovushni keltirib chiqaradi.
+DNN-ga asoslangan vokal splitter yoqilgan. HomeBodyKaraoke PyTorch-dan (Facebook tomonidan) chuqur neyron tarmoqni ishga tushirish uchun har bir trekda instrumental va vokal tovushlarni ajratib, stereo tovushni keltirib chiqaradi.
 O'yinchi nazorati
 Musiqa
 Aralashgan
@@ -133,7 +133,7 @@ Mavjud qo'shiqlar
 Ushbu qurilmadan foydalanadigan odamning ismini o'zgartirmoqchimisiz? Bu navbatdagi qoʻshiqlar yonida koʻrsatiladi. Hozirgi:
 Joriy foydalanuvchi
 Sozlamalar
-OpenHomeKaraoke
+HomeBodyKaraoke
 Chiqishni xohlayotganingizga ishonchingiz komilmi?
 Haqiqatan ham oʻchirib qoʻymoqchimisiz?
 Haqiqatan ham qayta ishga tushirishni xohlaysizmi?
@@ -147,12 +147,12 @@ Xotira
 Ekranni suratga olish
 Vokal ajratuvchi
 Youtube-dl (yt-dlp) versiyasi
-OpenHomeKaraoke versiyasi
+HomeBodyKaraoke versiyasi
 Kengaytirilgan boshqaruv parametrlari
 Vokal splitter rejimi:
 L-R/L+R dan foydalaning
 DNN dan foydalaning
-Standart MTV audiosi ikkita stereo kanalga ega (L va R) shunday kodlangan: L-R - asbob treki, L+R - vokal trek. Shunday qilib, ikkita stereo kanalni oddiygina ayirish yoki qo'shish orqali biz mono tovushda instrumental va vokal trekni olishimiz mumkin. OpenHomeKaraoke-ning o'rnatilgan DNN-ga asoslangan (chuqur neyron tarmog'i) vokal splitteri AI algoritmidan foydalanib, har bir stereo trekda instrumental va vokal tovushlarni mustaqil ravishda ajratib turadi, natijada stereo instrumental va vokal treklar paydo bo'ladi.
+Standart MTV audiosi ikkita stereo kanalga ega (L va R) shunday kodlangan: L-R - asbob treki, L+R - vokal trek. Shunday qilib, ikkita stereo kanalni oddiygina ayirish yoki qo'shish orqali biz mono tovushda instrumental va vokal trekni olishimiz mumkin. HomeBodyKaraoke-ning o'rnatilgan DNN-ga asoslangan (chuqur neyron tarmog'i) vokal splitteri AI algoritmidan foydalanib, har bir stereo trekda instrumental va vokal tovushlarni mustaqil ravishda ajratib turadi, natijada stereo instrumental va vokal treklar paydo bo'ladi.
 Splitterni to'xtating
 Splitterni qayta ishga tushiring
 Vokal splitter (ham DNN-ga asoslangan, ham stereo chiqarishni qo'llab-quvvatlaydi) fonda alohida jarayon sifatida ishlaydi va har bir qo'shiq uchun instrumental/vokal audio faylini yaratadi.
@@ -162,19 +162,19 @@ Streamerni qayta ishga tushiring
 Bu faqat veb-brauzer orqali KTV o'ynashga ta'sir qiladi. Ekranni suratga olish va oqimni qayta ishga tushirish audio/video sinxronizatsiyasini yaxshilaydi, shuningdek, server va brauzer o‘rtasidagi kechikishni kamaytiradi.
 Qo'shiqlar ro'yxatini yangilang:
 Qo'shiq katalogini qayta skanerlash
-Buni faqat OpenHomeKaraoke ishlayotgan vaqtda fayllarni yuklab olish katalogiga qo'lda ko'chirgan bo'lsangiz qilish kerak.
+Buni faqat HomeBodyKaraoke ishlayotgan vaqtda fayllarni yuklab olish katalogiga qo'lda ko'chirgan bo'lsangiz qilish kerak.
 Yangilanishlar
 Agar yuklab olishlar yoki qidiruvlar ishlamay qolsa, youtube-dl-ni yangilash muammoni hal qilishi mumkin. Joriy o'rnatilgan versiya:
 youtube-dl-ni yangilang
-Tegishli fayl ruxsatnomalariga ega boʻlmasangiz, yuqoridagi yangilanish havolasi ishlamay qolishi mumkin. Xatolar uchun OpenHomeKaraoke jurnalini tekshiring.
+Tegishli fayl ruxsatnomalariga ega boʻlmasangiz, yuqoridagi yangilanish havolasi ishlamay qolishi mumkin. Xatolar uchun HomeBodyKaraoke jurnalini tekshiring.
 O'chirish; yopish
 Shunchaki vilkadan tortmang! Ma'lumotlarning buzilishini oldini olish uchun har doim serveringizni to'g'ri o'chirib qo'ying.
-OpenHomeKaraoke-dan chiqing
+HomeBodyKaraoke-dan chiqing
 Tizimni qayta ishga tushirish
 O'chirish tizimi
 Boshqa
 Raspberry Pi fayl tizimini kengaytiring
-Agar siz hozirgina oldindan o'rnatilgan OpenHomeKaraoke pi tasvirini o'rnatgan bo'lsangiz va SD-kartangiz 4 Gb dan katta bo'lsa, qolgan joydan foydalanish uchun fayl tizimini kengaytirishni xohlashingiz mumkin. Buni faqat bir marta qilishingiz kerak. Bu tizimni qayta ishga tushiradi.
+Agar siz hozirgina oldindan o'rnatilgan HomeBodyKaraoke pi tasvirini o'rnatgan bo'lsangiz va SD-kartangiz 4 Gb dan katta bo'lsa, qolgan joydan foydalanish uchun fayl tizimini kengaytirishni xohlashingiz mumkin. Buni faqat bir marta qilishingiz kerak. Bu tizimni qayta ishga tushiradi.
 Administrator rejimini o'chiring
 Administrator rejimini yoqing
 chiqish
@@ -185,7 +185,7 @@ Tilni o'zgartirish
 Iltimos, tilni tanlang
 Tizim tili
 Joriy tizim tili:
-Bu televizor ekranida ko'rsatiladigan OpenHomeKaraoke backend tizimining tilini o'zgartiradi; bundan tashqari, har bir ulanish foydalanuvchisi o'zining yuqori o'ng menyusidagi globe tugmasidagi tegishli Web UI tilini ham o'zgartirishi mumkin.
+Bu televizor ekranida ko'rsatiladigan HomeBodyKaraoke backend tizimining tilini o'zgartiradi; bundan tashqari, har bir ulanish foydalanuvchisi o'zining yuqori o'ng menyusidagi globe tugmasidagi tegishli Web UI tilini ham o'zgartirishi mumkin.
 Yuklab olish muvaffaqiyatli yakunlandi!
 Yuklab olinmadi!
 Qo'shiq navbatga qo'shildi!

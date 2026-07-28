@@ -32,7 +32,7 @@ Sguir
 Ag ùrachadh youtube-dl! Bu chòir dha mionaid no dhà a thoirt...
 Chan eil cead agad youtube-dl ùrachadh
 Chan eil cead agad dùnadh sìos
-A’ fàgail OpenHomeKaraoke a-nis!
+A’ fàgail HomeBodyKaraoke a-nis!
 Chan eil cead agad sgur
 A’ dùnadh an t-siostam a-nis!
 Chan eil cead agad dùnadh sìos
@@ -49,7 +49,7 @@ Wifi / lìonra gun cheangal. A dhùnadh sìos ann an 10sg...
 Airson òrain a thaghadh, scan QR no ceangail ri
 Airson taisbeanadh Tbh, ceangail ris
 Brùth F gus làn-sgrìn a thogail
-Brùth ESC gus stad a chuir air OpenHomeKaraoke
+Brùth ESC gus stad a chuir air HomeBodyKaraoke
 Modh rèiteachaidh RaspiWifiConfig air a lorg!
 Ceangail inneal/fòn cliste eile ris an AP Wifi: '%s'
 An uairsin comharraich a bhrobhsair gu: '%s://%s%s' agus lean an stiùireadh.
@@ -60,7 +60,7 @@ Modh rianachd air a bhuileachadh!
 Bheir àrdachadh dàil claisneachd barrachd ùine dhut airson faclan a leughadh mus seinn thu an ath sheantans.
 Bheir lùghdachadh dàil fo-thiotalan barrachd ùine dhut airson faclan a leughadh mus seinn thu an ath sheantans.
 Canar leth-cheum cuideachd ri semitone. Is e seo an eadar-ama as lugha a thathas a’ cleachdadh ann an ceòl clasaigeach an Iar, co-ionann ri dusan de ochdamh no leth thòn.
-Tha splitter gutha stèidhichte air DNN air a chomasachadh. Bidh OpenHomeKaraoke a’ cleachdadh PyTorch (le Facebook) gus lìonra neural domhainn a ruith gus fuaim ionnsramaid is gutha a roinn anns gach slighe ag adhbhrachadh fuaim stereo.
+Tha splitter gutha stèidhichte air DNN air a chomasachadh. Bidh HomeBodyKaraoke a’ cleachdadh PyTorch (le Facebook) gus lìonra neural domhainn a ruith gus fuaim ionnsramaid is gutha a roinn anns gach slighe ag adhbhrachadh fuaim stereo.
 Smachd cluicheadair
 Ceol
 Measgaichte
@@ -147,12 +147,12 @@ Cuimhne
 Glacadh-sgrìn
 Splitter guth
 Tionndadh Youtube-dl (yt-dlp).
-OpenHomeKaraoke tionndadh
+HomeBodyKaraoke tionndadh
 Roghainnean smachd adhartach
 Modh splitter gutha:
 Cleachd L-R/L+R
 Cleachd DNN
-Tha an dà sheanail stereo (L agus R) air an còdachadh ann an dòigh a tha: Is e LR an t-slighe ionnstramaid, is e L+R an t-slighe gutha. Mar sin, le bhith dìreach a’ toirt air falbh no a’ cur ris an dà sheanail stereo, gheibh sinn an t-slighe ionnsramaid is gutha ann am fuaim mono. Bidh an inneal-sgaraidh gutha stèidhichte aig OpenHomeKaraoke stèidhichte air DNN (lìonra neural domhainn) a’ cleachdadh algairim AI gus fuaim ionnsramaid is gutha a roinn anns gach slighe stereo gu neo-eisimeileach a’ leantainn gu slighean stereo ionnsramaid agus gutha.
+Tha an dà sheanail stereo (L agus R) air an còdachadh ann an dòigh a tha: Is e LR an t-slighe ionnstramaid, is e L+R an t-slighe gutha. Mar sin, le bhith dìreach a’ toirt air falbh no a’ cur ris an dà sheanail stereo, gheibh sinn an t-slighe ionnsramaid is gutha ann am fuaim mono. Bidh an inneal-sgaraidh gutha stèidhichte aig HomeBodyKaraoke stèidhichte air DNN (lìonra neural domhainn) a’ cleachdadh algairim AI gus fuaim ionnsramaid is gutha a roinn anns gach slighe stereo gu neo-eisimeileach a’ leantainn gu slighean stereo ionnsramaid agus gutha.
 Cuir stad air Splitter
 Ath-thòisich Splitter
 Bidh an splitter gutha (a bheir taic do gach cuid stèidhichte air DNN agus toirt air falbh stereo) a’ ruith mar phròiseas air leth air a’ chùl, a’ gineadh faidhle claisneachd ionnsramaid / guth airson gach òran.
@@ -162,19 +162,19 @@ Ath-thòisich Streamer
 Cha toir seo buaidh ach air cluich KTV tro bhrobhsair lìn. Le bhith ag ath-thòiseachadh an glacadh-sgrìn-is-sruthadh a’ leasachadh sioncronadh claisneachd / bhidio, bidh e cuideachd a’ lughdachadh an ùine eadar an frithealaiche agus am brabhsair.
 Ùraich liosta nan òran:
 Luchdaich a-nuas an clàr-òrain
-Cha bu chòir gum feum thu seo a dhèanamh ach ma rinn thu leth-bhreac de fhaidhlichean chun eòlaire luchdachadh sìos fhad ‘s a bha OpenHomeKaraoke a’ ruith.
+Cha bu chòir gum feum thu seo a dhèanamh ach ma rinn thu leth-bhreac de fhaidhlichean chun eòlaire luchdachadh sìos fhad ‘s a bha HomeBodyKaraoke a’ ruith.
 Ùrachaidhean
 Ma sguir luchdachadh sìos no rannsachaidhean ag obair, is dòcha gun socraich an ùrachadh youtube-dl e. Is e an dreach stàlaichte làithreach:
 Luchdaich a-nuas youtube dl
-Dh’ fhaodadh an ceangal ùrachaidh seo fàiligeadh mura h-eil cead faidhle ceart agad. Thoir sùil air log OpenHomeKaraoke airson mearachdan.
+Dh’ fhaodadh an ceangal ùrachaidh seo fàiligeadh mura h-eil cead faidhle ceart agad. Thoir sùil air log HomeBodyKaraoke airson mearachdan.
 Dùin sìos
 Na tarraing dìreach am plugan! Dùin am frithealaiche agad gu ceart an-còmhnaidh gus coirbeachd dàta a sheachnadh.
-Fàg OpenHomeKaraoke
+Fàg HomeBodyKaraoke
 Ath-thòisich an t-siostam
 Siostam dùnadh
 Eile
 Leudaich siostam faidhlichean Raspberry Pi
-Ma tha thu dìreach air an ìomhaigh pi OpenHomeKaraoke a chuir a-steach ro-làimh agus gu bheil a’ chairt SD agad nas motha na 4GB, is dòcha gum bi thu airson an siostam faidhle a leudachadh gus an àite a tha air fhàgail a chleachdadh. Chan fheum thu seo a dhèanamh ach aon turas. Bidh seo ag ath-thòiseachadh an t-siostam.
+Ma tha thu dìreach air an ìomhaigh pi HomeBodyKaraoke a chuir a-steach ro-làimh agus gu bheil a’ chairt SD agad nas motha na 4GB, is dòcha gum bi thu airson an siostam faidhle a leudachadh gus an àite a tha air fhàgail a chleachdadh. Chan fheum thu seo a dhèanamh ach aon turas. Bidh seo ag ath-thòiseachadh an t-siostam.
 Cuir à comas modh rianachd
 Cuir an comas modh rianachd
 Log a-mach
@@ -185,7 +185,7 @@ Atharraich Cànan
 Feuch an tagh thu cànan
 Cànan an t-siostaim
 Cànan an t-siostaim làithreach:
-Bidh seo ag atharrachadh cànan siostam backend OpenHomeKaraoke a thèid a thaisbeanadh air scrion Tbh; A bharrachd air an sin, faodaidh gach neach-cleachdaidh ceangail an cànan UI lìn aca atharrachadh cuideachd anns a’ phutan cruinne sa chlàr gu h-àrd air an làimh dheis.
+Bidh seo ag atharrachadh cànan siostam backend HomeBodyKaraoke a thèid a thaisbeanadh air scrion Tbh; A bharrachd air an sin, faodaidh gach neach-cleachdaidh ceangail an cànan UI lìn aca atharrachadh cuideachd anns a’ phutan cruinne sa chlàr gu h-àrd air an làimh dheis.
 Chaidh an luchdachadh sìos a chrìochnachadh gu soirbheachail!
 Dh'fhàillig an luchdachadh sìos!
 Òran air a chur ris a’ chiudha!

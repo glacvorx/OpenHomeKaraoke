@@ -32,7 +32,7 @@ Gestopt
 YouTube-dl bijwerken! Het zou een minuut of twee moeten duren...
 Je hebt geen toestemming om youtube-dl te updaten
 U heeft geen toestemming om af te sluiten
-OpenHomeKaraoke nu afsluiten!
+HomeBodyKaraoke nu afsluiten!
 U heeft geen toestemming om te stoppen
 Systeem wordt nu afgesloten!
 U heeft geen toestemming om af te sluiten
@@ -49,7 +49,7 @@ Wifi/netwerk niet verbonden. Sluiting over 10 seconden...
 Scan de QR of maak verbinding met om nummers te selecteren
 Voor tv-weergave maakt u verbinding met
 Druk op F om naar volledig scherm te schakelen
-Druk op ESC om OpenHomeKaraoke af te sluiten
+Druk op ESC om HomeBodyKaraoke af te sluiten
 RaspiWifiConfig-instelmodus gedetecteerd!
 Verbind een ander apparaat/smartphone met het Wifi-AP: '%s'
 Ga vervolgens in de browser naar: '%s://%s%s' en volg de instructies.
@@ -60,7 +60,7 @@ Beheerdersmodus toegestaan!
 Als u de audiovertraging vergroot, krijgt u meer tijd om de songtekst te lezen voordat u de volgende zin zingt.
 Door de ondertitelvertraging te verkleinen, heb je meer tijd om de songtekst te lezen voordat je de volgende zin zingt.
 Een halve toon wordt ook wel een halve toon genoemd. Het is het kleinste interval dat in de klassieke westerse muziek wordt gebruikt, gelijk aan een twaalfde van een octaaf of een halve toon.
-Op DNN gebaseerde vocale splitter is ingeschakeld. OpenHomeKaraoke gebruikt PyTorch (van Facebook) om een ​​diep neuraal netwerk te runnen om instrumentaal en vocaal geluid in elk nummer te splitsen, waardoor stereogeluid ontstaat.
+Op DNN gebaseerde vocale splitter is ingeschakeld. HomeBodyKaraoke gebruikt PyTorch (van Facebook) om een ​​diep neuraal netwerk te runnen om instrumentaal en vocaal geluid in elk nummer te splitsen, waardoor stereogeluid ontstaat.
 Spelercontrole
 Muziek
 Gemengd
@@ -133,7 +133,7 @@ Beschikbare nummers
 Wilt u de weergavenaam wijzigen van de persoon die dit apparaat gebruikt? Dit verschijnt naast de nummers in de wachtrij. Huidig:
 Huidige gebruiker
 Instellingen
-OpenHomeKaraoke
+HomeBodyKaraoke
 Weet je zeker dat je wilt stoppen?
 Weet u zeker dat u wilt afsluiten?
 Weet je zeker dat je opnieuw wilt opstarten?
@@ -147,12 +147,12 @@ Geheugen
 Schermopname
 Vocale splitter
 Youtube-dl (yt-dlp) versie
-OpenHomeKaraoke-versie
+HomeBodyKaraoke-versie
 Geavanceerde besturingsopties
 Vocale splittermodus:
 Gebruik L-R/L+R
 Gebruik DNN
-Bij standaard MTV-audio zijn de twee stereokanalen (L en R) zo gecodeerd dat: L-R het instrumentspoor is, L+R het zangspoor is. Door simpelweg de twee stereokanalen af ​​te trekken of toe te voegen, kunnen we het instrumentale en vocale nummer dus in monogeluid krijgen. De ingebouwde, op DNN gebaseerde (diepe neurale netwerk) vocale splitter van OpenHomeKaraoke maakt gebruik van een AI-algoritme om instrumentaal en vocaal geluid in elke stereotrack onafhankelijk te splitsen, wat resulteert in stereo instrumentale en vocale tracks.
+Bij standaard MTV-audio zijn de twee stereokanalen (L en R) zo gecodeerd dat: L-R het instrumentspoor is, L+R het zangspoor is. Door simpelweg de twee stereokanalen af ​​te trekken of toe te voegen, kunnen we het instrumentale en vocale nummer dus in monogeluid krijgen. De ingebouwde, op DNN gebaseerde (diepe neurale netwerk) vocale splitter van HomeBodyKaraoke maakt gebruik van een AI-algoritme om instrumentaal en vocaal geluid in elke stereotrack onafhankelijk te splitsen, wat resulteert in stereo instrumentale en vocale tracks.
 Stop Splitser
 Start Splitter opnieuw
 De vocale splitter (die zowel op DNN gebaseerde als stereo-aftrekking ondersteunt) draait als een afzonderlijk proces op de achtergrond en genereert voor elk nummer een instrumentaal/vocaal audiobestand.
@@ -162,19 +162,19 @@ Start Streamer opnieuw
 Dit heeft alleen invloed op het afspelen van KTV via een webbrowser. Het opnieuw starten van schermopname en streaming verbetert de audio-/videosynchronisatie en vermindert ook de latentie tussen de server en de browser.
 Ververs de lijst met nummers:
 Scan de nummermap opnieuw
-U hoeft dit alleen te doen als u handmatig bestanden naar de downloadmap hebt gekopieerd terwijl OpenHomeKaraoke actief was.
+U hoeft dit alleen te doen als u handmatig bestanden naar de downloadmap hebt gekopieerd terwijl HomeBodyKaraoke actief was.
 Updates
 Als downloads of zoekopdrachten niet meer werken, kan het updaten van youtube-dl dit waarschijnlijk oplossen. De huidige geïnstalleerde versie is:
 Update youtube-dl
-Deze updatelink hierboven mislukt mogelijk als u niet over de juiste bestandsrechten beschikt. Controleer het OpenHomeKaraoke-logboek op fouten.
+Deze updatelink hierboven mislukt mogelijk als u niet over de juiste bestandsrechten beschikt. Controleer het HomeBodyKaraoke-logboek op fouten.
 Afsluiten
 Trek niet zomaar de stekker uit het stopcontact! Sluit uw server altijd op de juiste manier af om gegevenscorruptie te voorkomen.
-Sluit OpenHomeKaraoke af
+Sluit HomeBodyKaraoke af
 Herstart systeem
 Systeem afsluiten
 Ander
 Vouw het Raspberry Pi-bestandssysteem uit
-Als u zojuist de vooraf gebouwde OpenHomeKaraoke pi-image hebt geïnstalleerd en uw SD-kaart groter is dan 4 GB, wilt u wellicht het bestandssysteem uitbreiden om de resterende ruimte te benutten. U hoeft dit slechts één keer te doen. Hierdoor wordt het systeem opnieuw opgestart.
+Als u zojuist de vooraf gebouwde HomeBodyKaraoke pi-image hebt geïnstalleerd en uw SD-kaart groter is dan 4 GB, wilt u wellicht het bestandssysteem uitbreiden om de resterende ruimte te benutten. U hoeft dit slechts één keer te doen. Hierdoor wordt het systeem opnieuw opgestart.
 Schakel de beheerdersmodus uit
 Schakel de beheerdersmodus in
 uitloggen
@@ -185,7 +185,7 @@ Taal wijzigen
 Kies een taal
 Systeemtaal
 Huidige systeemtaal:
-Dit verandert de taal van het OpenHomeKaraoke-backend-systeem dat op het tv-scherm wordt weergegeven; bovendien kan elke verbindende gebruiker ook zijn respectievelijke Web UI-taal wijzigen via de wereldbolknop in het menu rechtsboven.
+Dit verandert de taal van het HomeBodyKaraoke-backend-systeem dat op het tv-scherm wordt weergegeven; bovendien kan elke verbindende gebruiker ook zijn respectievelijke Web UI-taal wijzigen via de wereldbolknop in het menu rechtsboven.
 Downloaden is succesvol voltooid!
 Download mislukt!
 Nummer toegevoegd aan de wachtrij!

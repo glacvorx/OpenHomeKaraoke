@@ -52,7 +52,7 @@ I am developing on MacOS only.
 
 ### Dependencies
 
-1. Python (3.12 of course)
+1. Python3 (obviously)
 2. VLC
 3. deno (for yt-dlp)
 4. cookies.txt (for yt-dlp, should be placed in project root)
