@@ -1003,7 +1003,8 @@ class Karaoke:
 		final_basename = final_stem + '.mp4'
 		final_path = self.download_path + final_basename
 		backup_path = None
-		restart_vocal = self.stop_vocal_splitter_for_replacement()
+		should_stop_vocal = os.path.isfile(final_path) or bool(old_path and os.path.isfile(old_path))
+		restart_vocal = self.stop_vocal_splitter_for_replacement() if should_stop_vocal else False
 		replacement_complete = False
 
 		try:
